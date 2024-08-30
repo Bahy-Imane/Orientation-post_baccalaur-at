@@ -46,7 +46,7 @@ public class JwtTokenProvider {
                 .orElse(null);
 
         claims.put("userRole", role);
-        claims.put("personId", user.getPersonId());
+        claims.put("userId", user.getUserId());
 
         return Jwts.builder()
                 .claims(claims)

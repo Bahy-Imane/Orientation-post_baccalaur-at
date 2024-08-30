@@ -46,7 +46,7 @@ public class AuthService {
         response.setTokenType("Bearer");
         response.setUserName(user.getUsername());
         response.setRole(String.valueOf(user.getRole()));
-        response.setPersonId(user.getPersonId());
+        response.setPersonId(user.getUserId());
         System.out.println("response"+response);
         return response;
     }
@@ -59,12 +59,13 @@ public class AuthService {
         if (userRepository.existsByEmail(signUpDto.getEmail())) {
             throw new RuntimeException("Email is already taken!");
         }
-        User user = new Student();
+        Student user = new Student();
         user.setUserName(signUpDto.getUserName());
         user.setEmail(signUpDto.getEmail());
         user.setRole(Role.STUDENT);
         user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
-
+        user.setMajor(signUpDto.getMajor());
+        user.setGraduationYear(signUpDto.getGraduationYear());
         userRepository.save(user);
 
         return "User registered successfully!";
