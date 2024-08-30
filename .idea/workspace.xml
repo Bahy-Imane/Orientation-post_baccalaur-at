@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f937564-e8f4-4513-ab0a-bcd466f229e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/orientation/biorbac/model/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/orientation/biorbac/repository/AdminRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/orientation/biorbac/repository/StudentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/orientation/biorbac/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/orientation/biorbac/config/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/orientation/biorbac/config/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/orientation/biorbac/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/orientation/biorbac/model/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/orientation/biorbac/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/orientation/biorbac/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/dto/LoginDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/dto/SignUpDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/config/AdminConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/config/AdminConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/security/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/security/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/service/AuthService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,18 +30,28 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 8
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
 }]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2lNO3jsUMnKvHc8lzxV8Qkg7Stf" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.OrientationPostBaccalauriatApplication (1).executor": "Run",
+    "Spring Boot.OrientationPostBaccalauriatApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -55,10 +63,16 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.biorbac.dto" />
+      <recent name="com.biorbac.enums" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="OrientationPostBaccalauriatApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="OrientationPostBaccalauriatApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="orientation-post-baccalauriat" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.orientation.biorbac.OrientationPostBaccalauriatApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.biorbac.OrientationPostBaccalauriatApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -80,7 +94,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1725016875092</updated>
-      <workItem from="1725016876248" duration="470000" />
+      <workItem from="1725016876248" duration="6776000" />
+      <workItem from="1725032043975" duration="1840000" />
     </task>
     <servers />
   </component>

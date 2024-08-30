@@ -23,7 +23,7 @@ public abstract class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long personId;
+    private Long userId;
 
     @Column(nullable = false, unique = true)
     private String userName;

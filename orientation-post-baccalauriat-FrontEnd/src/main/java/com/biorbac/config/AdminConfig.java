@@ -1,5 +1,6 @@
 package com.biorbac.config;
 
+import com.biorbac.enums.Role;
 import com.biorbac.model.Admin;
 import com.biorbac.repository.AdminRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -24,7 +25,8 @@ public class AdminConfig implements CommandLineRunner {
             Admin admin = new Admin();
             admin.setEmail("admin@gmail.com");
             admin.setPassword(passwordEncoder.encode("admin"));
-            admin.setFullName("admin");
+            admin.setUserName("admin");
+            admin.setRole(Role.ADMIN);
             adminRepository.save(admin);
         }
     }
