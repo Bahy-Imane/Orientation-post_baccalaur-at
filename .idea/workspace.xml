@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f937564-e8f4-4513-ab0a-bcd466f229e4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/enums/Program.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Institution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Preferences.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Rating.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Recommendation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/dto/SignUpDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/dto/SignUpDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/jwt/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/jwt/JwtTokenProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Student.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +95,9 @@
       <updated>1725016875092</updated>
       <workItem from="1725016876248" duration="6776000" />
       <workItem from="1725032043975" duration="2641000" />
-      <workItem from="1725034720781" duration="327000" />
+      <workItem from="1725034720781" duration="1966000" />
+      <workItem from="1725186838288" duration="2016000" />
+      <workItem from="1725271443056" duration="5543000" />
     </task>
     <servers />
   </component>

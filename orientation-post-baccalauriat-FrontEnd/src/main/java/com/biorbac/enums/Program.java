@@ -1,0 +1,13 @@
+package com.biorbac.enums;
+
+public enum Program {
+    SCIENCES,
+    ECONOMIE,
+    LETTRES,
+    COMPUTER_SCIENCE,
+    MECHANICAL_ENGINEERING,
+    ELECTRICAL_ENGINEERING,
+    MEDICINE,
+    BUSINESS_ADMINISTRATION,
+    ARTS
+}
