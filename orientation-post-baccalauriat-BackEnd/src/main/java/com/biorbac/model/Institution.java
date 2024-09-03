@@ -22,11 +22,12 @@ public class Institution {
     private Long institutionId;
     private String name;
     private String subject;
-    private String ville;
+    private String location;
     private String website;
     private String description;
     private String conditionsAdmission;
     private String emailContact;
+    private Boolean isOpen;
 
     @Enumerated(EnumType.STRING)
     private Specialization specialization;

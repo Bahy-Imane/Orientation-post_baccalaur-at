@@ -4,7 +4,6 @@ import com.biorbac.dto.InstitutionDto;
 import com.biorbac.enums.Specialization;
 import com.biorbac.model.Institution;
 import com.biorbac.service.InstitutionService;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

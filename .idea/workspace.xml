@@ -5,22 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f937564-e8f4-4513-ab0a-bcd466f229e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/controller/InstitutionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/dto/InstitutionDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/enums/InstitutionType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/mapper/InstitutionMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/repository/InstitutionRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/service/InstitutionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/dto/SignUpDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/dto/SignUpDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/enums/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/enums/Specialization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Institution.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Institution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Rating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Recommendation.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Recommendation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/OrientationPostBaccalauriatApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/config/AdminConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/controller/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/controller/InstitutionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/dto/InstitutionDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/dto/JwtAuthResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/dto/LoginDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/dto/SignUpDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/enums/InstitutionType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/enums/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/enums/Specialization.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/jwt/JwtAuthenticationEntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/jwt/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/jwt/JwtTokenProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/mapper/InstitutionMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Admin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Comment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Institution.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Preferences.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Rating.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Recommendation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/repository/AdminRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/repository/InstitutionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/repository/StudentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/security/CustomUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/security/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/service/AuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/java/com/biorbac/service/InstitutionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/test/java/com/orientation/biorbac/OrientationPostBaccalauriatApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +53,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -107,7 +130,7 @@
       <workItem from="1725034720781" duration="1966000" />
       <workItem from="1725186838288" duration="2016000" />
       <workItem from="1725271443056" duration="13342000" />
-      <workItem from="1725354262140" duration="4393000" />
+      <workItem from="1725354262140" duration="11357000" />
     </task>
     <servers />
   </component>

@@ -15,8 +15,8 @@ import java.util.List;
 @Setter
 public class Student extends User {
 
-    private String grade;
-    private String graduationYear;
+    private double baccalaureateScore;
+    private String location;
 
     @Enumerated(EnumType.STRING)
     private Specialization specialization;
