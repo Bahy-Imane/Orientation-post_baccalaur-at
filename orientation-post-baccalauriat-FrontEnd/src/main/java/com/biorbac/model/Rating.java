@@ -19,4 +19,7 @@ public class Rating {
 
     @ManyToOne
     private Student student;
+
+    @ManyToOne
+    private Institution institution;
 }

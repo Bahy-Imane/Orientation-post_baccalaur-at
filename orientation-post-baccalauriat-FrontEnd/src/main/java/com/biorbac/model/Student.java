@@ -1,6 +1,6 @@
 package com.biorbac.model;
 
-import com.biorbac.enums.Program;
+import com.biorbac.enums.Specialization;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -15,11 +15,11 @@ import java.util.List;
 @Setter
 public class Student extends User {
 
-    private String major;
+    private String grade;
     private String graduationYear;
 
     @Enumerated(EnumType.STRING)
-    private Program program;
+    private Specialization specialization;
 
     @OneToMany(mappedBy = "student")
     private List<Rating> ratings;

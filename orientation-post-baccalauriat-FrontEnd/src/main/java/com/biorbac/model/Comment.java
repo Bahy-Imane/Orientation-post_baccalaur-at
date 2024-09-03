@@ -20,4 +20,7 @@ public class Comment {
 
     @ManyToOne
     private Student student;
+
+    @ManyToOne
+    private Institution institution;
 }

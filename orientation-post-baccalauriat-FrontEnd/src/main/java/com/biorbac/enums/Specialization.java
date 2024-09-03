@@ -1,6 +1,6 @@
 package com.biorbac.enums;
 
-public enum Program {
+public enum Specialization {
     SCIENCES,
     ECONOMIE,
     LETTRES,

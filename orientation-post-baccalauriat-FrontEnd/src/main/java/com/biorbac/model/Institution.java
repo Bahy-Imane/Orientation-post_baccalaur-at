@@ -1,5 +1,7 @@
 package com.biorbac.model;
 
+import com.biorbac.enums.InstitutionType;
+import com.biorbac.enums.Specialization;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,16 +20,20 @@ public class Institution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long institutionId;
-
     private String name;
     private String subject;
-    private Long grade;
-    private String location;
+    private String ville;
     private String website;
     private String description;
-    private String admissionRequirements;
-    private String tuitionFees;
-    private String housingOptions;
+    private String conditionsAdmission;
+    private String emailContact;
+
+    @Enumerated(EnumType.STRING)
+    private Specialization specialization;
+
+    @Enumerated(EnumType.STRING)
+    private InstitutionType institutionType;
+
 
     @OneToMany(mappedBy = "institution", cascade = CascadeType.ALL)
     private List<Recommendation> recommendations;

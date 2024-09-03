@@ -1,6 +1,7 @@
 package com.biorbac.dto;
 
 
+import com.biorbac.enums.Specialization;
 import lombok.*;
 
 @Setter
@@ -12,8 +13,9 @@ public class SignUpDto {
     private String userName;
     private String email;
     private String password;
-    private String major;
+    private String grade;
     private String graduationYear;
+    private Specialization specialization;
 
 }
 

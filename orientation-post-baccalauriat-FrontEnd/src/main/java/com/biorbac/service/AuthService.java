@@ -26,16 +26,13 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
 
     public JwtAuthResponse login(LoginDto loginDto) {
-        System.out.println("hyyyyyyyyy222222");
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUserNameOrEmail(),
                 loginDto.getPassword()
         ));
 
-        System.out.println("authetication"+authentication);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        System.out.println("passsssssssssse");
         String token = jwtTokenProvider.generateToken(authentication);
         System.out.println("token"+token);
         User user = userRepository.findByUserNameOrEmail(loginDto.getUserNameOrEmail(), loginDto.getUserNameOrEmail());
@@ -64,8 +61,9 @@ public class AuthService {
         user.setEmail(signUpDto.getEmail());
         user.setRole(Role.STUDENT);
         user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
-        user.setMajor(signUpDto.getMajor());
+        user.setGrade(signUpDto.getGrade());
         user.setGraduationYear(signUpDto.getGraduationYear());
+        user.setSpecialization(signUpDto.getSpecialization());
         userRepository.save(user);
 
         return "User registered successfully!";
