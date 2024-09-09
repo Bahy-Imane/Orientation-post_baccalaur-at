@@ -9,8 +9,8 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AcademicMapper {
 
-    AcademicUnit toInstitutionDto(AcademicUnitDto academicUnitDto);
-    AcademicUnitDto toInstitution(AcademicUnit academicUnit);
+    AcademicUnit toAcademicUnitDto(AcademicUnitDto academicUnitDto);
+    AcademicUnitDto toAcademicUnit(AcademicUnit academicUnit);
     void updateAcademicUnitFromDto(AcademicUnitDto academicUnitDto, @MappingTarget AcademicUnit academicUnit);
 
 }
