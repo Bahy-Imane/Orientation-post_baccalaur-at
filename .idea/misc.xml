@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/orientation-post-baccalauriat/pom.xml" />
         <option value="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/pom.xml" />
+        <option value="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/pom.xml" />
       </list>
     </option>
   </component>

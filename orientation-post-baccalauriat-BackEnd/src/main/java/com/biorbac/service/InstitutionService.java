@@ -1,7 +1,7 @@
 package com.biorbac.service;
 
 import com.biorbac.dto.InstitutionDto;
-import com.biorbac.enums.Specialization;
+import com.biorbac.enums.Interest;
 import com.biorbac.mapper.InstitutionMapper;
 import com.biorbac.model.Institution;
 import com.biorbac.repository.InstitutionRepository;
@@ -23,33 +23,33 @@ public class InstitutionService {
         return institutionRepository.findAll();
     }
 
+
+
     public InstitutionDto addInstitution(InstitutionDto institutionDto) {
-        Institution institution = institutionMapper.toInstitution(institutionDto);
-    return institutionMapper.toInstitutionDto(institutionRepository.save(institution));
+        Institution institution = institutionMapper.toInstitutionDto(institutionDto);
+    return institutionMapper.toInstitution(institutionRepository.save(institution));
     }
 
+
+
     public InstitutionDto updateInstitution(Long institutionId, InstitutionDto institutionDto) {
-        // Validate DTO
         if (institutionDto.getName() == null || institutionDto.getName().isEmpty()) {
             throw new IllegalArgumentException("Institution name cannot be null or empty");
         }
-        // Add more validations as needed
 
-        // Find the existing institution
         Institution institution = institutionRepository.findById(institutionId)
                 .orElseThrow(() -> new RuntimeException("Institution not found"));
 
-        // Use the mapper to update the entity
         institutionMapper.updateInstitutionFromDto(institutionDto, institution);
 
-        // Save the updated institution
         Institution updatedInstitution = institutionRepository.save(institution);
 
-        // Convert the updated entity back to DTO and return it
-        return institutionMapper.toInstitutionDto(updatedInstitution);
+        return institutionMapper.toInstitution(updatedInstitution);
     }
 
-    public List<Institution> findInstitution(String name, String subject, String ville, String description, String emailContact, Specialization specialization) {
+
+
+    public List<Institution> findInstitution(String name, String subject, String ville, String description, String emailContact, Interest specialization) {
         return institutionRepository.findAll((root, query, criteriaBuilder) -> {
             var predicates = criteriaBuilder.conjunction();
 

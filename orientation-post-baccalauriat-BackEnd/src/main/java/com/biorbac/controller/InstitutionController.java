@@ -1,7 +1,7 @@
 package com.biorbac.controller;
 
 import com.biorbac.dto.InstitutionDto;
-import com.biorbac.enums.Specialization;
+import com.biorbac.enums.Interest;
 import com.biorbac.model.Institution;
 import com.biorbac.service.InstitutionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class InstitutionController {
             @RequestParam(required = false) String ville,
             @RequestParam(required = false) String description,
             @RequestParam(required = false) String emailContact,
-            @RequestParam(required = false) Specialization specialization) {
+            @RequestParam(required = false) Interest specialization) {
 
         List<Institution> institutions = institutionService.findInstitution(
                 name, subject, ville, description, emailContact, specialization);

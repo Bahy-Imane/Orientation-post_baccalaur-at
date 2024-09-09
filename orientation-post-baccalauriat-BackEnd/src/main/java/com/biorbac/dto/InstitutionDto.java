@@ -1,7 +1,7 @@
 package com.biorbac.dto;
 
 import com.biorbac.enums.InstitutionType;
-import com.biorbac.enums.Specialization;
+import com.biorbac.enums.Interest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +15,6 @@ public class InstitutionDto {
     private String description;
     private String conditionsAdmission;
     private String emailContact;
-    private Specialization specialization;
+    private Interest specialization;
     private InstitutionType institutionType;
 }

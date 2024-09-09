@@ -7,22 +7,30 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
-@Setter
 @Getter
-@NoArgsConstructor
+@Setter
 @AllArgsConstructor
-public class Rating {
+@NoArgsConstructor
+public class FieldOfStudy {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ratingId;
-    private String score;
+    private Long fosId;
+    private String name;
+    private String description;
+    private Double entryRequirement;
+    private Integer numberOfStudents;
+
+
 
     @ManyToOne
     @JsonIgnore
     private Student student;
 
-    @ManyToOne
+    @ManyToMany(mappedBy = "field_of_study")
     @JsonIgnore
-    private Institution institution;
+    private List<AcademicUnit> academicUnits;
 }

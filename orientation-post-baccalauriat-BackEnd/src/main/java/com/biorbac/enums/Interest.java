@@ -1,12 +1,15 @@
 package com.biorbac.enums;
 
-public enum Specialization {
+public enum Interest {
     SCIENCES,
     ECONOMIE,
     LETTRES,
     COMPUTER_SCIENCE,
+    ENGINEERING,
     MECHANICAL_ENGINEERING,
     ELECTRICAL_ENGINEERING,
+    BUSINESS,
+    TECHNOLOGY,
     MEDICINE,
     BUSINESS_ADMINISTRATION,
     ARTS

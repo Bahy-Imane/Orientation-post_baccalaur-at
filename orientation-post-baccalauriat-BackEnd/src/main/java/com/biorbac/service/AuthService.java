@@ -61,9 +61,9 @@ public class AuthService {
         user.setEmail(signUpDto.getEmail());
         user.setRole(Role.STUDENT);
         user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
-        user.setGrade(signUpDto.getGrade());
-        user.setGraduationYear(signUpDto.getGraduationYear());
-        user.setSpecialization(signUpDto.getSpecialization());
+        user.setBacScore(signUpDto.getBacScore());
+        user.setLocation(signUpDto.getLocation());
+        user.setBacType(signUpDto.getBacType());
         userRepository.save(user);
 
         return "User registered successfully!";

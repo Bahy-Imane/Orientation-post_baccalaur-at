@@ -1,12 +1,10 @@
 package com.biorbac.service;
 
-import com.biorbac.enums.Specialization;
+import com.biorbac.enums.Interest;
 import com.biorbac.model.Institution;
 import com.biorbac.model.Student;
-import com.biorbac.model.User;
 import com.biorbac.repository.InstitutionRepository;
 import com.biorbac.repository.StudentRepository;
-import com.biorbac.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +24,7 @@ public class RecommendationService {
         Student student = studentRepository.findById(studentId).orElseThrow();
 
 
-        Specialization studentSpecialization = student.getSpecialization();
+        Interest studentSpecialization = student.getSpecialization();
         String studentLocation = student.getLocation();
 
         return institutionRepository.findAll().stream()
