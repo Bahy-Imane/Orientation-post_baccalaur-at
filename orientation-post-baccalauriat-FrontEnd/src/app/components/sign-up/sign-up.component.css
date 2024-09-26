@@ -1,0 +1,222 @@
+:host {
+  display: contents;
+}
+
+.create-account-page {
+  background-color: #fbfbfb;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 80px;
+  font-family: Poppins, sans-serif;
+}
+
+.content-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1017px;
+  flex-direction: column;
+}
+
+.account-creation-section {
+  border-radius: 24px;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 57px 0 57px 56px;
+  border: 1px solid rgba(102, 102, 102, 0.5);
+}
+
+.account-creation-container {
+  display: flex;
+  flex-direction: column;
+  width: 58%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.logo {
+  background-color: #c4c4c4;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+}
+
+.header-text {
+  display: flex;
+  margin-top: 16px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  color: #333;
+  font-size: 32px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.login-prompt {
+  font-size: 16px;
+  color: #666;
+  font-weight: 400;
+  margin: 0;
+}
+
+.login-link {
+  color: #111;
+  text-decoration: none;
+}
+
+.account-form {
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 534px;
+  flex-direction: column;
+  font-size: 16px;
+  color: #666;
+  font-weight: 400;
+}
+
+.name-fields,
+.password-fields {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+  flex: 1;
+}
+
+.form-label {
+  padding: 2px 0;
+}
+
+.form-input {
+  border-radius: 12px;
+  min-height: 56px;
+  margin-top: 4px;
+  width: 100%;
+  border: 1px solid rgba(102, 102, 102, 0.35);
+}
+
+.password-section {
+  margin-top: 24px;
+}
+
+.password-instructions {
+  margin-top: 8px;
+}
+
+.show-password-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  padding: 8px 8px 8px 0;
+}
+
+.form-actions {
+  display: flex;
+  margin-top: 40px;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.submit-button {
+  border-radius: 32px;
+  background-color: #111;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 500;
+  text-align: center;
+  padding: 16px 26px;
+  border: none;
+  cursor: pointer;
+}
+
+.image-section {
+  width: 42%;
+}
+
+.decorative-image {
+  width: 100%;
+  height: auto;
+}
+
+.page-footer {
+  display: flex;
+  margin-top: 12px;
+  width: 100%;
+  max-width: 918px;
+  gap: 20px;
+  color: #333;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 16px;
+}
+
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.dropdown-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-link {
+  color: #333;
+  text-decoration: none;
+}
+
+@media (max-width: 991px) {
+  .create-account-page {
+    padding: 0 20px;
+  }
+
+  .content-wrapper {
+    max-width: 100%;
+  }
+
+  .account-creation-section {
+    max-width: 100%;
+    padding-left: 20px;
+  }
+
+  .account-creation-container {
+    width: 100%;
+  }
+
+  .account-form {
+    max-width: 100%;
+  }
+
+  .submit-button {
+    padding: 16px 20px;
+  }
+
+  .image-section {
+    width: 100%;
+    margin-top: 40px;
+  }
+}

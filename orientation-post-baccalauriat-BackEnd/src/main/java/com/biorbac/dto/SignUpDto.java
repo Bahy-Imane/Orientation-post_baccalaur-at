@@ -8,11 +8,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignUpDto {
-
-    private String userName;
-    private String email;
-    private String password;
+public class SignUpDto extends UserDTO{
     private double bacScore;
     private String location;
     private BacType bacType;

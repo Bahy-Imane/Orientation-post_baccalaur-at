@@ -1,0 +1,182 @@
+.footer {
+  font-family: Inter, sans-serif;
+}
+
+.cta-section {
+  background-color: #f5f7fa;
+  padding: 22px 0;
+  text-align: center;
+}
+
+.cta-heading {
+  color: #263238;
+  font-size: 45px;
+  font-weight: 600;
+  line-height: 53px;
+  max-width: 618px;
+  margin: 0 auto;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: #4caf4f;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 2.784px;
+  cursor: pointer;
+  margin-top: 22px;
+}
+
+.cta-icon {
+  width: 11px;
+  height: 11px;
+}
+
+.footer-content {
+  background-color: #263238;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 87px;
+  padding: 45px 115px;
+}
+
+.company-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+  width: 244px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.logo-icon {
+  width: 30px;
+  height: 20px;
+}
+
+.logo-text {
+  width: 96px;
+}
+
+.copyright {
+  color: #f5f7fa;
+  font-size: 14px;
+  margin-top: 28px;
+}
+
+.social-links {
+  display: flex;
+  gap: 11px;
+  margin-top: 28px;
+}
+
+.social-links a {
+  display: inline-block;
+}
+
+.social-links img {
+  width: 22px;
+  height: 22px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+}
+
+.link-column {
+  width: 111px;
+}
+
+.link-column h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 17px;
+}
+
+.link-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link-column li {
+  margin-top: 8px;
+}
+
+.link-column a {
+  color: #f5f7fa;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.email-form {
+  margin-top: 17px;
+}
+
+.input-wrapper {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5.569px;
+  padding: 7px 8px;
+}
+
+.email-form input {
+  background: transparent;
+  border: none;
+  color: #d9dbe1;
+  font-size: 14px;
+  width: 100%;
+}
+
+.email-form button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.email-form img {
+  width: 12px;
+  height: 13px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 991px) {
+  .cta-heading {
+    font-size: 40px;
+    line-height: 52px;
+    max-width: 100%;
+  }
+
+  .cta-button {
+    padding: 10px 20px;
+  }
+
+  .footer-content {
+    padding: 45px 20px;
+  }
+}

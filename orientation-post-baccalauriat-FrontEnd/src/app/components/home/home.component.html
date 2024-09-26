@@ -1,24 +1,212 @@
-<header class="header">
-  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d2e7137253155c2ef6a740e3ae98575c45f7a97a3d640f299f42b6599b33a4c5?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Company Logo" class="logo" />
-  <nav class="main-nav">
-    <ul class="nav-list">
-      <li><a href="#demos">Demos</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-  <div class="auth-buttons">
-    <a href="#login" class="login-link">Login</a>
-    <a href="#signup" class="signup-button">Sign up</a>
-  </div>
-</header>
-
-<main class="hero-section">
-  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a2d00b4e2d171ab8d44d1647b4f641f8c7f3713261eafccdcf89e053e6d715e7?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="" class="hero-background" />
+<!-- Section Héro -->
+<section class="hero">
   <div class="hero-content">
-    <h1 class="hero-title">A collaborative Time Tracking that you Need</h1>
-    <p class="hero-description">An enim nullam tempor sapien gravida donec enim ipsum porta justo congue magna at pretium purus pretium ligula</p>
-    <a href="#trial" class="cta-button">Start 14 Days Trial</a>
+    <h1 class="hero-title">Orientation académique <span class="highlight">pour un avenir brillant</span></h1>
+    <p class="hero-description">Aidez les jeunes à choisir le bon parcours académique pour atteindre leurs objectifs professionnels.</p>
+    <button class="cta-button">Commencez maintenant !</button>
   </div>
-</main>
+  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/84e99d7e9b41c97009dc684d47addffac67fdc88f28ea2721783b0563638d344?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Illustration d'orientation académique" class="hero-image" />
+</section>
+
+<section class="clients">
+  <h2 class="section-title">Nos Partenaires Éducatifs</h2>
+  <p class="section-description">Nous collaborons avec des établissements éducatifs prestigieux pour vous offrir les meilleures options.</p>
+  <div class="client-logos">
+    <img *ngFor="let i of [2, 3, 4, 5, 6, 7, 8]" src="http://b.io/ext_{{i}}-" [alt]="'Logo partenaire ' + i" class="client-logo" />
+  </div>
+</section>
+
+<section class="community">
+  <h2 class="section-title">Trouver le parcours qui vous correspond</h2>
+  <p class="section-description">Découvrez les différentes options disponibles pour vous aider à choisir le chemin qui vous conviendra le mieux.</p>
+  <div class="community-cards">
+    <div *ngFor="let card of communityCards" class="community-card">
+      <img [src]="card.imgSrc" [alt]="card.title" class="card-icon" />
+      <h3 class="card-title">{{card.title}}</h3>
+      <p class="card-description">{{card.description}}</p>
+    </div>
+  </div>
+</section>
+
+<section class="unlock">
+  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/56b5dd473f414c065040a13f5ad96ca641167d9b3c9a70b2c3d2f005a10e843e?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Illustration d'orientation" class="unlock-image" />
+  <div class="unlock-content">
+    <h2 class="unlock-title">Développez vos compétences pour un avenir prometteur</h2>
+    <p class="unlock-description">
+      Apprenez à évaluer vos intérêts et compétences pour choisir le parcours académique qui vous convient. Obtenez des conseils sur les meilleures pratiques pour réussir dans votre domaine choisi.
+    </p>
+    <button class="learn-more-button">En savoir plus</button>
+  </div>
+</section>
+
+<section class="achievements">
+  <div class="achievements-content">
+    <h2 class="section-title">Réalisations des étudiants</h2>
+    <p class="section-description">Découvrez comment nos conseils ont aidé les étudiants à atteindre leurs objectifs académiques et professionnels.</p>
+  </div>
+  <div class="achievement-stats">
+    <div *ngFor="let stat of achievementStats" class="stat-item">
+      <img [src]="stat.imgSrc" [alt]="stat.label + ' icône'" class="stat-icon" />
+      <div class="stat-details">
+        <p class="stat-number">{{stat.number}}</p>
+        <p class="stat-label">{{stat.label}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="calendar">
+  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/aa03deae5312c214f447eb07aa2933dbbcb0bb64af7224c9bb4ffb7658b65eb1?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Illustration de planification" class="calendar-image" />
+  <div class="calendar-content">
+    <h2 class="calendar-title">Planifiez votre avenir académique</h2>
+    <p class="calendar-description">
+      Découvrez comment planifier efficacement vos études pour atteindre vos objectifs professionnels. Apprenez à gérer votre emploi du temps et à vous préparer pour des succès futurs.
+    </p>
+    <button class="learn-more-button">En savoir plus</button>
+  </div>
+</section>
+
+<section class="community-updates">
+  <h2 class="section-title">Actualités et conseils académiques</h2>
+  <p class="section-description">
+    Consultez notre blog pour des conseils sur la réussite académique, des histoires inspirantes et des mises à jour sur les tendances en matière d'orientation professionnelle.
+  </p>
+  <div class="update-cards">
+    <div *ngFor="let card of updateCards" class="update-card">
+      <img [src]="card.imgSrc" [alt]="card.title" class="card-image" />
+      <div class="card-content">
+        <h3 class="card-title">{{card.title}}</h3>
+        <a href="#" class="read-more-link">
+          Lire la suite
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4ae3d4a81ac75d2d86f1bd44963b3547469b948e1e28d35b2b1358b1263a3aff?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Icône flèche" class="arrow-icon" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--&lt;!&ndash; Section Héro &ndash;&gt;-->
+<!--<section class="hero">-->
+<!--  <div class="hero-content">-->
+<!--    <h1 class="hero-title">Lessons and insights <span class="highlight">from 8 years</span></h1>-->
+<!--    <p class="hero-description">Where to grow your business as a photographer: site or social media?</p>-->
+<!--    <button class="cta-button">Sign Up Now !</button>-->
+<!--  </div>-->
+<!--  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/84e99d7e9b41c97009dc684d47addffac67fdc88f28ea2721783b0563638d344?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Hero illustration" class="hero-image" />-->
+<!--</section>-->
+
+<!--<section class="clients">-->
+<!--  <h2 class="section-title">Our Clients</h2>-->
+<!--  <p class="section-description">We have been working with some Fortune 500+ clients</p>-->
+<!--  <div class="client-logos">-->
+<!--    <img *ngFor="let i of [2, 3, 4, 5, 6, 7, 8]" src="http://b.io/ext_{{i}}-" [alt]="'Client logo ' + i" class="client-logo" />-->
+<!--  </div>-->
+<!--</section>-->
+
+<!--<section class="community">-->
+<!--  <h2 class="section-title">Manage your entire community in a single system</h2>-->
+<!--  <p class="section-description">Who is Nextcent suitable for?</p>-->
+<!--  <div class="community-cards">-->
+<!--    <div *ngFor="let card of communityCards" class="community-card">-->
+<!--      <img [src]="card.imgSrc" [alt]="card.title" class="card-icon" />-->
+<!--      <h3 class="card-title">{{card.title}}</h3>-->
+<!--      <p class="card-description">{{card.description}}</p>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+<!--<section class="unlock">-->
+<!--  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/56b5dd473f414c065040a13f5ad96ca641167d9b3c9a70b2c3d2f005a10e843e?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Unlock illustration" class="unlock-image" />-->
+<!--  <div class="unlock-content">-->
+<!--    <h2 class="unlock-title">The unseen of spending three years at Pixelgrade</h2>-->
+<!--    <p class="unlock-description">-->
+<!--      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae est varius fringilla. Pellentesque placerat vestibulum lorem sed porta. Nullam mattis tristique iaculis. Nullam pulvinar sit amet risus pretium auctor. Etiam quis massa pulvinar, aliquam quam vitae, tempus sem. Donec elementum pulvinar odio.-->
+<!--    </p>-->
+<!--    <button class="learn-more-button">Learn More</button>-->
+<!--  </div>-->
+<!--</section>-->
+
+<!--<section class="achievements">-->
+<!--  <div class="achievements-content">-->
+<!--    <h2 class="section-title">Helping a local <span class="highlight">business reinvent itself</span></h2>-->
+<!--    <p class="section-description">We reached here with our hard work and dedication</p>-->
+<!--  </div>-->
+<!--  <div class="achievement-stats">-->
+<!--    <div *ngFor="let stat of achievementStats" class="stat-item">-->
+<!--      <img [src]="stat.imgSrc" [alt]="stat.label + ' icon'" class="stat-icon" />-->
+<!--      <div class="stat-details">-->
+<!--        <p class="stat-number">{{stat.number}}</p>-->
+<!--        <p class="stat-label">{{stat.label}}</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+<!--<section class="calendar">-->
+<!--  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/aa03deae5312c214f447eb07aa2933dbbcb0bb64af7224c9bb4ffb7658b65eb1?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Calendar illustration" class="calendar-image" />-->
+<!--  <div class="calendar-content">-->
+<!--    <h2 class="calendar-title">How to design your site footer like we did</h2>-->
+<!--    <p class="calendar-description">-->
+<!--      Donec a eros justo. Fusce egestas tristique ultrices. Nam tempor, augue nec tincidunt molestie, massa nunc varius arcu, at scelerisque elit erat a magna. Donec quis erat at libero ultrices mollis. In hac habitasse platea dictumst. Vivamus vehicula leo dui, at porta nisi facilisis finibus. In euismod augue vitae nisi ultricies, non aliquet urna tincidunt. Integer in nisi eget nulla commodo faucibus efficitur quis massa. Praesent felis est, finibus et nisi ac, hendrerit venenatis libero. Donec consectetur faucibus ipsum id gravida.-->
+<!--    </p>-->
+<!--    <button class="learn-more-button">Learn More</button>-->
+<!--  </div>-->
+<!--</section>-->
+
+
+
+<!--<section class="community-updates">-->
+<!--  <h2 class="section-title">Caring is the new marketing</h2>-->
+<!--  <p class="section-description">-->
+<!--    The Nextcent blog is the best place to read about the latest membership insights, trends and more. See who's joining the community, read about how our community are increasing their membership income and lot's more.​-->
+<!--  </p>-->
+<!--  <div class="update-cards">-->
+<!--    <div *ngFor="let card of updateCards" class="update-card">-->
+<!--      <img [src]="card.imgSrc" [alt]="card.title" class="card-image" />-->
+<!--      <div class="card-content">-->
+<!--        <h3 class="card-title">{{card.title}}</h3>-->
+<!--        <a href="#" class="read-more-link">-->
+<!--          Readmore-->
+<!--          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4ae3d4a81ac75d2d86f1bd44963b3547469b948e1e28d35b2b1358b1263a3aff?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Arrow icon" class="arrow-icon" />-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<!--&lt;!&ndash;<div class="home-container">&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="hero">&ndash;&gt;-->
+<!--&lt;!&ndash;    <h2>Enhancing IT Efficiency</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h2>With Comprehensive Support Solutions</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;    <p>Streamline your IT management, track issues, and resolve support tickets with our state-of-the-art services.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="subscribe">&ndash;&gt;-->
+<!--&lt;!&ndash;      <input type="email" placeholder="Enter your Email" />&ndash;&gt;-->
+<!--&lt;!&ndash;      <button>Subscribe</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="partners">&ndash;&gt;-->
+<!--&lt;!&ndash;      <img src="assets/Image/Logo_IT%20PARTNERS_seul.png.coredownload.705068150.png" alt="Partner 1" />&ndash;&gt;-->
+<!--&lt;!&ndash;      <img src="assets/Image/AZUL2@3x.png" alt="Partner 2" />&ndash;&gt;-->
+<!--&lt;!&ndash;      <img src="assets/Image/IT-Pro-Partner-Logo.webp" alt="Partner 3" />&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  <section class="features-section">&ndash;&gt;-->
+<!--&lt;!&ndash;    <h2>Our Key Features</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="features">&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="feature-card">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="icon">📦</div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <h3>Equipment Management</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p>Efficiently manage all your IT equipment with our powerful tools.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="feature-card">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="icon">🔍</div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <h3>Failure Tracking</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p>Monitor and track equipment failures with detailed reports.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="feature-card">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="icon">💬</div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <h3>Support Tickets</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p>Handle support tickets effectively to resolve issues promptly.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  </section>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->

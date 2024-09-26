@@ -1,13 +1,13 @@
 package com.biorbac.service;
 
 
-import com.biorbac.dto.AcademicUnitDto;
+import com.biorbac.dto.DepartmentDto;
 import com.biorbac.dto.FieldOfStudyDto;
 import com.biorbac.mapper.FieldOfStudyMapper;
-import com.biorbac.model.AcademicUnit;
+import com.biorbac.model.Department;
 import com.biorbac.model.FieldOfStudy;
 import com.biorbac.model.Institution;
-import com.biorbac.repository.AcademicUnitRepository;
+import com.biorbac.repository.DepartmentRepository;
 import com.biorbac.repository.FieldOfStudyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class FieldOfStudyService {
     private FieldOfStudyMapper fieldOfStudyMapper;
 
     @Autowired
-    private AcademicUnitRepository academicUnitRepository;
+    private DepartmentRepository departmentRepository;
 
 
     public List<FieldOfStudy> getAllFieldOfStudy() {
@@ -32,12 +32,15 @@ public class FieldOfStudyService {
     }
 
 
-    public FieldOfStudyDto AddFieldOfStudy(Long academicId, FieldOfStudyDto fieldOfStudyDto) {
-        AcademicUnit academicUnit = academicUnitRepository.findById(academicId).orElseThrow();
-        academicUnit.setAcademicId(academicId);
-        FieldOfStudy fieldOfStudy = fieldOfStudyMapper.toFieldOfStudyDto(fieldOfStudyDto);
-        return fieldOfStudyMapper.toFieldOfStudy(fieldOfStudyRepository.save(fieldOfStudy));
-    }
+    public FieldOfStudyDto AddFieldOfStudy(Long departmentId, FieldOfStudyDto fieldOfStudyDto) {
+            Department department = departmentRepository.findById(departmentId)
+                    .orElseThrow(() -> new RuntimeException("Department not found with ID: " + departmentId));
+
+            FieldOfStudy fieldOfStudy = fieldOfStudyMapper.toFieldOfStudyDto(fieldOfStudyDto);
+            fieldOfStudy.setDepartment(department);
+            FieldOfStudy savedFieldOfStudy = fieldOfStudyRepository.save(fieldOfStudy);
+            return fieldOfStudyMapper.toFieldOfStudy(savedFieldOfStudy);
+        }
 
 
     public FieldOfStudyDto updateFieldOfStudy(Long fosId,FieldOfStudyDto fieldOfStudyDto) {
@@ -54,7 +57,6 @@ public class FieldOfStudyService {
         return fieldOfStudyMapper.toFieldOfStudy(updatedFieldOfStudy);
     }
 
-    
 
     public void deleteFieldOfStudy( Long fieldOfStudyId) {
         fieldOfStudyRepository.deleteById(fieldOfStudyId);

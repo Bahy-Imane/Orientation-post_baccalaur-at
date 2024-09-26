@@ -1,0 +1,29 @@
+#spring:
+#  application:
+#    name: orientation-post-baccalauriat-BackEnd
+#
+#  datasource:
+#    url: jdbc:mysql://db:3306/orientation_db?createDatabaseIfNotExist=true
+#    username: root
+#    password: ""
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#    show-sql: true
+#
+#server:
+#  port: 8081
+#
+#logging:
+#  level:
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#
+#app:
+#  jwt-secret: fghskjdx35cxc68c9WNC4567TF3456CGHHVTD34IFDWS
+#  jwt-expiration-milliseconds: 3600000

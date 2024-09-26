@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
+import {LoginDto} from "../Dto/login-dto";
+import {JwtAuthResponse} from "../Dto/jwt-auth-response";
+import {SignUpDto} from "../Dto/sign-up-dto";
+import {Role} from "../enums/role";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8080/api/auth';
+  private baseUrl = 'http://localhost:8081/api/auth';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
 
   login(loginDto: LoginDto): Observable<JwtAuthResponse> {
@@ -16,8 +21,8 @@ export class AuthService {
   }
 
 
-  signUp(personUpDto: PersonDto): Observable<string> {
-    return this.http.post<string>(`${this.baseUrl}/signup`, personUpDto);
+  signUp(signUpDto: SignUpDto): Observable<string> {
+    return this.http.post<string>(`${this.baseUrl}/signup`, signUpDto);
   }
 
   isLoggedIn(): boolean {
@@ -34,14 +39,14 @@ export class AuthService {
     return null;
   }
 
-  storeToken(token: string): void {
-    localStorage.setItem('accessToken', token);
-  }
-
   logout(): void {
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('tokenType');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('role');
+    localStorage.removeItem('personId');
+    this.router.navigate(['/login'])
   }
-}
-
 
 }

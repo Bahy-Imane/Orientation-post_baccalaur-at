@@ -17,13 +17,13 @@ import java.util.List;
 @AllArgsConstructor
 public class Institution {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long institutionId;
-    private String name;
-    private String location;
-    private String website;
-    private String description;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long institutionId;
+        private String institutionName;
+        private String description;
+        private String address;
+        private String website;
 
 
     @Enumerated(EnumType.STRING)
@@ -38,16 +38,11 @@ public class Institution {
     private List<Recommendation> recommendations;
 
     @OneToMany(mappedBy = "institution", cascade = CascadeType.ALL)
-    private List<Rating> ratings;
+    private List<Review> reviews;
+
 
     @OneToMany(mappedBy = "institution", cascade = CascadeType.ALL)
-    private List<Comment> comments;
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-    @JoinTable(name = "institution_academic", joinColumns = @JoinColumn(name = "institution_id"),
-            inverseJoinColumns = @JoinColumn(name = "academic_id"))
-    private List<AcademicUnit> academicUnits;
-
+    private List<Department> departments;
 
 
 }

@@ -1,9 +1,7 @@
 package com.biorbac.mapper;
 
 
-import com.biorbac.dto.AcademicUnitDto;
 import com.biorbac.dto.FieldOfStudyDto;
-import com.biorbac.model.AcademicUnit;
 import com.biorbac.model.FieldOfStudy;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

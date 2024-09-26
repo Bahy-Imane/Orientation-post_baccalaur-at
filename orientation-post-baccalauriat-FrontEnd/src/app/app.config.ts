@@ -8,7 +8,7 @@ import {provideAnimationsAsync} from "@angular/platform-browser/animations/async
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes), provideAnimationsAsync(), provideAnimationsAsync(),
     // provideHttpClient(withInterceptors([AuthInterceptor])),
     // importProvidersFrom(FormsModule), provideAnimationsAsync(), provideAnimationsAsync()
   ]};

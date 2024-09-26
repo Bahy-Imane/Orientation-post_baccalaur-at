@@ -1,0 +1,173 @@
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  color: #2d3748;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Styles */
+.hero {
+  position: relative;
+  text-align: center;
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://cdn.builder.io/api/v1/image/assets/TEMP/d50abb4da56ddb6cfe08e14dc22f8b01d0acf62cbaf40c3e0c7345c54a37bcb4') no-repeat center center/cover;
+  height: 100vh;
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+}
+
+.hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.hero-cta a {
+  padding: 15px 30px;
+  border-radius: 25px;
+}
+
+.hero-background{
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #007bff;
+  border: none;
+}
+
+.hero-logo {
+  width: 120px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.hero-wave {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Section Styles */
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #007bff;
+}
+
+.about, .objectives, .services {
+  background-color: white;
+  padding: 60px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.about-content, .objectives-content, .services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.about-text, .core-values, .mission, .vision {
+  flex: 1;
+  padding: 20px;
+}
+
+.about-text img, .core-values img, .mission img, .vision img {
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.objectives-content .objective, .services-grid .service-card {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.objective-icon, .service-icon {
+  width: 60px;
+  margin-bottom: 15px;
+}
+
+.service-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.service-description {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+.mission-vision {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mission, .vision {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+}
+
+.mission-icon, .vision-icon {
+  width: 60px;
+  margin-bottom: 15px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .about-content, .objectives-content, .mission-vision {
+    flex-direction: column;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+}

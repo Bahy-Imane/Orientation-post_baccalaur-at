@@ -8,13 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class InstitutionDto {
-    private String name;
-    private String subject;
-    private String ville;
-    private String website;
+
+    private String institutionName;
     private String description;
-    private String conditionsAdmission;
-    private String emailContact;
-    private Interest specialization;
+    private String address;
+    private String website;
     private InstitutionType institutionType;
+
 }

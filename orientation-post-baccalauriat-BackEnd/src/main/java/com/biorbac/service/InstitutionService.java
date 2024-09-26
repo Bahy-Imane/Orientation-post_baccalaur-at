@@ -1,82 +1,60 @@
 package com.biorbac.service;
 
 import com.biorbac.dto.InstitutionDto;
-import com.biorbac.enums.Interest;
 import com.biorbac.mapper.InstitutionMapper;
 import com.biorbac.model.Institution;
 import com.biorbac.repository.InstitutionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InstitutionService {
-    @Autowired
-    private InstitutionRepository institutionRepository;
 
     @Autowired
+    private InstitutionRepository institutionRepository;
+    @Autowired
     private InstitutionMapper institutionMapper;
+
 
     public List<Institution> getAllInstitutions() {
         return institutionRepository.findAll();
     }
 
+    public ResponseEntity<InstitutionDto> getInstitutionById(Long id) {
+        Optional<Institution> institutionOpt = institutionRepository.findById(id);
+        return institutionOpt.map(institution -> ResponseEntity.ok(institutionMapper.toInstitution(institution)))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
 
-
-    public InstitutionDto addInstitution(InstitutionDto institutionDto) {
+    public InstitutionDto createInstitution(InstitutionDto institutionDto) {
         Institution institution = institutionMapper.toInstitutionDto(institutionDto);
-    return institutionMapper.toInstitution(institutionRepository.save(institution));
+        Institution savedInstitution = institutionRepository.save(institution);
+        return institutionMapper.toInstitution(savedInstitution);
     }
 
-
-
-    public InstitutionDto updateInstitution(Long institutionId, InstitutionDto institutionDto) {
-        if (institutionDto.getName() == null || institutionDto.getName().isEmpty()) {
-            throw new IllegalArgumentException("Institution name cannot be null or empty");
+    public ResponseEntity<InstitutionDto> updateInstitution(Long id, InstitutionDto institutionDto) {
+        Optional<Institution> institutionOpt = institutionRepository.findById(id);
+        if (institutionOpt.isPresent()) {
+            Institution institution = institutionOpt.get();
+            institutionMapper.updateInstitutionFromDto(institutionDto, institution);
+            Institution updatedInstitution = institutionRepository.save(institution);
+            return ResponseEntity.ok(institutionMapper.toInstitution(updatedInstitution));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-
-        Institution institution = institutionRepository.findById(institutionId)
-                .orElseThrow(() -> new RuntimeException("Institution not found"));
-
-        institutionMapper.updateInstitutionFromDto(institutionDto, institution);
-
-        Institution updatedInstitution = institutionRepository.save(institution);
-
-        return institutionMapper.toInstitution(updatedInstitution);
     }
 
-
-
-    public List<Institution> findInstitution(String name, String subject, String ville, String description, String emailContact, Interest specialization) {
-        return institutionRepository.findAll((root, query, criteriaBuilder) -> {
-            var predicates = criteriaBuilder.conjunction();
-
-            if (StringUtils.hasText(name)) {
-                predicates = criteriaBuilder.and(predicates, criteriaBuilder.equal(root.get("name"), name));
-            }
-            if (StringUtils.hasText(subject)) {
-                predicates = criteriaBuilder.and(predicates, criteriaBuilder.equal(root.get("subject"), subject));
-            }
-            if (StringUtils.hasText(ville)) {
-                predicates = criteriaBuilder.and(predicates, criteriaBuilder.equal(root.get("ville"), ville));
-            }
-            if (StringUtils.hasText(description)) {
-                predicates = criteriaBuilder.and(predicates, criteriaBuilder.like(root.get("description"), "%" + description + "%"));
-            }
-            if (StringUtils.hasText(emailContact)) {
-                predicates = criteriaBuilder.and(predicates, criteriaBuilder.equal(root.get("emailContact"), emailContact));
-            }
-            if (specialization != null) {
-                predicates = criteriaBuilder.and(predicates, criteriaBuilder.equal(root.get("specialization"), specialization));
-            }
-
-            return predicates;
-        });
-    }
-
-    public void deleteInstitution(Long institutionId) {
-        institutionRepository.deleteById(institutionId);
+    public ResponseEntity<Void> deleteInstitution(Long id) {
+        if (institutionRepository.existsById(id)) {
+            institutionRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }

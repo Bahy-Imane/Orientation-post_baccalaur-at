@@ -2,13 +2,11 @@ package com.biorbac.model;
 
 import com.biorbac.enums.BacType;
 import com.biorbac.enums.Interest;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -16,6 +14,9 @@ import java.util.List;
 @Setter
 public class Student extends User {
 
+    private String firstName;
+    private String lastName;
+    private LocalDate dateOfBirth;
     private double bacScore;
     private String location;
 
@@ -27,21 +28,13 @@ public class Student extends User {
 
 
 
-    @OneToMany(mappedBy = "student")
-    private List<Institution> institutions;
-
-    @OneToMany(mappedBy = "student")
-    private List<AcademicUnit> academicUnits;
-
-    @OneToMany(mappedBy = "student")
-    private List<FieldOfStudy> fieldOfStudies;
-
-    @OneToMany(mappedBy = "student")
-    private List<Rating> ratings;
-
-    @OneToMany(mappedBy = "student")
-    private List<Comment> comments;
-
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Recommendation> recommendations;
+
+    @OneToMany(mappedBy = "student")
+    private List<Review> reviews;
+
+
+//    @OneToMany(mappedBy = "student")
+//    private List<Recommendation> recommendations;
 }

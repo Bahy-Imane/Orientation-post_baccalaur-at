@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 
 @Entity
 @Getter
@@ -20,17 +19,13 @@ public class FieldOfStudy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long fosId;
     private String name;
-    private String description;
-    private Double entryRequirement;
-    private Integer numberOfStudents;
+    private String bacTypeRequired;  // Le type de Bac requis pour ce domaine
+    private double minimumBacNote;  // Note minimale requise pour accéder à ce domaine
+    private String matchingInterest;  // Intérêts correspondants pour ce domaine
 
 
 
     @ManyToOne
     @JsonIgnore
-    private Student student;
-
-    @ManyToMany(mappedBy = "field_of_study")
-    @JsonIgnore
-    private List<AcademicUnit> academicUnits;
+    private Department department ;
 }

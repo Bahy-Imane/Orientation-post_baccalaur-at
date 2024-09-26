@@ -43,7 +43,7 @@ public class AuthService {
         response.setTokenType("Bearer");
         response.setUserName(user.getUsername());
         response.setRole(String.valueOf(user.getRole()));
-        response.setPersonId(user.getUserId());
+        response.setUserId(user.getUserId());
         System.out.println("response"+response);
         return response;
     }

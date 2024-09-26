@@ -8,9 +8,8 @@ import lombok.Setter;
 public class FieldOfStudyDto {
 
     private String name;
-    private String description;
-    private Double entryRequirement;
-    private Integer numberOfStudents;
-
+    private String bacTypeRequired;
+    private double minimumBacNote;
+    private String matchingInterest;
 
 }
