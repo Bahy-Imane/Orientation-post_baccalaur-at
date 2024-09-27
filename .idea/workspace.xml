@@ -5,29 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b7bdf34-8621-4741-9aea-84b3502b47b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/AuthServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/DepartmentServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/FieldOfStudyServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/InstitutionServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/ReviewServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/96048780-3627-4c9f-bf8e-dd4a51207127.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/96048780-3627-4c9f-bf8e-dd4a51207127.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/dto/SignUpDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/dto/SignUpDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/FieldOfStudy.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/FieldOfStudy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/OrientationPostBaccalauriatApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/about-us/about-us.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/about-us/about-us.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/about-us/about-us.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/about-us/about-us.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/home/home.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/sign-up/sign-up.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/sign-up/sign-up.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/sign-up/sign-up.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/sign-up/sign-up.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/sign-up/sign-up.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/sign-up/sign-up.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/ReviewServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/ReviewServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +40,7 @@
     "JUnit.DepartmentServiceTest.executor": "Run",
     "JUnit.FieldOfStudyServiceTest.executor": "Run",
     "JUnit.InstitutionServiceTest.executor": "Run",
+    "JUnit.ReviewServiceTest.executor": "Run",
     "Maven.orientation-post-baccalauriat-BackEnd [clean].executor": "Run",
     "Maven.orientation-post-baccalauriat-BackEnd [install].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
@@ -101,7 +80,7 @@
       <recent name="C:\Users\user\Desktop\Orientation-post_baccalaur-at\orientation-post-baccalauriat-FrontEnd\src\app\components" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.OrientationPostBaccalauriatApplication">
+  <component name="RunManager" selected="JUnit.ReviewServiceTest">
     <configuration name="AuthServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="orientation-post-baccalauriat-BackEnd" />
       <extension name="coverage">
@@ -162,6 +141,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ReviewServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="orientation-post-baccalauriat-BackEnd" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.orientation.biorbac.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.orientation.biorbac" />
+      <option name="MAIN_CLASS_NAME" value="com.orientation.biorbac.ReviewServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="OrientationPostBaccalauriatApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="orientation-post-baccalauriat-BackEnd" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.biorbac.OrientationPostBaccalauriatApplication" />
@@ -172,14 +166,6 @@
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="orientation-post-baccalauriat-BackEnd/Docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="orientation-post-baccalauriat-BackEnd/Docker-compose.yaml" />
-        </settings>
       </deployment>
       <method v="2" />
     </configuration>
@@ -194,21 +180,21 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.orientation-post-baccalauriat-BackEnd/Docker-compose.yaml: Compose Deployment" />
       <item itemvalue="JUnit.AuthServiceTest" />
       <item itemvalue="JUnit.DepartmentServiceTest" />
       <item itemvalue="JUnit.FieldOfStudyServiceTest" />
       <item itemvalue="JUnit.InstitutionServiceTest" />
+      <item itemvalue="JUnit.ReviewServiceTest" />
       <item itemvalue="npm.start" />
       <item itemvalue="Spring Boot.OrientationPostBaccalauriatApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReviewServiceTest" />
         <item itemvalue="JUnit.DepartmentServiceTest" />
         <item itemvalue="JUnit.FieldOfStudyServiceTest" />
         <item itemvalue="JUnit.AuthServiceTest" />
         <item itemvalue="JUnit.InstitutionServiceTest" />
-        <item itemvalue="Docker.orientation-post-baccalauriat-BackEnd/Docker-compose.yaml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -234,12 +220,23 @@
       <workItem from="1727424045109" duration="1868000" />
       <workItem from="1727430549178" duration="4033000" />
       <workItem from="1727435159803" duration="1648000" />
-      <workItem from="1727444025154" duration="5651000" />
+      <workItem from="1727444025154" duration="5970000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/ReviewServiceTest.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
