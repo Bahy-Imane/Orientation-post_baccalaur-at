@@ -19,11 +19,13 @@ public class FieldOfStudy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long fosId;
     private String name;
-    private String bacTypeRequired;  // Le type de Bac requis pour ce domaine
-    private double minimumBacNote;  // Note minimale requise pour accéder à ce domaine
-    private String matchingInterest;  // Intérêts correspondants pour ce domaine
+    private String bacTypeRequired;
+    private double minimumBacNote;
+    private String matchingInterest;
 
-
+    @ManyToOne
+    @JsonIgnore
+    private Student student ;
 
     @ManyToOne
     @JsonIgnore

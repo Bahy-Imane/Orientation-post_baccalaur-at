@@ -64,6 +64,8 @@ public class AuthService {
         user.setBacScore(signUpDto.getBacScore());
         user.setLocation(signUpDto.getLocation());
         user.setBacType(signUpDto.getBacType());
+        user.setDateOfBirth(signUpDto.getDateOfBirth());
+        user.setInterest(signUpDto.getInterest());
         userRepository.save(user);
 
         return "User registered successfully!";

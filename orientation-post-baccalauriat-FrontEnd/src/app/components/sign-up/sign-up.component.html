@@ -1,226 +1,70 @@
-<main class="create-account-page">
-  <div class="content-wrapper">
-    <section class="account-creation-section">
-      <div class="account-creation-container">
-        <header class="header">
-          <div class="logo" aria-label="Company logo"></div>
-          <div class="header-text">
-            <h1 class="title">Create an account</h1>
-            <p class="login-prompt">
-              Already have an account? <a href="#" class="login-link">Log in</a>
-            </p>
-          </div>
-        </header>
-        <form [formGroup]="signupForm" (ngSubmit)="onSignup()" class="account-form">
-          <div class="form-group">
-            <label for="userName" class="form-label">User Name</label>
-            <input id="userName" formControlName="userName" class="form-input" required />
-            <div *ngIf="signupForm.get('userName')?.invalid && signupForm.get('userName')?.touched" class="error-message">
-              User Name is required and must be at least 3 characters.
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="email" class="form-label">Email address</label>
-            <input id="email" formControlName="email" type="email" class="form-input" required />
-            <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="error-message">
-              A valid email is required.
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="password" class="form-label">Password</label>
-            <input id="password" formControlName="password" type="password" class="form-input" required />
-            <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="error-message">
-              Password is required and must be at least 6 characters.
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="bacScore" class="form-label">Bac Score</label>
-            <input id="bacScore" formControlName="bacScore" type="number" class="form-input" required />
-            <div *ngIf="signupForm.get('bacScore')?.invalid && signupForm.get('bacScore')?.touched" class="error-message">
-              Bac Score must be between 0 and 20.
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="location" class="form-label">Location</label>
-            <input id="location" formControlName="location" class="form-input" required />
-            <div *ngIf="signupForm.get('location')?.invalid && signupForm.get('location')?.touched" class="error-message">
-              Location is required.
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="bacType" class="form-label">Bac Type</label>
-            <select id="bacType" formControlName="bacType" class="form-input" required>
-              <option value="">Select Bac Type</option>
-              <option *ngFor="let bacType of bacTypes" [value]="bacType">{{ bacType }}</option>
-            </select>
-            <div *ngIf="signupForm.get('bacType')?.invalid && signupForm.get('bacType')?.touched" class="error-message">
-              Bac Type is required.
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="interest" class="form-label">Interest</label>
-            <select id="interest" formControlName="interest" class="form-input" required>
-              <option value="">Select Interest</option>
-              <option *ngFor="let interest of interests" [value]="interest">{{ interest }}</option>
-            </select>
-            <div *ngIf="signupForm.get('interest')?.invalid && signupForm.get('interest')?.touched" class="error-message">
-              Interest is required.
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <a href="#" class="login-link">log in instead</a>
-            <button type="submit" class="submit-button">Create an account</button>
-          </div>
-        </form>
+<main class="edit-profile-container">
+  <section class="profile-content">
+    <form class="profile-form">
+      <header class="profile-header">
+        <h1 class="profile-title">Sign Up Here !</h1>
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c3eba27e14795c2d0d66294554f4f3b5f0752dc5a75a44cfdb7e1d654c13e903?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Profile picture" class="profile-picture" />
+      </header>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" id="firstName" class="form-input" value="Mehrab" />
+        </div>
+        <div class="form-group">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" id="lastName" class="form-input" value="Bozorgi" />
+        </div>
       </div>
-    </section>
-    <aside class="image-section">
-      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/50ea44dda1d3f2093455111961e27b17062dea9903783cd61abd1f70eccb6c1a?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Decorative image" class="decorative-image">
-    </aside>
-  </div>
+
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <div class="input-with-icon">
+          <input type="email" id="email" class="form-input" value="Mehrabbozorgi.business@gmail.com" />
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6439c2f810190f109978bbc603922dc094ef9ae7972590e3fb6182d457b7b6f7?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Email icon" class="input-icon" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" id="address" class="form-input" value="33062 Zboncak isle" />
+      </div>
+
+      <div class="form-group">
+        <label for="contactNumber" class="form-label">Contact Number</label>
+        <input type="tel" id="contactNumber" class="form-input" value="58077.79" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="city" class="form-label">City</label>
+          <div class="select-wrapper">
+            <select id="city" class="form-select">
+              <option>Mehrab</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="state" class="form-label">State</label>
+          <div class="select-wrapper">
+            <select id="state" class="form-select">
+              <option>Bozorgi</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-with-icon">
+          <input type="password" id="password" class="form-input" value="sbdfbnd65sfdvb s" />
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f17ff3ba6eb6c3e3c25f28ab0b08eec1c70821ef00e9f0ba0062a323c4d3839d?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Password icon" class="input-icon" />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </section>
 </main>
-
-
-
-
-
-<!--<div class="signup-page">-->
-<!--  <div class="signup-container">-->
-<!--    <section class="form-section">-->
-<!--      <form [formGroup]="signupForm" (ngSubmit)="onSignup()" class="signup-form">-->
-<!--        <h2 class="form-title">Create Account</h2>-->
-
-<!--        <div class="input-group">-->
-<!--          <label for="userName" class="input-label">User Name</label>-->
-<!--          <input type="text" id="userName" formControlName="userName" class="input-field" />-->
-<!--          <div *ngIf="f['userName'].invalid && f['userName'].touched" class="error-message">-->
-<!--            User Name is required and must be at least 3 characters.-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--        <div class="input-group">-->
-<!--          <label for="email" class="input-label">Email</label>-->
-<!--          <input type="email" id="email" formControlName="email" class="input-field" />-->
-<!--          <div *ngIf="f['email'].invalid && f['email'].touched" class="error-message">-->
-<!--            A valid email is required.-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--        <div class="input-group">-->
-<!--          <label for="password" class="input-label">Password</label>-->
-<!--          <input type="password" id="password" formControlName="password" class="input-field" />-->
-<!--          <div *ngIf="f['password'].invalid && f['password'].touched" class="error-message">-->
-<!--            Password is required and must be at least 6 characters.-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--        <div class="input-group">-->
-<!--          <label for="bacScore" class="input-label">Bac Score</label>-->
-<!--          <input type="number" id="bacScore" formControlName="bacScore" class="input-field" />-->
-<!--          <div *ngIf="f['bacScore'].invalid && f['bacScore'].touched" class="error-message">-->
-<!--            Bac Score must be between 0 and 20.-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--        <div class="input-group">-->
-<!--          <label for="location" class="input-label">Location</label>-->
-<!--          <input type="text" id="location" formControlName="location" class="input-field" />-->
-<!--          <div *ngIf="f['location'].invalid && f['location'].touched" class="error-message">-->
-<!--            Location is required.-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--        <div class="input-group">-->
-<!--          <label for="bacType" class="input-label">Bac Type</label>-->
-<!--          <select id="bacType" formControlName="bacType" class="input-field">-->
-<!--            <option value="">Select Bac Type</option>-->
-<!--            <option *ngFor="let bacType of bacTypes" [value]="bacType">{{ bacType }}</option>-->
-<!--          </select>-->
-<!--          <div *ngIf="f['bacType'].invalid && f['bacType'].touched" class="error-message">-->
-<!--            Bac Type is required.-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--        <div class="input-group">-->
-<!--          <label for="interest" class="input-label">Interest</label>-->
-<!--          <select id="interest" formControlName="interest" class="input-field">-->
-<!--            <option value="">Select Interest</option>-->
-<!--            <option *ngFor="let interest of interests" [value]="interest">{{ interest }}</option>-->
-<!--          </select>-->
-<!--          <div *ngIf="f['interest'].invalid && f['interest'].touched" class="error-message">-->
-<!--            Interest is required.-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--        <button type="submit" class="submit-button">Create Account</button>-->
-<!--      </form>-->
-<!--    </section>-->
-<!--  </div>-->
-<!--</div>-->
-
-
-
-
-
-
-
-<!--<div class="signup-page">-->
-<!--  <div class="signup-container">-->
-<!--    <section class="hero-section">-->
-<!--      <div class="hero-content">-->
-<!--        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d0722f282967410388dc553501c51ea673c4cf8e1ec97fbe2767f47d101126a9?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Time tracking icon" class="hero-icon" />-->
-<!--        <h1 class="hero-title">Stay on top of time tracking</h1>-->
-<!--        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2184c88b24a150588aa481b33e43f8ed95167c33f68f876f5d92e4cc82a6e333?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Time tracking illustration" class="hero-image" />-->
-<!--      </div>-->
-<!--    </section>-->
-<!--    <section class="form-section">-->
-<!--      <form class="signup-form">-->
-<!--        <h2 class="form-title">Create Account</h2>-->
-<!--        <div class="name-inputs">-->
-<!--          <div class="input-group">-->
-<!--            <label for="firstName" class="input-label">First Name</label>-->
-<!--            <input type="text" id="firstName" class="input-field" required />-->
-<!--          </div>-->
-<!--          <div class="input-group">-->
-<!--            <label for="lastName" class="input-label">Last Name</label>-->
-<!--            <input type="text" id="lastName" class="input-field" required />-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="input-group">-->
-<!--          <label for="email" class="input-label">Email</label>-->
-<!--          <input type="email" id="email" class="input-field" required />-->
-<!--        </div>-->
-<!--        <div class="input-group">-->
-<!--          <label for="password" class="input-label">Password</label>-->
-<!--          <input type="password" id="password" class="input-field" required />-->
-<!--        </div>-->
-<!--        <button type="submit" class="submit-button">Create Account</button>-->
-<!--        <p class="login-link">-->
-<!--          Already have an account? <a href="#" class="login-text">Login</a>-->
-<!--        </p>-->
-<!--        <div class="divider">-->
-<!--          <hr class="divider-line" />-->
-<!--          <span class="divider-text">or</span>-->
-<!--          <hr class="divider-line" />-->
-<!--        </div>-->
-<!--        <div class="social-signup">-->
-<!--          <button type="button" class="social-button google-button">-->
-<!--            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/17d971bd2fe8ae0e61cfde9fa75160e64d4590740fbabef93abbcb16c8eca6cf?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Google logo" class="social-icon" />-->
-<!--            <span>Sign up with Google</span>-->
-<!--          </button>-->
-<!--          <button type="button" class="social-button facebook-button">-->
-<!--            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbecd703168848cdc986a4da042d30ebbed878c28e95b0dead57b90244141a73?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Facebook logo" class="social-icon" />-->
-<!--            <span>Sign up with Facebook</span>-->
-<!--          </button>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </section>-->
-<!--  </div>-->
-<!--</div>-->
