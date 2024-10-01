@@ -42,7 +42,7 @@ public class Institution {
 
 
     @OneToMany(mappedBy = "institution", cascade = CascadeType.ALL)
-    private List<Department> departments;
+    private List<FieldOfStudy> fieldOfStudies;
 
 
 }

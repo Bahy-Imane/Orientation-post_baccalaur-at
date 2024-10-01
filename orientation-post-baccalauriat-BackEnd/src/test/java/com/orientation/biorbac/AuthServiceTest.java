@@ -4,7 +4,6 @@ import com.biorbac.dto.JwtAuthResponse;
 import com.biorbac.dto.LoginDto;
 import com.biorbac.dto.SignUpDto;
 import com.biorbac.enums.BacType;
-import com.biorbac.enums.Interest;
 import com.biorbac.enums.Role;
 import com.biorbac.jwt.JwtTokenProvider;
 import com.biorbac.model.Student;
@@ -99,7 +98,6 @@ class AuthServiceTest {
         signUpDto.setBacType(BacType.SCIENTIFIC);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         signUpDto.setDateOfBirth(LocalDate.parse("2000-01-01", formatter));
-        signUpDto.setInterest(Interest.ENGINEERING);
 
 
         when(userRepository.existsByUserName(signUpDto.getUserName())).thenReturn(false);

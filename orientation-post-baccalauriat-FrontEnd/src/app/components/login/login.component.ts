@@ -1,18 +1,89 @@
-import { Component } from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
+import { Component, inject } from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Router, RouterLink} from '@angular/router';
+import { LoginDto } from "../../core/Dto/login-dto";
+import { NgClass, NgIf } from "@angular/common";
+import {AuthService} from "../../core/services/auth.service";
 
 @Component({
   selector: 'app-login',
+  templateUrl: './login.component.html',
   standalone: true,
   imports: [
-    NgOptimizedImage
+    ReactiveFormsModule,
+    NgClass,
+    NgIf,
+    RouterLink
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  loginForm: FormGroup;
+  success = false;
+  failure = false;
+  emailErrorMessage: string | null = null;
 
-  backgroundImageUrl: string = 'https://cdn.builder.io/api/v1/image/assets/TEMP/60e7de3a4967146734916762d6847f8aa165602757dcbba0578d85cf4be6aa8a?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154';
-  foregroundImageUrl: string = 'https://cdn.builder.io/api/v1/image/assets/TEMP/b4580d8523945746a021fd6ff5ed421cf170543543485e8839bd3201789e4839?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154';
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      userNameOrEmail: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      rememberMe: [false]
+    });
+  }
+
+  onSubmit() {
+    this.success = false;
+    this.failure = false;
+    this.emailErrorMessage = null;
+
+    if (this.loginForm.valid) {
+      const loginUserDto: LoginDto = {
+        userNameOrEmail: this.loginForm.value.userNameOrEmail,
+        password: this.loginForm.value.password,
+      };
+
+      this.authService.login(loginUserDto).subscribe({
+        next: (response) => {
+          if (response.accessToken) {
+            this.success = true;
+            console.log('Token:', response.accessToken);
+
+            localStorage.setItem('token', response.accessToken);
+            localStorage.setItem('userRole', response.role);
+
+            const userRole = response.role;
+            console.log('User Role:', userRole);
+
+            if (userRole === "ADMIN") {
+              this.router.navigate(['/admin-dashboard']);
+            } else if (userRole === "CUSTOMER") {
+              this.router.navigate(['/customer-dashboard']);
+            }
+
+          } else {
+            this.failure = true;
+            this.emailErrorMessage = 'Login failed. Invalid response from server.';
+          }
+        },
+        error: (error) => {
+          console.error('Login error:', error);
+          this.failure = true;
+          this.emailErrorMessage = 'Login failed. Please check your credentials and try again.';
+        }
+      });
+    } else {
+      console.log('Formulaire invalide');
+    }
+  }
+
+  get userNameOrEmail() {
+    return this.loginForm.get('userNameOrEmail');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
 }

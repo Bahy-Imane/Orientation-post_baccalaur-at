@@ -1,11 +1,10 @@
 import {BacType} from "../enums/bac-type";
-import {Interest} from "../enums/interest";
 import {UserDto} from "./user-dto";
 
-export class SignUpDto extends UserDto{
+export interface SignUpDto extends UserDto {
 
-  bacScore!: number;
-  location!: string;
-  bacType!: BacType;
-  interest!: Interest;
+  dateOfBirth: string;
+  bacScore: number;
+  location: string;
+  bacType: BacType;
 }

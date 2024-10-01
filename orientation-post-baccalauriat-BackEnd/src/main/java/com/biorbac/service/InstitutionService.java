@@ -1,8 +1,10 @@
 package com.biorbac.service;
 
 import com.biorbac.dto.InstitutionDto;
+import com.biorbac.enums.BacType;
 import com.biorbac.mapper.InstitutionMapper;
 import com.biorbac.model.Institution;
+import com.biorbac.model.Student;
 import com.biorbac.repository.InstitutionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,5 +58,12 @@ public class InstitutionService {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+    }
+
+
+    public List<Institution> filterInstitutionsByStudent(Student student) {
+        double bacScore = student.getBacScore();
+        BacType bacType = student.getBacType();
+        return institutionRepository.findByCriteria(bacScore, bacType);
     }
 }

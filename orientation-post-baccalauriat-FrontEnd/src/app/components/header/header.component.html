@@ -15,7 +15,9 @@
   <!-- Profile button -->
   <div class="d-flex align-items-center">
     <button routerLink="/signUp" class="btn btn-outline-custom rounded-pill me-2">
+      <a style="cursor: pointer;" *ngIf="_authService.isLoggedIn()" (click)="_authService.logout()" class="signup-btn">
       <i  class="bi bi-person"></i> Sign Up
+      </a>
     </button>
 
 <!--    <button class="btn">-->

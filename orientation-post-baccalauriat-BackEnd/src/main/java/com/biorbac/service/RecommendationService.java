@@ -34,3 +34,24 @@
 //                .collect(Collectors.toList());
 //    }
 //}
+
+package com.biorbac.service;
+
+import com.biorbac.enums.BacType;
+import com.biorbac.model.FieldOfStudy;
+import com.biorbac.model.Student;
+import com.biorbac.repository.FieldOfStudyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class RecommendationService {
+
+    @Autowired
+    private FieldOfStudyRepository fieldOfStudyRepository;
+
+
+}

@@ -10,3 +10,4 @@ public enum InstitutionType {
     POLYTECHNIC_SCHOOL,
     RESEARCH_INSTITUTE;
 }
+

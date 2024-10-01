@@ -11,20 +11,17 @@ import {Role} from "../enums/role";
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8081/api/auth';
+  private baseUrl = 'http://localhost:8089/api/auth';
 
-  constructor(private http: HttpClient, private router: Router) {}
-
+  constructor(private http: HttpClient , private router : Router) { }
 
   login(loginDto: LoginDto): Observable<JwtAuthResponse> {
     return this.http.post<JwtAuthResponse>(`${this.baseUrl}/login`, loginDto);
   }
 
-
   signUp(signUpDto: SignUpDto): Observable<string> {
     return this.http.post<string>(`${this.baseUrl}/signup`, signUpDto);
   }
-
   isLoggedIn(): boolean {
     return !!localStorage.getItem('accessToken');
   }

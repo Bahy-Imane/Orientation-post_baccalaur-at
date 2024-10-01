@@ -5,7 +5,65 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b7bdf34-8621-4741-9aea-84b3502b47b0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/ReviewServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/ReviewServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/96048780-3627-4c9f-bf8e-dd4a51207127.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/config/AdminConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/config/AdminConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/controller/DepartmentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/controller/FieldOfStudyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/controller/FieldOfStudyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/controller/InstitutionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/controller/InstitutionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/controller/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/dto/DepartmentDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/dto/FieldOfStudyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/dto/FieldOfStudyDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/dto/InstitutionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/dto/InstitutionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/dto/SignUpDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/dto/SignUpDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/enums/BacType.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/enums/BacType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/enums/InstitutionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/enums/InstitutionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/enums/Interest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/enums/ProgramStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/mapper/DepartmentMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/Department.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/FieldOfStudy.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/FieldOfStudy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/Institution.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/Institution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/model/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/repository/DepartmentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/repository/FieldOfStudyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/repository/FieldOfStudyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/repository/InstitutionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/repository/InstitutionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/repository/StudentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/service/DepartmentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/service/FieldOfStudyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/service/FieldOfStudyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/service/InstitutionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/service/InstitutionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/service/RecommendationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/service/RecommendationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/AuthServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/AuthServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/DepartmentServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/FieldOfStudyServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/FieldOfStudyServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/login/login.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/login/login.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/sign-up/sign-up.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/sign-up/sign-up.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/sign-up/sign-up.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/sign-up/sign-up.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/sign-up/sign-up.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/components/sign-up/sign-up.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/Dto/jwt-auth-response.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/Dto/jwt-auth-response.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/Dto/sign-up-dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/Dto/sign-up-dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/enums/bac-type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/enums/bac-type.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/enums/institution-type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/enums/institution-type.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/enums/interest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/model/admin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/model/admin.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/model/institution.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/model/institution.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/model/student.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/model/student.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/app/core/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-FrontEnd/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,11 +106,13 @@
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.OrientationPostBaccalauriatApplication.executor": "Run",
+    "extract.method.default.visibility": "private",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/user/Desktop/Orientation-post_baccalaur-at/orientation-post-baccalauriat-BackEnd/src/main/resources",
+    "last_opened_file_path": "C:/Users/user/Desktop/Orientation-post_baccalaur-at/orientation-post-baccalauriat-BackEnd/src/main/java/com/biorbac/config",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,13 +134,15 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\Desktop\Orientation-post_baccalaur-at\orientation-post-baccalauriat-BackEnd\src\main\java\com\biorbac\config" />
+      <recent name="C:\Users\user\Desktop\Orientation-post_baccalaur-at\orientation-post-baccalauriat-FrontEnd\src\app\components" />
       <recent name="C:\Users\user\Desktop\Orientation-post_baccalaur-at\orientation-post-baccalauriat-BackEnd\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\user\Desktop\Orientation-post_baccalaur-at\orientation-post-baccalauriat-FrontEnd\src\app\components" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReviewServiceTest">
+  <component name="RunManager" selected="Spring Boot.OrientationPostBaccalauriatApplication">
     <configuration name="AuthServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="orientation-post-baccalauriat-BackEnd" />
       <extension name="coverage">
@@ -191,10 +253,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ReviewServiceTest" />
-        <item itemvalue="JUnit.DepartmentServiceTest" />
+        <item itemvalue="JUnit.InstitutionServiceTest" />
         <item itemvalue="JUnit.FieldOfStudyServiceTest" />
         <item itemvalue="JUnit.AuthServiceTest" />
-        <item itemvalue="JUnit.InstitutionServiceTest" />
+        <item itemvalue="JUnit.DepartmentServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -220,23 +282,28 @@
       <workItem from="1727424045109" duration="1868000" />
       <workItem from="1727430549178" duration="4033000" />
       <workItem from="1727435159803" duration="1648000" />
-      <workItem from="1727444025154" duration="5970000" />
+      <workItem from="1727444025154" duration="7115000" />
+      <workItem from="1727538685101" duration="8000" />
+      <workItem from="1727687636664" duration="8490000" />
+      <workItem from="1727702353718" duration="12795000" />
+      <workItem from="1727769833425" duration="963000" />
+      <workItem from="1727775852457" duration="10543000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/src/test/java/com/orientation/biorbac/ReviewServiceTest.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

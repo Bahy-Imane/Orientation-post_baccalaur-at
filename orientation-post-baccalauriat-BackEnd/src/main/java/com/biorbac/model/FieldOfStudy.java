@@ -21,13 +21,10 @@ public class FieldOfStudy {
     private String name;
     private String bacTypeRequired;
     private double minimumBacNote;
-    private String matchingInterest;
+    private String departmentName;
+
 
     @ManyToOne
     @JsonIgnore
-    private Student student ;
-
-    @ManyToOne
-    @JsonIgnore
-    private Department department ;
+    private Institution institution ;
 }

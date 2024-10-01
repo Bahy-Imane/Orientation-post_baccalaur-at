@@ -5,3 +5,4 @@ export interface JwtAuthResponse {
   role: string;
   userId: number;
 }
+

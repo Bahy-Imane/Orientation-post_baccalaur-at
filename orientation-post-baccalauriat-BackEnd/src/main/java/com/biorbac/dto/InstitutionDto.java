@@ -1,7 +1,6 @@
 package com.biorbac.dto;
 
 import com.biorbac.enums.InstitutionType;
-import com.biorbac.enums.Interest;
 import lombok.Getter;
 import lombok.Setter;
 

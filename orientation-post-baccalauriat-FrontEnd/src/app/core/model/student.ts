@@ -1,14 +1,16 @@
-import {Interest} from "../enums/interest";
+import {User} from "./user";
 import {BacType} from "../enums/bac-type";
 import {Institution} from "./institution";
+import {Review} from "./review";
 
-export interface Student {
-  id?: number;
+
+export interface Student extends User {
+  dateOfBirth: Date;
   bacScore: number;
   location: string;
   bacType: BacType;
-  interest: Interest;
   institutions: Institution[];
-  // ratings!: Rating[];
-  // comments!: Comment[];
+  // recommendations: Recommendation[];
+  reviews: Review[];
 }
+

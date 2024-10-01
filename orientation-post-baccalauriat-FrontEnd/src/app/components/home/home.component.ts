@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForOf } from "@angular/common";
+import {LoginComponent} from "../login/login.component";
 
 @Component({
   selector: 'app-home',

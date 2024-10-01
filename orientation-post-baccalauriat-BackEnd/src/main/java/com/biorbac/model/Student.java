@@ -1,7 +1,6 @@
 package com.biorbac.model;
 
 import com.biorbac.enums.BacType;
-import com.biorbac.enums.Interest;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,10 +20,9 @@ public class Student extends User {
     @Enumerated(EnumType.STRING)
     private BacType bacType;
 
-    @Enumerated(EnumType.STRING)
-    private Interest interest;
 
-
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Institution> institutions;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Recommendation> recommendations;
@@ -33,6 +31,4 @@ public class Student extends User {
     private List<Review> reviews;
 
 
-    @OneToMany(mappedBy = "student")
-    private List<FieldOfStudy> fieldOfStudies;
 }

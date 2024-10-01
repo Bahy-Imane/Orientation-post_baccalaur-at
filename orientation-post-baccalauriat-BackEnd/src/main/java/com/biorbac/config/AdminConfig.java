@@ -24,7 +24,7 @@ public class AdminConfig implements CommandLineRunner {
         if (!adminRepository.existsByEmail("admin@gmail.com")) {
             Admin admin = new Admin();
             admin.setEmail("admin@gmail.com");
-            admin.setPassword(passwordEncoder.encode("admin"));
+            admin.setPassword(passwordEncoder.encode("admin123"));
             admin.setUserName("admin");
             admin.setRole(Role.ADMIN);
             adminRepository.save(admin);
