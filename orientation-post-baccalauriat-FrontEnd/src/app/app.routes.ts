@@ -11,12 +11,12 @@ import {AuthGuard} from "./core/services/auth-guard";
 import {RoleGuard} from "./core/services/role-guard";
 import {Role} from "./core/enums/role";
 import {AdminDashboardComponent} from "./components/admin/admin-dashboard/admin-dashboard.component";
+import {AdvicesComponent} from "./components/body/advices/advices.component";
 
 export const routes: Routes = [
   {path : '' ,component : LoginComponent},
   {path : 'login' ,component : LoginComponent},
   { path: 'signUp', component: SignUpComponent },
-  { path: 'home', component: HomeComponent },
 
   {
     path: 'admin-dashboard',
@@ -26,14 +26,29 @@ export const routes: Routes = [
   },
 
   {
-    path: 'student-profile',
-    component: StudentProfileComponent,
+    path: 'home',
+    component: HomeComponent,
     canActivate: [AuthGuard,RoleGuard],
     data: {expectedRole: Role.STUDENT}
   },
-
-
-
+  {
+    path: 'about-us',
+    component: AboutUsComponent,
+    canActivate: [AuthGuard,RoleGuard],
+    data: {expectedRole: Role.STUDENT}
+  },
+  {
+    path: 'advice',
+    component: AdvicesComponent ,
+    canActivate: [AuthGuard,RoleGuard],
+    data: {expectedRole: Role.STUDENT}
+  },
+  {
+    path: 'contact',
+    component: ContactUsComponent,
+    canActivate: [AuthGuard,RoleGuard],
+    data: {expectedRole: Role.STUDENT}
+  },
 
   {path : 'student-profile' , component : StudentProfileComponent},
   {path : 'side-bar' , component : SideBarComponent},
