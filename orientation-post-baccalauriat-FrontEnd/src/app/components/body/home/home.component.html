@@ -1,19 +1,11 @@
+<app-header/>
+
 <section class="hero">
   <div class="container">
     <div class="hero-content">
       <div class="hero-text">
         <span class="hero-label">Toujours bien orienté</span>
         <h1 class="hero-title">Améliorez votre <span class="highlight">parcours académique</span> avec notre plateforme d'orientation</h1>
-        <div class="hero-cta">
-          <a href="#" class="btn btn-primary">Explorer les parcours</a>
-          <div class="testimonial">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/037a7042061d225602dec617144072508593a5f2b8dde9f70ab05f3735219b31?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Témoignage" class="testimonial-image">
-            <div class="rating">
-              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4082569ee584f2d1fdc6207f361944ccb32b16bc2a9ba25c917944364aff9d6a?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Étoiles de notation" class="rating-stars">
-              <span class="rating-text">( 10k+ Avis)</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="hero-image">
@@ -27,59 +19,69 @@
   </div>
 </section>
 
+
 <section class="popular-courses">
   <div class="container">
-    <h2 class="section-title">Parcours Populaires</h2>
-    <div class="course-filters">
-      <button class="filter-btn active">tous les parcours</button>
-      <button class="filter-btn">sciences</button>
-      <button class="filter-btn">gestion</button>
-      <button class="filter-btn">ingénierie</button>
-      <button class="filter-btn">médecine</button>
-      <button class="filter-btn">droit</button>
+    <h2 class="section-title">Universités et Écoles  Populaires au Maroc</h2>
+
+    <p class="description-text">
+      Découvrez les établissements d'enseignement supérieur les plus réputés du Maroc, incluant les universités et les grandes écoles supérieures. Ces institutions sont reconnues pour leur excellence académique et leur contribution au développement du pays.
+    </p>
+
+    <!-- Boutons de navigation -->
+    <div class="scroll-buttons">
+      <button class="scroll-btn" (click)="previousCards()" [disabled]="startIndex === 0">&#8592;</button>
+      <button class="scroll-btn" (click)="nextCards()" [disabled]="endIndex >= institutions.length">&#8594;</button>
     </div>
+
+    <!-- Grid des établissements -->
     <div class="course-grid">
-      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/95e21feb1ffce6c3adbf87269bcb0e97781147270e61b03c8789e29beb005ec0?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Parcours 1" class="course-card">
-      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff14989cad11c52d322ced6df78222ff9c437b4f109007ae038295ba81af262c?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Parcours 2" class="course-card">
-      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/7ba851be7455c16fa8515003cf672a88b6f3735e846cc5faa0914244d9b06545?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Parcours 3" class="course-card">
-      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c32d74f8544ed3c9e9cf8ce0db63b99fcbc20399f06a79ce47d136b5bdfeb7e0?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Parcours 4" class="course-card">
+      <div *ngFor="let institution of visibleInstitutions" class="course-card">
+        <img [src]="institution.image" [alt]="institution.name">
+        <h3>{{ institution.name }}</h3>
+        <p>{{ institution.location }}</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="course-categories">
-  <div class="container">
-    <h2 class="section-title">Catégories de Parcours</h2>
-    <p class="section-description">Notre plateforme d'orientation académique vous propose tous les outils pour réussir dans votre domaine d'études.</p>
-    <div class="category-grid">
-      <div class="category-card">
-        <div class="category-icon beauty-icon"></div>
-        <h3 class="category-title">Sciences Humaines</h3>
-        <p class="category-description">Explorez les différents programmes en sciences humaines.</p>
-        <a href="#" class="category-link">découvrir</a>
-      </div>
-      <div class="category-card">
-        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4bb6020ffad47c12c2db9ee6bcb09e3cbad0dba98bd6aef54c3ba0f6e64a7ce1?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Icône médicale" class="category-icon">
-        <h3 class="category-title">Santé</h3>
-        <p class="category-description">Préparez-vous pour une carrière dans le domaine médical.</p>
-        <a href="#" class="category-link">découvrir</a>
-      </div>
-      <div class="category-card">
-        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e05feaef4a59196cd46b3cce2200c547d3fac1984709362fae873a67f84fa8c2?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Icône sports" class="category-icon">
-        <h3 class="category-title">Sport</h3>
-        <p class="category-description">Découvrez les parcours en sciences du sport.</p>
-        <a href="#" class="category-link">découvrir</a>
-      </div>
-      <div class="category-card">
-        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/fe0c8858c14fc71759384bb3fbb84a3013b596a64e22f820c3511f29be976acf?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Icône nutrition" class="category-icon">
-        <h3 class="category-title">Nutrition</h3>
-        <p class="category-description">Trouvez votre voie dans le domaine de la nutrition.</p>
-        <a href="#" class="category-link">découvrir</a>
-      </div>
-    </div>
-    <a href="#" class="btn btn-secondary">Explorer les parcours</a>
-  </div>
-</section>
+
+
+
+
+<!--<section class="course-categories">-->
+<!--  <div class="container">-->
+<!--    <h2 class="section-title">Catégories de Parcours</h2>-->
+<!--    <p class="section-description">Notre plateforme d'orientation académique vous propose tous les outils pour réussir dans votre domaine d'études.</p>-->
+<!--    <div class="category-grid">-->
+<!--      <div class="category-card">-->
+<!--        <div class="category-icon beauty-icon"></div>-->
+<!--        <h3 class="category-title">Sciences Humaines</h3>-->
+<!--        <p class="category-description">Explorez les différents programmes en sciences humaines.</p>-->
+<!--        <a href="#" class="category-link">découvrir</a>-->
+<!--      </div>-->
+<!--      <div class="category-card">-->
+<!--        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4bb6020ffad47c12c2db9ee6bcb09e3cbad0dba98bd6aef54c3ba0f6e64a7ce1?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Icône médicale" class="category-icon">-->
+<!--        <h3 class="category-title">Santé</h3>-->
+<!--        <p class="category-description">Préparez-vous pour une carrière dans le domaine médical.</p>-->
+<!--        <a href="#" class="category-link">découvrir</a>-->
+<!--      </div>-->
+<!--      <div class="category-card">-->
+<!--        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e05feaef4a59196cd46b3cce2200c547d3fac1984709362fae873a67f84fa8c2?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Icône sports" class="category-icon">-->
+<!--        <h3 class="category-title">Sport</h3>-->
+<!--        <p class="category-description">Découvrez les parcours en sciences du sport.</p>-->
+<!--        <a href="#" class="category-link">découvrir</a>-->
+<!--      </div>-->
+<!--      <div class="category-card">-->
+<!--        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/fe0c8858c14fc71759384bb3fbb84a3013b596a64e22f820c3511f29be976acf?placeholderIfAbsent=true&apiKey=41a2148170ee41e3aecd8c91d6b03154" alt="Icône nutrition" class="category-icon">-->
+<!--        <h3 class="category-title">Nutrition</h3>-->
+<!--        <p class="category-description">Trouvez votre voie dans le domaine de la nutrition.</p>-->
+<!--        <a href="#" class="category-link">découvrir</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <a href="#" class="btn btn-secondary">Explorer les parcours</a>-->
+<!--  </div>-->
+<!--</section>-->
 
 <section class="training">
   <div class="container">
@@ -113,6 +115,7 @@
 </section>
 
 
+<app-footer/>
 
 
 

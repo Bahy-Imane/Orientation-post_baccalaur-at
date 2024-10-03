@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
-import { LoginDto } from "../../core/Dto/login-dto";
+import { LoginDto } from "../../../core/Dto/login-dto";
 import { NgClass, NgIf } from "@angular/common";
-import {AuthService} from "../../core/services/auth.service";
+import {AuthService} from "../../../core/services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -51,16 +51,16 @@ export class LoginComponent {
             this.success = true;
             console.log('Token:', response.accessToken);
 
-            localStorage.setItem('token', response.accessToken);
-            localStorage.setItem('userRole', response.role);
+            localStorage.setItem('accessToken', response.accessToken);
+            localStorage.setItem('role', response.role);
 
             const userRole = response.role;
             console.log('User Role:', userRole);
 
             if (userRole === "ADMIN") {
               this.router.navigate(['/admin-dashboard']);
-            } else if (userRole === "CUSTOMER") {
-              this.router.navigate(['/customer-dashboard']);
+            } else if (userRole === "STUDENT") {
+              this.router.navigate(['/home']);
             }
 
           } else {

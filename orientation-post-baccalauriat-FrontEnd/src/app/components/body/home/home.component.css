@@ -1,7 +1,5 @@
 
-
 .container {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -11,7 +9,7 @@
   padding: 12px 24px;
   border-radius: 10px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
   text-transform: uppercase;
   transition: background-color 0.3s ease;
 }
@@ -42,17 +40,31 @@
   margin: 0 auto 40px;
 }
 
-
 /* Hero Section Styles */
 .hero {
-  background-color: #8dc2f3;
-  padding: 50px 100px;
+  position: relative; /* Allows positioning of the pseudo-element */
+  overflow: hidden; /* Hides overflow from the blurred background */
+}
+
+.hero::before {
+  content: ''; /* Creates a pseudo-element */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background-image: url("/assets/pictures/2164ecfb30e5df915fcc5fbc192fe516.jpg"); /* Duplicate the background image */
+  background-size: cover;
+  filter: blur(15px); /* Apply blur effect */
+  z-index: 0; /* Set behind the content */
 }
 
 .hero-content {
+  position: relative; /* Position content above the blurred background */
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 50px 100px; /* Maintain padding for content */
+  z-index: 1; /* Ensure content is above the blurred background */
 }
 
 .hero-text {
@@ -119,7 +131,7 @@
 }
 
 .main-image {
-  width: 100%;
+  width: 110vh;
   height: auto;
 }
 
@@ -133,6 +145,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  z-index: 1; /* Ensure this is above the blur */
 }
 
 .stat-icon {
@@ -146,7 +159,7 @@
   color: #545567;
 }
 
-/* Popular Courses Section Styles */
+
 .popular-courses {
   padding: 80px 0;
 }
@@ -178,22 +191,56 @@
 
 .course-grid {
   display: flex;
+  gap: 20px;
   justify-content: center;
-  gap: 25px;
   flex-wrap: wrap;
 }
 
 .course-card {
-  width: 296px;
-  height: auto;
+  width: 250px;
   box-shadow: 0 10px 60px rgba(38, 45, 118, 0.08);
   border-radius: 10px;
+  text-align: center;
+  padding: 20px;
   transition: transform 0.3s ease;
 }
 
 .course-card:hover {
   transform: translateY(-5px);
 }
+
+.course-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.scroll-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.scroll-btn {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.scroll-btn:disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: not-allowed;
+}
+
+.scroll-btn:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 
 /* Course Categories Section Styles */
 .course-categories {
@@ -300,6 +347,19 @@
   gap: 32px;
   margin-bottom: 40px;
 }
+
+/* Description Paragraph */
+.description-text {
+  font-size: 14px;
+  color: #818c96;
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 .benefit-icon {
   width: 60px;
@@ -412,89 +472,96 @@
   margin-top: 10px;
 }
 
-/* Training Section Styles */
+/* Styles pour la section d'accompagnement */
 .training {
-  background-color: #f5f5f5;
-  padding: 80px 0;
+  padding: 50px 0;
+  background-color: #f9f9f9;
 }
 
 .training-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
+  animation: fadeIn 1s ease-in; /* Animation d'apparition */
 }
 
 .training-image {
-  max-width: 50%;
+  flex: 1;
+  animation: slideInLeft 0.5s ease-in; /* Animation pour l'image */
 }
 
 .training-illustration {
   width: 100%;
   height: auto;
+  border-radius: 10px;
 }
 
 .training-text {
-  max-width: 50%;
+  flex: 1;
+  padding: 20px;
+  animation: slideInRight 0.5s ease-in; /* Animation pour le texte */
 }
 
 .training-label {
-  display: inline-block;
-  background-color: #d4e1ff;
-  padding: 10px 25px;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: 500;
-  color: #0b7077;
+  display: block;
+  font-size: 24px;
+  font-weight: 600;
   margin-bottom: 20px;
+  color: #1f67ff;
 }
 
 .training-list {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
 }
 
 .training-item {
   display: flex;
   align-items: center;
-  gap: 32px;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease; /* Effet de transition */
+}
+
+.training-item:hover {
+  transform: translateY(-5px); /* Effet de survol */
 }
 
 .training-icon {
-  width: 60px;
-  height: 60px;
+  width: 24px;
+  height: auto;
+  margin-right: 10px;
 }
 
-.training-icon-custom {
-  width: 60px;
-  height: 60px;
-  background-color: #fbfbfb;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 15px 44px rgba(13, 15, 28, 0.12);
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.training-icon-custom::before,
-.training-icon-custom::after {
-  content: '';
-  display: block;
-  background-color: #fd661f;
-  border-radius: 2px;
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-.training-icon-custom::before {
-  width: 21px;
-  height: 21px;
-}
-
-.training-icon-custom::after {
-  width: 20px;
-  height: 20px;
-  margin-top: 6px;
-  background-color: #0b7077;
+@keyframes slideInRight {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* Exclusive Bundles Section Styles */

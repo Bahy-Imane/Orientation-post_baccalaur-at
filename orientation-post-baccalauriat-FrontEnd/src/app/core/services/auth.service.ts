@@ -26,14 +26,9 @@ export class AuthService {
     return !!localStorage.getItem('accessToken');
   }
 
-  getUserRole(): Role | null {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-      return payload.personRole as Role;
-    }
-    return null;
+  getUserRole(): Role {
+    const role = localStorage.getItem('role');
+    return <Role>role;
   }
 
   logout(): void {

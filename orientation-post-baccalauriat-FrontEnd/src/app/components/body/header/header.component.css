@@ -66,12 +66,12 @@ justify-content: space-between;
 
 
 .btn-outline-custom {
-  border-color: #4caf4f;
+  border-color: #1f67ff;
   color: #000000;
 }
 
 .btn-outline-custom:hover {
-  background-color: #4caf4f;
+  background-color: #1f67ff;
   color: white;
 }
 

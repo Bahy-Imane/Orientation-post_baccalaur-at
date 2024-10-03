@@ -6,6 +6,7 @@ import com.biorbac.dto.SignUpDto;
 import com.biorbac.model.Institution;
 import com.biorbac.service.AuthService;
 import com.biorbac.service.InstitutionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,14 +17,10 @@ import java.util.List;
 @CrossOrigin("http://localhost:4200")
 public class AuthController {
 
+    @Autowired
+    private  AuthService authService;
 
-    private final AuthService authService;
-    private final InstitutionService institutionService;
 
-    public AuthController(AuthService authService, InstitutionService institutionService) {
-        this.authService = authService;
-        this.institutionService = institutionService;
-    }
 
     @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto) {

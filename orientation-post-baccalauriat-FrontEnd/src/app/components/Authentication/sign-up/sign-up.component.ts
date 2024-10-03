@@ -1,37 +1,25 @@
 import { Component, inject } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
-import { BacType } from "../../core/enums/bac-type";
-import { AuthService } from "../../core/services/auth.service";
-import {NgClass, NgForOf, NgIf} from "@angular/common";
-import {MatFormField} from "@angular/material/form-field";
-import {MatOption, MatSelect} from "@angular/material/select";
-import {MatProgressSpinner} from "@angular/material/progress-spinner";
-import {MatInput} from "@angular/material/input";
-import {MatButton} from "@angular/material/button";
+import { BacType } from "../../../core/enums/bac-type";
+import { AuthService } from "../../../core/services/auth.service";
+import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-signup',
   standalone: true,
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css'],
   imports: [
     ReactiveFormsModule,
-    NgClass,
     NgIf,
-    MatFormField,
-    MatSelect,
-    MatOption,
     NgForOf,
-    MatProgressSpinner,
-    RouterLink,
-    MatInput,
-    MatButton
-  ]
+    RouterLink
+  ],
+  styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
   signUpForm!: FormGroup;
-  bacTypes = Object.values(BacType);
+  bacTypes = Object.values(BacType); // Array contenant les types de bac
   loading = false;
   success = false;
   failure = false;
@@ -70,33 +58,5 @@ export class SignUpComponent {
         }
       });
     }
-  }
-
-  get userName() {
-    return this.signUpForm.get('userName');
-  }
-
-  get email() {
-    return this.signUpForm.get('email');
-  }
-
-  get password() {
-    return this.signUpForm.get('password');
-  }
-
-  get dateOfBirth() {
-    return this.signUpForm.get('dateOfBirth');
-  }
-
-  get bacScore() {
-    return this.signUpForm.get('bacScore');
-  }
-
-  get location() {
-    return this.signUpForm.get('location');
-  }
-
-  get bacType() {
-    return this.signUpForm.get('bacType');
   }
 }

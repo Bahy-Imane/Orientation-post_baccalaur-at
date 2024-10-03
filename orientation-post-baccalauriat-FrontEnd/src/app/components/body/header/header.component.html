@@ -1,0 +1,31 @@
+<header class="main-header">
+  <div class="logo-container">
+    <img loading="lazy" src="../../../../assets/pictures/BIOR%20BAC%20(1).png" alt="" class="logo-icon" />
+  </div>
+    <div>
+      <ul class="nav-list">
+        <li><a routerLink="/home" class="nav-item">Home</a></li>
+        <li><a routerLink="/about" class="nav-item">About</a></li>
+        <li><a routerLink="/advice" class="nav-item">Advice</a></li>
+        <li><a routerLink="/contact" class="nav-item">Contact</a></li>
+      </ul>
+    </div>
+
+  <!-- Profile button -->
+  <div class="d-flex align-items-center">
+    <button routerLink="/student-profile" class="btn btn-outline-custom rounded-pill me-2">
+      <i  class="bi bi-person"></i>Profile
+    </button>
+
+<!--    <div class="d-flex align-items-center">-->
+<!--      <button class="btn btn-outline-custom rounded-pill me-2">-->
+<!--        <i style="cursor: pointer;" *ngIf="_authService.isLoggedIn()" (click)="_authService.logout()" class="fas fa-sign-out-alt"></i>-->
+<!--      </button>-->
+
+<!--&lt;!&ndash;    <button class="btn">&ndash;&gt;-->
+<!--&lt;!&ndash;      <i class="bi bi-list"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;    </button>&ndash;&gt;-->
+<!--  </div>-->
+  </div>
+
+</header>

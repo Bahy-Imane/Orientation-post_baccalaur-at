@@ -5,6 +5,7 @@ import com.biorbac.model.Institution;
 import com.biorbac.service.InstitutionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class InstitutionController {
     private InstitutionService institutionService;
 
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
     public List<Institution> getAllInstitutions() {
         return institutionService.getAllInstitutions();
