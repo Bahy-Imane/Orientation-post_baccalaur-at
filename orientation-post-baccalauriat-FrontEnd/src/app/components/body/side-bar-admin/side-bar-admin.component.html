@@ -1,0 +1,56 @@
+<aside class="sidebar">
+  <!--  <div class="profile-info">-->
+  <!--    <img [src]="profilePicUrl" alt="Profile Picture" class="profile-pic">-->
+  <!--    <h3>{{ welcomeMessage }}</h3>-->
+  <!--    <input type="file" (change)="onFileSelected($event)" accept="image/*" />-->
+  <!--  </div>-->
+
+  <div class="profile-info">
+    <img src="/assets/pictures/pexels-moose-photos-170195-1036622.jpg" class="profile-pic">
+    <h3>welcome Admin</h3>
+  </div>
+
+  <nav class="nv-element">
+    <ul>
+      <li>
+        <a (click)="onSelect('profile-admin')" routerLink="/profile-admin">
+          <img src="/assets/pictures/home.png" class="nav-icon">
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/institution">
+          <img src="/assets/pictures/education.png" class="nav-icon">
+          institution
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/fieldOfStudy">
+          <img src="/assets/pictures/education.png" class="nav-icon">
+          Field Of Study
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/profile">
+          <img src="/assets/pictures/profile-user.png" class="nav-icon">
+          Profile
+        </a>
+      </li>
+      <li style="margin-top: 30%">
+        <a *ngIf="_authService.isLoggedIn()" (click)="_authService.logout()" routerLink="/logout">
+          <img src="/assets/pictures/logout.png" class="nav-icon">
+          Logout
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+<div class="app-container">
+  <div class="main-content">
+
+  </div>
+</div>

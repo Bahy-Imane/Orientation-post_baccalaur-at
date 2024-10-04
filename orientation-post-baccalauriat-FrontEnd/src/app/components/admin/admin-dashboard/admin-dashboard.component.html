@@ -1,54 +1,7 @@
-<aside class="sidebar">
-  <!--  <div class="profile-info">-->
-  <!--    <img [src]="profilePicUrl" alt="Profile Picture" class="profile-pic">-->
-  <!--    <h3>{{ welcomeMessage }}</h3>-->
-  <!--    <input type="file" (change)="onFileSelected($event)" accept="image/*" />-->
-  <!--  </div>-->
-
-  <div class="profile-info">
-    <img src="/assets/pictures/pexels-moose-photos-170195-1036622.jpg" class="profile-pic">
-    <h3>welcome Student</h3>
+<div class="app-container">
+  <app-side-bar-admin/>
+  <div class="main-content">
+    <app-profile/>
   </div>
-
-  <nav class="nv-element">
-    <ul>
-      <li>
-        <a (click)="onSelect('institutions')" routerLink="/home">
-          <img src="/assets/pictures/home.png" class="nav-icon">
-          Institution
-        </a>
-      </li>
-      <li>
-        <a routerLink="/fieldOfStudy">
-          <img src="/assets/pictures/education.png" class="nav-icon">
-          Field Of Study
-        </a>
-      </li>
-      <li>
-        <a routerLink="/about-us">
-          <img src="/assets/pictures/info.png" class="nav-icon">
-          About Us
-        </a>
-      </li>
-      <li>
-        <a routerLink="/advise">
-          <img src="/assets/pictures/business.png" class="nav-icon">
-          Advises
-        </a>
-      </li>
-      <li>
-        <a routerLink="/profile">
-          <img src="/assets/pictures/profile-user.png" class="nav-icon">
-          Profile
-        </a>
-      </li>
-      <li style="margin-top: 30%">
-        <a routerLink="/logout">
-          <img src="/assets/pictures/logout.png" class="nav-icon">
-          Logout
-        </a>
-      </li>
-    </ul>
-  </nav>
-</aside>
+</div>
 
