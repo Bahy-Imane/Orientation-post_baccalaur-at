@@ -16,8 +16,8 @@ export class FieldOfStudyService {
     return this.http.get<FieldOfStudy[]>(`${this.baseUrl}`);
   }
 
-  addFieldOfStudy(institutionId: number, fieldOfStudy: FieldOfStudyDto): Observable<FieldOfStudyDto> {
-    return this.http.post<FieldOfStudyDto>(`${this.baseUrl}/add/${institutionId}`, fieldOfStudy);
+  addFieldOfStudy(fieldOfStudyDto: FieldOfStudyDto): Observable<FieldOfStudyDto> {
+    return this.http.post<FieldOfStudyDto>(`${this.baseUrl}/add`, fieldOfStudyDto);
   }
 
   updateFieldOfStudy(fosId: number, fieldOfStudy: FieldOfStudyDto): Observable<FieldOfStudyDto> {

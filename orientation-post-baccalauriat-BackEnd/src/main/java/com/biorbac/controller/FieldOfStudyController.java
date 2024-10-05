@@ -3,11 +3,15 @@ package com.biorbac.controller;
 import com.biorbac.dto.FieldOfStudyDto;
 import com.biorbac.mapper.FieldOfStudyMapper;
 import com.biorbac.model.FieldOfStudy;
+import com.biorbac.model.Institution;
 import com.biorbac.model.Student;
 import com.biorbac.repository.StudentRepository;
 import com.biorbac.service.FieldOfStudyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,14 +36,23 @@ public class FieldOfStudyController {
         List<FieldOfStudy> fieldsOfStudy = fieldOfStudyService.getAllFieldOfStudy();
         return ResponseEntity.ok(fieldsOfStudy);
     }
+//
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @PostMapping("/add")
+//    public ResponseEntity<FieldOfStudyDto> addFieldOfStudy(@AuthenticationPrincipal Institution institution, @RequestBody FieldOfStudyDto fieldOfStudyDto) {
+//        FieldOfStudyDto fieldOfStudyDto1 = fieldOfStudyService.addFieldOfStudy( institution, fieldOfStudyDto);
+//        return new ResponseEntity<>(fieldOfStudyDto1, HttpStatus.CREATED);
+//    }
 
     // Add new field of study
-    @PostMapping("/add/{departmentId}")
-    public ResponseEntity<FieldOfStudyDto> addFieldOfStudy(@PathVariable Long institutionId,
-                                                           @RequestBody FieldOfStudyDto fieldOfStudyDto) {
-        FieldOfStudyDto newFieldOfStudy = fieldOfStudyService.AddFieldOfStudy(institutionId, fieldOfStudyDto);
+    @PostMapping("/add/{institutionId}")
+    public ResponseEntity<FieldOfStudyDto> addFieldOfStudy(
+            @PathVariable Long institutionId,
+            @RequestBody FieldOfStudyDto fieldOfStudyDto) {
+        FieldOfStudyDto newFieldOfStudy = fieldOfStudyService.addFieldOfStudy(institutionId, fieldOfStudyDto);
         return ResponseEntity.ok(newFieldOfStudy);
     }
+
 
     // Update field of study
     @PutMapping("/update")

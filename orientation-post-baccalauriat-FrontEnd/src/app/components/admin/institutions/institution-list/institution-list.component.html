@@ -1,0 +1,65 @@
+<div class="task-list-container">
+  <h2 class="title">List of Institutions</h2>
+
+  <div class="bar">
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      placeholder="Search Institution"
+      class="search-input"
+    />
+
+    <button (click)="openModal()" class="add-button">
+      <i class="fas fa-plus"></i>
+      Ajouter Institution
+    </button>
+
+    <!-- Modal -->
+    <div class="modal" *ngIf="showModal">
+      <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <app-institution-form
+          [institutionId]="selectedInstitutionId"
+          (modalClose)="closeModal()"
+        ></app-institution-form>
+      </div>
+    </div>
+  </div>
+
+  <div class="task-table">
+    <div class="task-header">
+      <div class="header-item" (click)="sort('institutionName')">Institution Name</div>
+      <div class="header-item" (click)="sort('description')">Description</div>
+      <div class="header-item" (click)="sort('address')">Address</div>
+      <div class="header-item" (click)="sort('institutionType')">Institution Type</div>
+      <div class="header-item">Website</div>
+      <div class="header-item">Actions</div>
+    </div>
+
+    <div class="task-row" *ngFor="let institution of filteredProjects()">
+      <div class="row-item">{{ institution.institutionName }}</div>
+      <div class="row-item">{{ institution.description }}</div>
+      <div class="row-item">{{ institution.address }}</div>
+      <div class="row-item">{{ getInstitutionTypeLabel(institution.institutionType) }}</div>
+      <div class="row-item">
+        <a [href]="institution.website" target="_blank">{{ institution.website }}</a>
+      </div>
+      <div class="row-item actions">
+        <button  class="edit-button">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button  class="delete-button">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </div>
+
+    <mat-paginator
+      [length]="totalInstitutions"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[3, 5, 10, 25, 50, 100]"
+      (page)="onPageChange($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>

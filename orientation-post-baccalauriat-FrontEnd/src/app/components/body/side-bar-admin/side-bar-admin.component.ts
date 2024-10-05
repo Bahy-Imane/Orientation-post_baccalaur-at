@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {Component, EventEmitter, Output} from '@angular/core';
+import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {AuthService} from "../../../core/services/auth.service";
 import {NgIf} from "@angular/common";
 
@@ -8,23 +8,19 @@ import {NgIf} from "@angular/common";
   standalone: true,
   imports: [
     RouterLink,
-    NgIf
+    NgIf,
+    RouterLinkActive,
+    RouterOutlet
   ],
   templateUrl: './side-bar-admin.component.html',
   styleUrl: './side-bar-admin.component.css'
 })
 export class SideBarAdminComponent {
+  activeSection: string = 'profile-admin';
 
   constructor(public _authService: AuthService) {}
 
-  activeSection :string ='dashboard';
-
-  // welcomeMessage: string = 'Welcome';
-  // profilePicUrl: string = 'assets/default-profile.jpg';
-
-
   onSelect(section: string) {
-    this.activeSection = section;
-    console.log('Active Section:', this.activeSection);
+    this.activeSection = section; // Set the active section
   }
 }

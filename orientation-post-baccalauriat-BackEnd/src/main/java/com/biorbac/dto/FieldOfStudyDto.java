@@ -10,7 +10,5 @@ public class FieldOfStudyDto {
     private String name;
     private String bacTypeRequired;
     private double minimumBacNote;
-    private String matchingInterest;
     private String departmentName;
-
 }

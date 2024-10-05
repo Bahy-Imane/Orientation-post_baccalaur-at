@@ -12,43 +12,46 @@ import {RoleGuard} from "./core/services/role-guard";
 import {Role} from "./core/enums/role";
 import {AdminDashboardComponent} from "./components/admin/admin-dashboard/admin-dashboard.component";
 import {AdvicesComponent} from "./components/body/advices/advices.component";
+import {InstitutionListComponent} from "./components/admin/institutions/institution-list/institution-list.component";
+import {FieldOfStudyService} from "./core/services/field-of-study-service";
+import {
+  FieldOfStudyListComponent
+} from "./components/admin/field-of-study/field-of-study-list/field-of-study-list.component";
 
 export const routes: Routes = [
-  {path : '' ,component : LoginComponent},
+  {path : '' ,component : HomeComponent},
   {path : 'login' ,component : LoginComponent},
   { path: 'signUp', component: SignUpComponent },
+  { path: 'home' , component : HomeComponent},
+  { path: 'about-us', component : AboutUsComponent },
+  { path: 'contact-us' , component : ContactUsComponent},
+  { path : 'advice' , component : AdvicesComponent},
 
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
-    canActivate: [AuthGuard,RoleGuard],
-    data: {expectedRole: Role.ADMIN}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {expectedRole: Role.ADMIN},
+    children:[
+      { path : 'institution',
+        component : InstitutionListComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: {expectedRole: Role.ADMIN}
+      },
+      { path : 'field-of-study',
+        component : FieldOfStudyListComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: {expectedRole: Role.ADMIN}
+      },
+
+    ]
   },
 
-  {
-    path: 'home',
-    component: HomeComponent,
-    canActivate: [AuthGuard,RoleGuard],
-    data: {expectedRole: Role.STUDENT}
-  },
-  {
-    path: 'about-us',
-    component: AboutUsComponent,
-    canActivate: [AuthGuard,RoleGuard],
-    data: {expectedRole: Role.STUDENT}
-  },
-  {
-    path: 'advice',
-    component: AdvicesComponent ,
-    canActivate: [AuthGuard,RoleGuard],
-    data: {expectedRole: Role.STUDENT}
-  },
-  {
-    path: 'contact',
-    component: ContactUsComponent,
-    canActivate: [AuthGuard,RoleGuard],
-    data: {expectedRole: Role.STUDENT}
-  },
+      {path : 'field-of-study' ,
+        component : FieldOfStudyListComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: {expectedRole: Role.ADMIN}
+      },
 
   {path : 'student-profile' , component : StudentProfileComponent},
   {path : 'side-bar' , component : SideBarComponent},

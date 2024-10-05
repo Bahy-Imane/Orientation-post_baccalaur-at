@@ -1,0 +1,50 @@
+<div class="modal-overlay" (click)="closeModal()"></div>
+  <h2 *ngIf="!institutionId">Ajouter une institution</h2>
+  <h2 *ngIf="institutionId">Modifier l'institution</h2>
+
+  <form [formGroup]="institutionForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="institutionName">Nom de l'institution:</label>
+      <input id="institutionName" formControlName="institutionName">
+    </div>
+
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description"></textarea>
+      <div *ngIf="institutionForm.get('description')?.invalid && institutionForm.get('description')?.touched">
+        Description requise.
+      </div>
+    </div>
+
+    <div>
+      <label for="address">Adresse:</label>
+      <input id="address" formControlName="address">
+      <div *ngIf="institutionForm.get('address')?.invalid && institutionForm.get('address')?.touched">
+        Adresse requise.
+      </div>
+    </div>
+
+    <div>
+      <label for="website">Site Web:</label>
+      <input id="website" formControlName="website">
+      <div *ngIf="institutionForm.get('website')?.invalid && institutionForm.get('website')?.touched">
+        URL requise et doit être valide.
+      </div>
+    </div>
+
+    <div>
+      <label for="institutionType">Type d'institution:</label>
+      <select id="institutionType" formControlName="institutionType">
+        <option *ngFor="let type of institutionTypes" [value]="type">{{ type }}</option>
+      </select>
+      <div *ngIf="institutionForm.get('institutionType')?.invalid && institutionForm.get('institutionType')?.touched">
+        Type requis.
+      </div>
+    </div>
+
+    <button type="submit">Soumettre</button>
+    <div *ngIf="successMessage">{{ successMessage }}</div>
+  </form>
+
+  <button (click)="closeModal()">Annuler</button>
+

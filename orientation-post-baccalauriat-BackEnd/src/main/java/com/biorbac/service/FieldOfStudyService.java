@@ -32,15 +32,39 @@ public class FieldOfStudyService {
     }
 
 
-    public FieldOfStudyDto AddFieldOfStudy(Long departmentId, FieldOfStudyDto fieldOfStudyDto) {
-        Institution institution = institutionRepository.findById(departmentId)
-                .orElseThrow(() -> new RuntimeException("Institution not found with ID: " + departmentId));
+//        public FieldOfStudyDto addFieldOfStudy(Institution institution, FieldOfStudyDto fieldOfStudyDto) {
+//
+//        FieldOfStudy fieldOfStudy = fieldOfStudyMapper.toFieldOfStudyDto(fieldOfStudyDto);
+//        fieldOfStudy.setInstitution(institution);
+//
+//        FieldOfStudy savedFieldOfStudy = fieldOfStudyRepository.save(fieldOfStudy);
+//
+//        return fieldOfStudyMapper.toFieldOfStudy(savedFieldOfStudy);
+//    }
+
+    public FieldOfStudyDto addFieldOfStudy(Long institutionId, FieldOfStudyDto fieldOfStudyDto) {
+        Institution institution = institutionRepository.findById(institutionId)
+                .orElseThrow(() -> new RuntimeException("Institution not found"));
 
         FieldOfStudy fieldOfStudy = fieldOfStudyMapper.toFieldOfStudyDto(fieldOfStudyDto);
         fieldOfStudy.setInstitution(institution);
+
         FieldOfStudy savedFieldOfStudy = fieldOfStudyRepository.save(fieldOfStudy);
+
         return fieldOfStudyMapper.toFieldOfStudy(savedFieldOfStudy);
     }
+
+//    public FieldOfStudyDto addFieldOfStudy(FieldOfStudyDto fieldOfStudyDto) {
+//        FieldOfStudy fieldOfStudy = fieldOfStudyMapper.toFieldOfStudyDto(fieldOfStudyDto);
+//
+//        if (fieldOfStudyDto.getInstitution() != null) {
+//            Institution institution = institutionRepository.findById(fieldOfStudyDto.getInstitution().getInstitutionId())
+//                    .orElseThrow(() -> new RuntimeException("Institution non trouvée avec l'ID : " + fieldOfStudyDto.getInstitution().getInstitutionId()));
+//            fieldOfStudy.setInstitution(institution);
+//        }
+//        FieldOfStudy savedFieldOfStudy = fieldOfStudyRepository.save(fieldOfStudy);
+//        return fieldOfStudyMapper.toFieldOfStudy(savedFieldOfStudy);
+//    }
 
 
     public FieldOfStudyDto updateFieldOfStudy(Long fosId, FieldOfStudyDto fieldOfStudyDto) {
