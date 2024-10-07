@@ -19,6 +19,7 @@ import {InstitutionFormComponent} from "./components/admin/institutions/institut
 import {
   FieldOfStudyFormComponent
 } from "./components/admin/field-of-study/field-of-study-form/field-of-study-form.component";
+import {InstitutionsHomeComponent} from "./components/body/institutions-home/institutions-home.component";
 
 
 export const routes: Routes = [
@@ -29,6 +30,7 @@ export const routes: Routes = [
   { path: 'about-us', component : AboutUsComponent },
   { path: 'contact-us' , component : ContactUsComponent},
   { path : 'advice' , component : AdvicesComponent},
+  { path : 'institutions' , component : InstitutionsHomeComponent},
 
   {
     path: 'admin-dashboard',

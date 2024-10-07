@@ -1,7 +1,11 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Output, ViewChild} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {Sidebar, SidebarModule} from 'primeng/sidebar';import {NgIf} from "@angular/common";
+import {Button} from "primeng/button";
+import {Ripple} from "primeng/ripple";
+import {StyleClassModule} from "primeng/styleclass";
+import {AvatarModule} from "primeng/avatar";
 import {AuthService} from "../../../core/services/auth.service";
-import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-side-bar-admin',
@@ -10,17 +14,30 @@ import {NgIf} from "@angular/common";
     RouterLink,
     NgIf,
     RouterLinkActive,
-    RouterOutlet
+    RouterOutlet,
+    SidebarModule,
+    Button,
+    Ripple,
+    StyleClassModule,
+    AvatarModule
   ],
   templateUrl: './side-bar-admin.component.html',
   styleUrl: './side-bar-admin.component.css'
 })
 export class SideBarAdminComponent {
+
+  // @ViewChild('sidebarRef') sidebarRef!: Sidebar;
+  //
+  // closeCallback(e: Event): void {
+  //   this.sidebarRef.close(e);
+  // }
+
+  // sidebarVisible: boolean = false;
   activeSection: string = 'profile-admin';
 
-  constructor(public _authService: AuthService) {}
+ constructor(public _authService: AuthService) {}
 
-  onSelect(section: string) {
-    this.activeSection = section; // Set the active section
-  }
+   onSelect(section: string) {
+     this.activeSection = section; // Set the active section
+   }
 }

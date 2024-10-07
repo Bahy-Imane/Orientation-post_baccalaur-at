@@ -30,7 +30,8 @@
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles.css",
+              "primeng/resources/themes/bootstrap4-light-blue/theme.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"

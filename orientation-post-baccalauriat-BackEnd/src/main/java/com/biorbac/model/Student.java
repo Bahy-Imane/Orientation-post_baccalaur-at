@@ -24,8 +24,6 @@ public class Student extends User {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Institution> institutions;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<Recommendation> recommendations;
 
     @OneToMany(mappedBy = "student")
     private List<Review> reviews;
