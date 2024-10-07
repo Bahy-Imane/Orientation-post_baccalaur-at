@@ -2,11 +2,13 @@ package com.biorbac.service;
 
 import com.biorbac.dto.InstitutionDto;
 import com.biorbac.enums.BacType;
+import com.biorbac.enums.InstitutionType;
 import com.biorbac.mapper.InstitutionMapper;
 import com.biorbac.model.Institution;
 import com.biorbac.model.Student;
 import com.biorbac.repository.InstitutionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -61,9 +63,8 @@ public class InstitutionService {
     }
 
 
-    public List<Institution> filterInstitutionsByStudent(Student student) {
-        double bacScore = student.getBacScore();
-        BacType bacType = student.getBacType();
-        return institutionRepository.findByCriteria(bacScore, bacType);
+    public List<Institution> filterAndSortInstitutions(InstitutionType institutionType, String institutionName, String address) {
+        return institutionRepository.findByInstitutionTypeOrInstitutionNameOrAddressContainingIgnoreCase(
+                institutionType, institutionName, address, Sort.by(Sort.Direction.ASC, "institutionName"));
     }
 }

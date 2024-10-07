@@ -1,6 +1,7 @@
 package com.biorbac.controller;
 
 import com.biorbac.dto.InstitutionDto;
+import com.biorbac.enums.InstitutionType;
 import com.biorbac.model.Institution;
 import com.biorbac.service.InstitutionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,13 @@ public class InstitutionController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteInstitution(@PathVariable Long id) {
         return institutionService.deleteInstitution(id);
+    }
+
+    @GetMapping("/filter")
+    public List<Institution> filterAndSortInstitutions(
+            @RequestParam(required = false) InstitutionType institutionType,
+            @RequestParam(required = false) String institutionName,
+            @RequestParam(required = false) String address) {
+        return institutionService.filterAndSortInstitutions(institutionType, institutionName, address);
     }
 }

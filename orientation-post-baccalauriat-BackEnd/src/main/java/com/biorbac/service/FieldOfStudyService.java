@@ -2,6 +2,7 @@ package com.biorbac.service;
 
 
 import com.biorbac.dto.FieldOfStudyDto;
+import com.biorbac.dto.InstitutionDto;
 import com.biorbac.mapper.FieldOfStudyMapper;
 import com.biorbac.model.FieldOfStudy;
 import com.biorbac.model.Institution;
@@ -9,9 +10,12 @@ import com.biorbac.model.Student;
 import com.biorbac.repository.FieldOfStudyRepository;
 import com.biorbac.repository.InstitutionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +35,12 @@ public class FieldOfStudyService {
         return fieldOfStudyRepository.findAll();
     }
 
+
+    public ResponseEntity<FieldOfStudyDto> getFieldOfStudyById(Long id) {
+        Optional<FieldOfStudy> fieldOfStudyOpt = fieldOfStudyRepository.findById(id);
+        return fieldOfStudyOpt.map(fieldOfStudy -> ResponseEntity.ok(fieldOfStudyMapper.toFieldOfStudy(fieldOfStudy)))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
 
 //        public FieldOfStudyDto addFieldOfStudy(Institution institution, FieldOfStudyDto fieldOfStudyDto) {
 //

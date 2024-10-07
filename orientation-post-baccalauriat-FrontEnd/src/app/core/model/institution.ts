@@ -10,8 +10,8 @@ export interface Institution {
   address: string;
   website: string;
   institutionType: InstitutionType;
-  student?: Student;
-  //recommendations: Recommendation[];
-  reviews: Review[];
-  fieldOfStudies: FieldOfStudy[];
+  // student?: Student;
+  // //recommendations: Recommendation[];
+  // reviews: Review[];
+  // fieldOfStudies: FieldOfStudy[];
 }

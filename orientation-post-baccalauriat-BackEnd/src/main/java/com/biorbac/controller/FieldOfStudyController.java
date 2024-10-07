@@ -1,6 +1,7 @@
 package com.biorbac.controller;
 
 import com.biorbac.dto.FieldOfStudyDto;
+import com.biorbac.dto.InstitutionDto;
 import com.biorbac.mapper.FieldOfStudyMapper;
 import com.biorbac.model.FieldOfStudy;
 import com.biorbac.model.Institution;
@@ -35,6 +36,11 @@ public class FieldOfStudyController {
     public ResponseEntity<List<FieldOfStudy>> getAllFieldsOfStudy() {
         List<FieldOfStudy> fieldsOfStudy = fieldOfStudyService.getAllFieldOfStudy();
         return ResponseEntity.ok(fieldsOfStudy);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FieldOfStudyDto> getFieldOfStudyById(@PathVariable Long id) {
+        return fieldOfStudyService.getFieldOfStudyById(id);
     }
 //
 //    @PreAuthorize("hasRole('ADMIN')")

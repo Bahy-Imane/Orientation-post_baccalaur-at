@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Institution} from "../model/institution";
 import {InstitutionDto} from "../Dto/institution-dto";
+import {InstitutionType} from "../enums/institution-type";
 
 
 @Injectable({
@@ -32,5 +33,27 @@ export class InstitutionService {
 
   deleteInstitution(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+  filterAndSortInstitutions(
+    institutionType: InstitutionType | null,
+    institutionName: string,
+    address: string
+  ): Observable<Institution[]> {
+    let params = new HttpParams();
+
+    if (institutionType) {
+      params = params.append('institutionType', institutionType);
+    }
+
+    if (institutionName) {
+      params = params.append('institutionName', institutionName);
+    }
+
+    if (address) {
+      params = params.append('address', address);
+    }
+
+    return this.http.get<Institution[]>(`${this.baseUrl}/filter`, { params });
   }
 }

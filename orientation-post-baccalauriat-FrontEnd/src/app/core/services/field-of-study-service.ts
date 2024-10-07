@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {FieldOfStudy} from "../model/field-of-study";
 import {FieldOfStudyDto} from "../Dto/field-of-study-dto";
+import {InstitutionDto} from "../Dto/institution-dto";
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +17,12 @@ export class FieldOfStudyService {
     return this.http.get<FieldOfStudy[]>(`${this.baseUrl}`);
   }
 
-  addFieldOfStudy(fieldOfStudyDto: FieldOfStudyDto): Observable<FieldOfStudyDto> {
-    return this.http.post<FieldOfStudyDto>(`${this.baseUrl}/add`, fieldOfStudyDto);
+  getFieldOfStudyById(id: number): Observable<FieldOfStudyDto> {
+    return this.http.get<FieldOfStudyDto>(`${this.baseUrl}/${id}`);
+  }
+
+  addFieldOfStudy(institutionId: number, fieldOfStudyDto: FieldOfStudyDto): Observable<FieldOfStudyDto> {
+    return this.http.post<FieldOfStudyDto>(`${this.baseUrl}/add/${institutionId}`, fieldOfStudyDto);
   }
 
   updateFieldOfStudy(fosId: number, fieldOfStudy: FieldOfStudyDto): Observable<FieldOfStudyDto> {

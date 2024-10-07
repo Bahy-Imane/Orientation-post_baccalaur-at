@@ -14,9 +14,12 @@ import {AdminDashboardComponent} from "./components/admin/admin-dashboard/admin-
 import {AdvicesComponent} from "./components/body/advices/advices.component";
 import {InstitutionListComponent} from "./components/admin/institutions/institution-list/institution-list.component";
 import {FieldOfStudyService} from "./core/services/field-of-study-service";
+import {FieldOfStudyListComponent} from "./components/admin/field-of-study/field-of-study-list/field-of-study-list.component";
+import {InstitutionFormComponent} from "./components/admin/institutions/institution-form/institution-form.component";
 import {
-  FieldOfStudyListComponent
-} from "./components/admin/field-of-study/field-of-study-list/field-of-study-list.component";
+  FieldOfStudyFormComponent
+} from "./components/admin/field-of-study/field-of-study-form/field-of-study-form.component";
+
 
 export const routes: Routes = [
   {path : '' ,component : HomeComponent},
@@ -42,6 +45,30 @@ export const routes: Routes = [
         component : FieldOfStudyListComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: {expectedRole: Role.ADMIN}
+      },
+      {
+        path: 'institution/add',
+        component: InstitutionFormComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { expectedRole: Role.ADMIN }
+      },
+      {
+        path: 'institution/edit/:id',
+        component: InstitutionFormComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { expectedRole: Role.ADMIN }
+      },
+      {
+        path: 'field-of-study/add/:id',
+        component: FieldOfStudyFormComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { expectedRole: Role.ADMIN }
+      },
+      {
+        path: 'field-of-study/edit/:id',
+        component: FieldOfStudyFormComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { expectedRole: Role.ADMIN }
       },
 
     ]

@@ -1,19 +1,27 @@
 <div class="task-list-container">
   <h2 class="title">List of Institutions</h2>
 
-  <div class="bar">
-    <input
-      type="text"
-      [(ngModel)]="searchText"
-      placeholder="Search Institution"
-      class="search-input"
-    />
+  <div>
+    <h2>Filtrer les Institutions</h2>
+    <form (ngSubmit)="onFilter()">
+      <input type="text" [(ngModel)]="institutionName" placeholder="Nom de l'Institution" name="institutionName">
+      <input type="text" [(ngModel)]="address" placeholder="Adresse" name="address">
 
+      <select [(ngModel)]="institutionType" name="institutionType">
+        <option value="">Sélectionner le type</option>
+        <option *ngFor="let type of institutionTypes" [value]="type">{{ type }}</option>
+      </select>
+
+      <button type="submit">Filtrer</button>
+    </form>
+
+    <div *ngIf="loading">Chargement des institutions...</div>
+
+    <div *ngIf="!loading && filteredInstitutions.length === 0">Aucune institution trouvée.</div>
     <button (click)="openModal()" class="add-button">
       <i class="fas fa-plus"></i>
-      Ajouter Institution
+      Add Institution
     </button>
-
     <!-- Modal -->
     <div class="modal" *ngIf="showModal">
       <div class="modal-content">
@@ -24,6 +32,8 @@
         ></app-institution-form>
       </div>
     </div>
+  </div>
+
   </div>
 
   <div class="task-table">
@@ -44,13 +54,9 @@
       <div class="row-item">
         <a [href]="institution.website" target="_blank">{{ institution.website }}</a>
       </div>
-      <div class="row-item actions">
-        <button  class="edit-button">
-          <i class="fas fa-edit"></i>
-        </button>
-        <button  class="delete-button">
-          <i class="fas fa-trash"></i>
-        </button>
+      <div class="row-item">
+        <button (click)="editInstitution(institution.institutionId)">Edit</button>
+        <button (click)="deleteInstitution(institution.institutionId)">Delete</button>
       </div>
     </div>
 
@@ -62,4 +68,3 @@
     >
     </mat-paginator>
   </div>
-</div>

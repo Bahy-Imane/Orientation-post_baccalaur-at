@@ -27,6 +27,7 @@ export class InstitutionFormComponent implements OnInit {
   successMessage: string = '';
   modalSubject: Subject<boolean> = new Subject<boolean>();
 
+
   constructor(private fb: FormBuilder, private institutionService: InstitutionService, private router: Router,private institutionList:InstitutionListComponent) {
     this.institutionForm = this.fb.group({
       institutionName: ['', [Validators.required]],
@@ -65,6 +66,7 @@ export class InstitutionFormComponent implements OnInit {
       if (this.institutionId) {
         this.institutionService.updateInstitution(this.institutionId, institution).subscribe(() => {
           this.successMessage = 'Institution mise à jour avec succès!';
+          this.institutionList.loadInstitutions();
           this.closeModal();
         });
       } else {
@@ -82,6 +84,6 @@ export class InstitutionFormComponent implements OnInit {
   closeModal(): void {
     this.modalClose.emit();
     this.router.navigate(['/admin-dashboard/institution']);
-    this.modalSubject.next(false); // Ferme la modal
+    this.modalSubject.next(false);
   }
 }

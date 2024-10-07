@@ -28,7 +28,7 @@ label {
 }
 
 input, textarea, select {
-  width: 100%; /* Utiliser toute la largeur */
+  width: 50%; /* Utiliser toute la largeur */
   padding: 10px; /* Espacement à l'intérieur des champs */
   border: 1px solid #ccc; /* Bordure grise pour les champs */
   border-radius: 4px; /* Coins arrondis pour les champs */

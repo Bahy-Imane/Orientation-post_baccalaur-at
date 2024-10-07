@@ -34,24 +34,124 @@ export class InstitutionListComponent implements OnInit {
 
   showModal: boolean = false;
   selectedInstitutionId: number | null = null;
+  selectedInstitution: InstitutionDto | null = null;
+  modalTitle: string = '';
 
-  constructor(private institutionService: InstitutionService,private snackBar: MatSnackBar) {}
+  institutionName: string = '';
+  address: string = '';
+  institutionType: InstitutionType | null = null;
+  loading: boolean = false;
+
+  institutionTypes: InstitutionType[] = Object.values(InstitutionType); // Liste des types d'institutions
+
+  constructor(private institutionService: InstitutionService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.loadInstitutions();
   }
 
   loadInstitutions(): void {
+    this.loading = true;
     this.institutionService.getAllInstitutions().subscribe((data: InstitutionDto[]) => {
       this.institutions = data;
       this.filteredInstitutions = data;
       this.totalInstitutions = data.length;
+      this.loading = false;
+    });
+  }
+
+  onFilter(): void {
+    this.loading = true;
+    this.institutionService.filterAndSortInstitutions(this.institutionType, this.institutionName, this.address)
+      .subscribe((data: InstitutionDto[]) => {
+        this.filteredInstitutions = data; // Mettre à jour les résultats filtrés
+        this.totalInstitutions = data.length; // Mettre à jour le nombre total après le filtrage
+        this.currentPage = 0; // Réinitialiser à la première page après un filtrage
+        this.loading = false;
+      }, error => {
+        console.error('Erreur lors du filtrage des institutions', error);
+        this.loading = false;
+      });
+  }
+
+  filteredProjects(): InstitutionDto[] {
+    // Pagination et recherche globale sur la liste filtrée
+    return this.filteredInstitutions
+      .filter(inst => this.searchText === '' || inst.institutionName.toLowerCase().includes(this.searchText.toLowerCase()))
+      .slice(this.currentPage * this.pageSize, (this.currentPage + 1) * this.pageSize);
+  }
+
+  onPageChange(event: PageEvent) {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+  }
+
+  getInstitutionTypeLabel(type: InstitutionType): string {
+    switch (type) {
+      case InstitutionType.EXECUTIVE_TRAINING_INSTITUTION:
+        return 'Executive Training Institution';
+      case InstitutionType.HIGHER_INSTITUTE:
+        return 'Higher Institute';
+      case InstitutionType.RESEARCH_INSTITUTE:
+        return 'Research Institute';
+      case InstitutionType.POLYTECHNIC_SCHOOL:
+        return 'Polytechnic School';
+      case InstitutionType.PRIVATE_UNIVERSITY:
+        return 'Private University';
+      case InstitutionType.PUBLIC_UNIVERSITY:
+        return 'Public University';
+      case InstitutionType.ROYAL_ACADEMY:
+        return 'Royal Academy';
+      case InstitutionType.VOCATIONAL_TRAINING_CENTER:
+        return 'Vocational Training Center';
+      default:
+        return 'Unknown';
+    }
+  }
+
+  openModal(institutionId?: number): void {
+    if (institutionId) {
+      // Cas d'édition
+      this.modalTitle = 'Edit Institution';
+      this.selectedInstitutionId = institutionId;
+      this.institutionService.getInstitutionById(institutionId).subscribe((institution: InstitutionDto) => {
+        this.selectedInstitutionId = institution.institutionId;
+        this.showModal = true;
+      });
+    } else {
+      // Cas d'ajout
+      this.modalTitle = 'Add Institution';
+      this.selectedInstitutionId = null; // Pas d'ID, c'est un ajout
+      this.showModal = true;
+    }
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.selectedInstitution = null;
+  }
+
+  sort(field: keyof InstitutionDto) {
+    this.filteredInstitutions.sort((a, b) => {
+      const aValue = a[field];
+      const bValue = b[field];
+      if (aValue < bValue) return -1;
+      if (aValue > bValue) return 1;
+      return 0;
     });
   }
 
   editInstitution(id: number): void {
-    this.selectedInstitutionId = id;
-    this.showModal = true;
+    this.institutionService.getInstitutionById(id).subscribe(
+      (institution: InstitutionDto) => {
+        this.selectedInstitution = institution;
+        this.selectedInstitutionId = id;
+        this.showModal = true;
+      },
+      (error) => {
+        console.error('Error fetching institution:', error);
+      }
+    );
   }
 
   deleteInstitution(id: number): void {
@@ -66,60 +166,5 @@ export class InstitutionListComponent implements OnInit {
         }
       );
     }
-  }
-
-
-
-  filteredProjects(): InstitutionDto[] {
-    return this.filteredInstitutions
-      .filter(inst => this.searchText === '' || inst.institutionName.toLowerCase().includes(this.searchText.toLowerCase()))
-      .slice(this.currentPage * this.pageSize, (this.currentPage + 1) * this.pageSize);
-  }
-
-  sort(field: keyof InstitutionDto) {
-    this.filteredInstitutions.sort((a, b) => {
-      const aValue = a[field];
-      const bValue = b[field];
-      if (aValue < bValue) return -1;
-      if (aValue > bValue) return 1;
-      return 0;
-    });
-  }
-
-  onPageChange(event: PageEvent) {
-    this.currentPage = event.pageIndex;
-    this.pageSize = event.pageSize;
-  }
-
-  getInstitutionTypeLabel(type: InstitutionType): string {
-    switch (type) {
-      case InstitutionType.EXECUTIVE_TRAINING_INSTITUTION:
-        return 'EXECUTIVE_TRAINING_INSTITUTION';
-      case InstitutionType.HIGHER_INSTITUTE:
-        return 'HIGHER_INSTITUTE';
-      case InstitutionType.RESEARCH_INSTITUTE:
-        return 'RESEARCH_INSTITUTE';
-      case InstitutionType.POLYTECHNIC_SCHOOL:
-        return 'POLYTECHNIC_SCHOOL';
-      case InstitutionType.PRIVATE_UNIVERSITY:
-        return 'PRIVATE_UNIVERSITY';
-      case InstitutionType.PUBLIC_UNIVERSITY:
-        return 'PUBLIC_UNIVERSITY';
-      case InstitutionType.ROYAL_ACADEMY:
-        return 'ROYAL_ACADEMY';
-      case InstitutionType.VOCATIONAL_TRAINING_CENTER:
-        return 'VOCATIONAL_TRAINING_CENTER';
-      default:
-        return 'Unknown';
-    }
-  }
-
-  openModal(institutionId?: number): void {
-    this.selectedInstitutionId = institutionId || null;
-    this.showModal = true;
-  }
-
-  closeModal(): void {
-    this.showModal = false;
   }
 }

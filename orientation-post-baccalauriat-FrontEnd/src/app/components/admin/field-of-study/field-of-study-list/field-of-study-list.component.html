@@ -1,59 +1,52 @@
-  <h2 class="title">List of Fields of Study</h2>
-
-  <!-- Search Bar and Add Button -->
-  <div class="bar">
-    <input
-      type="text"
-      [(ngModel)]="searchText"
-      placeholder="Search Field of Study"
-      class="search-input"
-    />
-    <button (click)="openModal()" class="add-button" mat-button>
-      <i class="fas fa-plus"></i> Add Field of Study
-    </button>
+<h2 class="title">List of Fields of Study</h2>
+<!-- Search Bar and Add Button -->
+<div class="bar">
+  <input
+    type="text"
+    [(ngModel)]="searchText"
+    placeholder="Search Field of Study"
+    class="search-input"
+  />
+  <button (click)="openModal()" class="add-button" mat-button>
+    <i class="fas fa-plus"></i> Add Field of Study
+  </button>
+</div>
+<!-- Modal for Adding/Editing Field of Study -->
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <app-field-of-study-form
+      [fieldOfStudyId]="selectedFieldOfStudyId"
+      (modalClose)="closeModal()"
+    ></app-field-of-study-form>
   </div>
-
-  <!-- Modal for Adding/Editing Field of Study -->
-  <div class="modal" *ngIf="showModal">
-    <div class="modal-content">
-      <span class="close" (click)="closeModal()">&times;</span>
-      <app-field-of-study-form
-        [fieldOfStudyId]="selectedFieldOfStudyId"
-        (modalClose)="closeModal()"
-      ></app-field-of-study-form>
-    </div>
+</div>
+<!-- Table for Displaying Fields of Study -->
+<div class="task-table">
+  <div class="task-header">
+    <div class="header-item">Name</div>
+    <div class="header-item">Bac Type Required</div>
+    <div class="header-item">Minimum Bac Note</div>
+    <div class="header-item">Department Name</div>
+    <div class="header-item">Actions</div>
   </div>
-
-  <!-- Table for Displaying Fields of Study -->
-  <div class="task-table">
-    <div class="task-header">
-      <div class="header-item">Name</div>
-      <div class="header-item">Bac Type Required</div>
-      <div class="header-item">Minimum Bac Note</div>
-      <div class="header-item">Department Name</div>
-      <div class="header-item">Actions</div>
-    </div>
-
-    <div class="task-row" *ngFor="let field of filteredFieldsOfStudy()">
-      <div class="row-item">{{ field.name }}</div>
-      <div class="row-item">{{ field.bacTypeRequired }}</div>
-      <div class="row-item">{{ field.minimumBacNote }}</div>
-      <div class="row-item">{{ field.departmentName }}</div>
-      <div class="row-item actions">
-        <button  class="edit-button" mat-button>
-          <i class="fas fa-edit"></i>
-        </button>
-        <button  class="delete-button" mat-button>
-          <i class="fas fa-trash"></i>
-        </button>
+  <div class="task-row" *ngFor="let field of filteredFieldsOfStudy()">
+    <div class="row-item">{{ field.name }}</div>
+    <div class="row-item">{{ field.bacTypeRequired }}</div>
+    <div class="row-item">{{ field.minimumBacNote }}</div>
+    <div class="row-item">{{ field.departmentName }}</div>
+    <div class="row-item actions">
+      <div class="row-item">
+        <button (click)="editField(field.fosId)">Edit</button>
+        <button (click)="deleteField(field.fosId)">Delete</button>
       </div>
     </div>
-
-    <!-- Paginator -->
-    <mat-paginator
-      [length]="totalFields"
-      [pageSize]="pageSize"
-      [pageSizeOptions]="[5, 10, 25]"
-      (page)="onPageChange($event)"
-    ></mat-paginator>
   </div>
+  <!-- Paginator -->
+  <mat-paginator
+    [length]="totalFields"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25]"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
+</div>
