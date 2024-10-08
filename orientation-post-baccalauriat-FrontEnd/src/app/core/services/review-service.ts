@@ -7,7 +7,7 @@ import {ReviewDto} from "../Dto/review-dto";
   providedIn: 'root',
 })
 export class ReviewService {
-  private baseUrl = 'http://localhost:8089/api/reviews';
+  private baseUrl = 'http://localhost:8082/api/reviews';
 
   constructor(private http: HttpClient) {}
 

@@ -5,7 +5,7 @@
 #  datasource:
 #    url: jdbc:mysql://db:3306/orientation_db?createDatabaseIfNotExist=true
 #    username: root
-#    password: ""
+#    password:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 #
 #  jpa:

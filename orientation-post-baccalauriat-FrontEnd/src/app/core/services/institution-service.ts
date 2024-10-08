@@ -10,7 +10,7 @@ import {InstitutionType} from "../enums/institution-type";
   providedIn: 'root',
 })
 export class InstitutionService {
-  private baseUrl = 'http://localhost:8089/api/institutions';
+  private baseUrl = 'http://localhost:8082/api/institutions';
 
   constructor(private http: HttpClient) {}
 

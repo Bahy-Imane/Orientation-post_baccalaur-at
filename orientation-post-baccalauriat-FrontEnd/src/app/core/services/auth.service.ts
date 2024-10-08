@@ -11,7 +11,7 @@ import {Role} from "../enums/role";
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8089/api/auth';
+  private baseUrl = 'http://localhost:8082/api/auth';
 
   constructor(private http: HttpClient , private router : Router) { }
 

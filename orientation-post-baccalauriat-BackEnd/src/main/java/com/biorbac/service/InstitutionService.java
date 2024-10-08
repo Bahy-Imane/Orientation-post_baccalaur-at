@@ -64,7 +64,7 @@ public class InstitutionService {
 
 
     public List<Institution> filterAndSortInstitutions(InstitutionType institutionType, String institutionName, String address) {
-        return institutionRepository.findByInstitutionTypeOrInstitutionNameOrAddressContainingIgnoreCase(
+        return institutionRepository.findByInstitutionTypeContainingIgnoreCaseOrInstitutionNameContainingIgnoreCaseOrAddressContainingIgnoreCase(
                 institutionType, institutionName, address, Sort.by(Sort.Direction.ASC, "institutionName"));
     }
 }

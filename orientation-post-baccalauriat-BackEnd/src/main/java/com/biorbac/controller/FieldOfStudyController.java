@@ -1,22 +1,15 @@
 package com.biorbac.controller;
 
 import com.biorbac.dto.FieldOfStudyDto;
-import com.biorbac.dto.InstitutionDto;
 import com.biorbac.mapper.FieldOfStudyMapper;
 import com.biorbac.model.FieldOfStudy;
-import com.biorbac.model.Institution;
-import com.biorbac.model.Student;
 import com.biorbac.repository.StudentRepository;
 import com.biorbac.service.FieldOfStudyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/fields-of-study")

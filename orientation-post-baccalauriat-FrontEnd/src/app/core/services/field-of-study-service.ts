@@ -9,7 +9,7 @@ import {InstitutionDto} from "../Dto/institution-dto";
   providedIn: 'root',
 })
 export class FieldOfStudyService {
-  private baseUrl = 'http://localhost:8089/api/fields-of-study';
+  private baseUrl = 'http://localhost:8082/api/fields-of-study';
 
   constructor(private http: HttpClient) {}
 

@@ -14,13 +14,13 @@ import java.util.List;
 
 @Repository
 public interface InstitutionRepository extends JpaRepository<Institution, Long>, JpaSpecificationExecutor<Institution> {
-    @Query("SELECT i FROM Institution i JOIN i.fieldOfStudies f WHERE " +
-            "(f.minimumBacNote <= :bacScore) AND " +
-            "(f.bacTypeRequired = :bacType)")
-    List<Institution> findByCriteria(@Param("bacScore") double bacScore,
-                                     @Param("bacType") BacType bacType);
+//    @Query("SELECT i FROM Institution i JOIN i.fieldOfStudies f WHERE " +
+//            "(f.minimumBacNote <= :bacScore) AND " +
+//            "(f.bacTypeRequired = :bacType)")
+//    List<Institution> findByCriteria(@Param("bacScore") double bacScore,
+//                                     @Param("bacType") BacType bacType);
 
-    List<Institution> findByInstitutionTypeOrInstitutionNameOrAddressContainingIgnoreCase(
+    List<Institution> findByInstitutionTypeContainingIgnoreCaseOrInstitutionNameContainingIgnoreCaseOrAddressContainingIgnoreCase(
             InstitutionType institutionType, String institutionName, String address, Sort sort);
 
 }
