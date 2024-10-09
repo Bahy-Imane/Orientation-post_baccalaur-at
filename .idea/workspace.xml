@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b7bdf34-8621-4741-9aea-84b3502b47b0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/orientation-post-baccalauriat-BackEnd/Jenkinsfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +90,7 @@
       <recent name="C:\Users\user\Desktop\Orientation-post_baccalaur-at\orientation-post-baccalauriat-FrontEnd\src\app\core\services" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.FieldOfStudyServiceTest">
+  <component name="RunManager" selected="Spring Boot.OrientationPostBaccalauriatApplication">
     <configuration name="FieldOfStudyServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="orientation-post-baccalauriat-BackEnd" />
       <extension name="coverage">
@@ -236,7 +237,8 @@
       <workItem from="1728374705401" duration="26489000" />
       <workItem from="1728460755164" duration="1448000" />
       <workItem from="1728462323005" duration="88000" />
-      <workItem from="1728462438710" duration="9215000" />
+      <workItem from="1728462438710" duration="9485000" />
+      <workItem from="1728472045288" duration="665000" />
     </task>
     <servers />
   </component>
