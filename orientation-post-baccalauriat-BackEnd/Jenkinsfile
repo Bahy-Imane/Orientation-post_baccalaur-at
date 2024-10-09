@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-     tools {
-            maven 'mvn'
-        }
+    tools {
+        maven 'mvn'
+    }
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerHubCredentials')
@@ -18,23 +18,22 @@ pipeline {
             }
         }
 
-
-          stage('Build') {
-                       steps {
-                           script {
-                               withMaven(maven: 'mvn') {
-                                   bat 'mvn clean install'
-                               }
-                           }
-                       }
-                   }
+        stage('Build & Test filRouge') {
+            steps {
+                dir('orientation-post-baccalauriat-BackEnd') {
+                    withMaven(maven: 'mvn') {
+                        bat 'mvn clean install'
+                    }
+                }
+            }
+        }
 
         stage('SonarQube Analysis') {
             steps {
                 script {
                     def scannerHome = tool 'sonarscanner'
                     dir('orientation-post-baccalauriat-BackEnd') {
-                        bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=rientation-post-baccalauriat-BackEnd -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN} -Dsonar.java.binaries=target/classes"
+                        bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=orientation-post-baccalauriat-BackEnd -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN} -Dsonar.java.binaries=target/classes"
                     }
                 }
             }
