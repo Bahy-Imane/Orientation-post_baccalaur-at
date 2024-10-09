@@ -47,7 +47,7 @@ pipeline {
                             bat 'docker context use default'
 
                             def imageTag = env.TAG_VERSION ?: 'latest'
-                            def dockerImage = docker.build("zinebaz/filrouge:${imageTag}")
+                            def dockerImage = docker.build("imanebahy/orientation-post-baccalauriat:${imageTag}")
 
                             docker.withRegistry('https://index.docker.io/v1/', 'dockerHubCredentials') {
                                 dockerImage.push()
