@@ -1,3 +1,24 @@
-.main-image{
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  height: 200px; /* Ajuster la hauteur de l'image */
+  object-fit: cover; /* S'assurer que l'image couvre le conteneur */
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.25rem; /* Taille de police */
+  color: #333; /* Couleur du texte */
+}
+
+.card-text {
+  color: #555; /* Couleur du texte */
+  margin-bottom: 1.5rem; /* Espacement entre les paragraphes */
 }

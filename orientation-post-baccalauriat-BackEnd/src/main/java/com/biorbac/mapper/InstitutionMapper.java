@@ -8,9 +8,7 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface InstitutionMapper {
-
-    Institution toInstitutionDto(InstitutionDto institutionDto);
-    InstitutionDto toInstitution(Institution institution);
+    Institution toInstitution(InstitutionDto institutionDto);
+    InstitutionDto toInstitutionDto(Institution institution);
     void updateInstitutionFromDto(InstitutionDto institutionDto, @MappingTarget Institution institution);
-
 }

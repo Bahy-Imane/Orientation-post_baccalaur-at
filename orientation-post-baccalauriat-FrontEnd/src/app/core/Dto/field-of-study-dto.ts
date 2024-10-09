@@ -5,5 +5,6 @@ export interface FieldOfStudyDto {
   bacTypeRequired: string;
   minimumBacNote: number;
   departmentName: string;
+  fieldOfStudyLogo:string;
   institutionId: number;
 }

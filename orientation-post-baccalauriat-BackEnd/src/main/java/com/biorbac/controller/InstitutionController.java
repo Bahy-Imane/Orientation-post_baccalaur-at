@@ -20,28 +20,29 @@ public class InstitutionController {
     private InstitutionService institutionService;
 
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/all")
-    public List<Institution> getAllInstitutions() {
+    @GetMapping("/all-institutions")
+    public List<InstitutionDto> getAllInstitutions() {
         return institutionService.getAllInstitutions();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<InstitutionDto> getInstitutionById(@PathVariable Long id) {
-        return institutionService.getInstitutionById(id);
+    @GetMapping("/{institutionId}")
+    public InstitutionDto getInstitutionById(@PathVariable Long institutionId) {
+        return institutionService.getInstitutionById(institutionId);
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add-institution")
     public InstitutionDto createInstitution(@RequestBody InstitutionDto institutionDto) {
         return institutionService.createInstitution(institutionDto);
     }
 
-    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PutMapping("/edit/{id}")
     public ResponseEntity<InstitutionDto> updateInstitution(@PathVariable Long id, @RequestBody InstitutionDto institutionDto) {
         return institutionService.updateInstitution(id, institutionDto);
     }
 
-    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteInstitution(@PathVariable Long id) {
         return institutionService.deleteInstitution(id);
     }

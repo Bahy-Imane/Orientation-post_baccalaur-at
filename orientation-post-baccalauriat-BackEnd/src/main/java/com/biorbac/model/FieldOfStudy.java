@@ -1,5 +1,6 @@
 package com.biorbac.model;
 
+import com.biorbac.enums.BacType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,10 +20,12 @@ public class FieldOfStudy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long fosId;
     private String name;
-    private String bacTypeRequired;
     private double minimumBacNote;
     private String departmentName;
+    private String fieldOfStudyLogo;
 
+    @Enumerated(EnumType.STRING)
+    private BacType bacTypeRequired;
 
     @ManyToOne
     @JsonIgnore

@@ -1,7 +1,20 @@
-      <div class="hero-image">
-        <img src="/assets/pictures/filter-bar.webp" alt="filter bar" class="main-image">
-        <div class="stat-box">
-          <span class="stat-text">Étudiants accompagnés</span>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let institution of institutions">
+      <div class="card shadow-sm border-light rounded">
+        <img [src]="institution.institutionLogo" class="card-img-top" alt="{{ institution.institutionName }} logo">
+        <div class="card-body">
+          <h5 class="card-title text-center">{{ institution.institutionName }}</h5>
+          <p class="card-text">
+            <strong>Type:</strong> {{ institution.institutionType }}<br>
+            <strong>Address:</strong> {{ institution.address }}<br>
+            <strong>Rating:</strong> {{ institution.rating | number: '1.0-1' }} / 5
+          </p>
+          <div class="text-center">
+            <a [routerLink]="['/institutions', institution.institutionId]" class="btn btn-primary">Explore More</a>
+          </div>
         </div>
       </div>
-
+    </div>
+  </div>
+</div>

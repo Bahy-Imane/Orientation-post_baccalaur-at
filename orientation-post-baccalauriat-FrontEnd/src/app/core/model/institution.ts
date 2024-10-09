@@ -4,14 +4,15 @@ import {Student} from "./student";
 import {InstitutionType} from "../enums/institution-type";
 
 export interface Institution {
-  institutionId: number;
+  institutionId:number;
   institutionName: string;
   description: string;
   address: string;
   website: string;
+  averageRating:number;
+  institutionLogo:string;
   institutionType: InstitutionType;
-  // student?: Student;
-  // //recommendations: Recommendation[];
-  // reviews: Review[];
-  // fieldOfStudies: FieldOfStudy[];
+  student?: Student;
+  reviews: Review[];
+  fieldOfStudies: FieldOfStudy[];
 }

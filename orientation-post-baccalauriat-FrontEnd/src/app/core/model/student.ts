@@ -10,7 +10,6 @@ export interface Student extends User {
   location: string;
   bacType: BacType;
   institutions: Institution[];
-  // recommendations: Recommendation[];
   reviews: Review[];
 }
 

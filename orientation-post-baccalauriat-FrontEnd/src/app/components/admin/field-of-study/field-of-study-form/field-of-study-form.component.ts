@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgForOf, NgIf } from '@angular/common';
 import { Institution } from '../../../../core/model/institution';
 import { FieldOfStudyDto } from '../../../../core/Dto/field-of-study-dto';
+import {DialogModule} from "primeng/dialog";
 
 @Component({
   selector: 'app-field-of-study-form',
@@ -14,6 +15,7 @@ import { FieldOfStudyDto } from '../../../../core/Dto/field-of-study-dto';
     ReactiveFormsModule,
     NgIf,
     NgForOf,
+    DialogModule,
   ],
   styleUrls: ['./field-of-study-form.component.css'],
 })

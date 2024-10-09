@@ -1,14 +1,17 @@
 package com.biorbac.controller;
 
 import com.biorbac.dto.FieldOfStudyDto;
+import com.biorbac.enums.BacType;
 import com.biorbac.mapper.FieldOfStudyMapper;
 import com.biorbac.model.FieldOfStudy;
+import com.biorbac.model.Student;
 import com.biorbac.repository.StudentRepository;
 import com.biorbac.service.FieldOfStudyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -44,11 +47,10 @@ public class FieldOfStudyController {
 //    }
 
     // Add new field of study
-    @PostMapping("/add/{institutionId}")
+    @PostMapping("/add")
     public ResponseEntity<FieldOfStudyDto> addFieldOfStudy(
-            @PathVariable Long institutionId,
             @RequestBody FieldOfStudyDto fieldOfStudyDto) {
-        FieldOfStudyDto newFieldOfStudy = fieldOfStudyService.addFieldOfStudy(institutionId, fieldOfStudyDto);
+        FieldOfStudyDto newFieldOfStudy = fieldOfStudyService.addFieldOfStudy(fieldOfStudyDto);
         return ResponseEntity.ok(newFieldOfStudy);
     }
 
@@ -66,6 +68,16 @@ public class FieldOfStudyController {
     public ResponseEntity<Void> deleteFieldOfStudy(@RequestParam Long fieldOfStudyId) {
         fieldOfStudyService.deleteFieldOfStudy(fieldOfStudyId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/fields-of-study")
+    public List<FieldOfStudy> recommendFieldsOfStudy(Principal principal) {
+        Student student = getLoggedInStudent(principal.getName());
+        return fieldOfStudyService.recommendFieldsOfStudy(student);
+    }
+
+    private Student getLoggedInStudent(String username) {
+        return new Student();
     }
 //
 //    @GetMapping("/{studentId}/recommendations")

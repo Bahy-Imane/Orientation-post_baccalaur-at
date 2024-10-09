@@ -8,11 +8,8 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ReviewMapper {
-
     Review toReview(ReviewDto reviewDto);
-
     ReviewDto toReviewDto(Review review);
-
     void updateReviewFromDto(ReviewDto reviewDto, @MappingTarget Review review);
 }
 

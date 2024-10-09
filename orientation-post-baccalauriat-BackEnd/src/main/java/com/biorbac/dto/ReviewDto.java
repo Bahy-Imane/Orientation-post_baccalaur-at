@@ -12,8 +12,8 @@ public class ReviewDto {
 
     private String comment;
     private Integer rating;
-    private Student student;
-    private Institution institution;
+    private Long userId;
+    private Long institutionId;
 
 }
 

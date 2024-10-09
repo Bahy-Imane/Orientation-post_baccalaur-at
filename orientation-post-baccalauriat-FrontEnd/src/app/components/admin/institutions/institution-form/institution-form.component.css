@@ -1,5 +1,5 @@
 .modal-overlay {
-  position: relative;
+  position: fixed;
   background-color: rgba(0, 0, 0, 0.7); /* Fond sombre et semi-transparent */
   display: flex;
   justify-content: center;

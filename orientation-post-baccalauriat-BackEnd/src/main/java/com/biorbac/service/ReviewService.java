@@ -12,10 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReviewService {
-
 
     @Autowired
     private ReviewRepository reviewRepository;
@@ -24,31 +24,53 @@ public class ReviewService {
     private ReviewMapper reviewMapper;
 
     @Autowired
-    private StudentRepository studentRepository;
-
-    @Autowired
     private InstitutionRepository institutionRepository;
 
-    public List<ReviewDto> getReviewsByInstitution(Long institutionId) {
+    @Autowired
+    private StudentRepository studentRepository;
+
+    public List<ReviewDto> getReviewsByInstitutionId(Long institutionId) {
         List<Review> reviews = reviewRepository.findByInstitution_InstitutionId(institutionId);
-        return reviews.stream()
-                .map(reviewMapper::toReviewDto)
-                .toList();
+        return reviews.stream().map(reviewMapper::toReviewDto).collect(Collectors.toList());
     }
 
-    public ReviewDto addReview(ReviewDto reviewDto) {
-        Student student = studentRepository.findById(reviewDto.getStudent().getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("Student not found"));
+    public ReviewDto createReview(ReviewDto reviewDto) {
+        Institution institution = institutionRepository.findById(reviewDto.getInstitutionId())
+                .orElseThrow(() -> new RuntimeException("Institution not found"));
 
-        Institution institution = institutionRepository.findById(reviewDto.getInstitution().getInstitutionId())
-                .orElseThrow(() -> new IllegalArgumentException("Institution not found"));
+        Student student = studentRepository.findById(reviewDto.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
         Review review = reviewMapper.toReview(reviewDto);
-        review.setStudent(student);
         review.setInstitution(institution);
+        review.setStudent(student);
 
         Review savedReview = reviewRepository.save(review);
-
         return reviewMapper.toReviewDto(savedReview);
+    }
+
+    public ReviewDto updateReview(Long reviewId, ReviewDto reviewDetails) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new RuntimeException("Review not found"));
+
+        reviewMapper.updateReviewFromDto(reviewDetails, review);
+
+        Institution institution = institutionRepository.findById(reviewDetails.getInstitutionId())
+                .orElseThrow(() -> new RuntimeException("Institution not found"));
+
+        Student student = studentRepository.findById(reviewDetails.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        review.setInstitution(institution); // Update institution reference
+        review.setStudent(student);          // Update student reference
+
+        Review updatedReview = reviewRepository.save(review);
+        return reviewMapper.toReviewDto(updatedReview);
+    }
+
+    public void deleteReview(Long reviewId) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new RuntimeException("Review not found"));
+        reviewRepository.delete(review);
     }
 }

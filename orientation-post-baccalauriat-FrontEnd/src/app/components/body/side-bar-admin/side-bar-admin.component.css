@@ -2,9 +2,9 @@
   width: 20%;
   position: fixed;
   height: 100vh;
-  background-color: black;
+  background-color: #ffffff;
   padding: 20px;
-  box-shadow: 2px 0 5px rgb(0, 0, 0);
+  box-shadow: 2px 0 5px rgb(116, 118, 119);
   transition: transform 0.3s ease; /* Smooth transition for toggle */
 }
 
@@ -23,7 +23,7 @@
 .sidebar h3 {
   margin: 10px 0 10px;
   font-size: 1.5rem; /* Responsive font size */
-  color: #ffffff;
+  color: #1f67ff;
 }
 
 .sidebar nav ul {
@@ -38,7 +38,7 @@
 
 .sidebar nav ul li a {
   text-decoration: none;
-  color: #ffffff;
+  color: #000000;
   font-size: 1.2rem; /* Responsive font size */
   display: flex;
   align-items: center;
@@ -53,7 +53,7 @@
 }
 
 .sidebar nav ul li a:hover {
-  background-color: #000000;
+  background-color: #34afe6;
 }
 
 /* Media Queries */

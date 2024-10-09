@@ -6,5 +6,7 @@ export interface InstitutionDto {
   description: string;
   address: string;
   website: string;
+  averageRating:number;
+  institutionLogo:string;
   institutionType: InstitutionType;
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Institution} from "../model/institution";
 import {InstitutionDto} from "../Dto/institution-dto";
 import {InstitutionType} from "../enums/institution-type";
 
@@ -10,50 +9,51 @@ import {InstitutionType} from "../enums/institution-type";
   providedIn: 'root',
 })
 export class InstitutionService {
-  private baseUrl = 'http://localhost:8082/api/institutions';
+  private apiUrl = 'http://localhost:8082/api/institutions';
 
   constructor(private http: HttpClient) {}
 
-  getAllInstitutions(): Observable<Institution[]> {
-    return this.http.get<Institution[]>(`${this.baseUrl}/all`);
+  // Fetch all institutions
+  getAllInstitutions(): Observable<InstitutionDto[]> {
+    return this.http.get<InstitutionDto[]>(`${this.apiUrl}/all-institutions`);
   }
 
-  getInstitutionById(id: number): Observable<InstitutionDto> {
-    return this.http.get<InstitutionDto>(`${this.baseUrl}/${id}`);
+  // Fetch an institution by ID
+  getInstitutionById(institutionId: number): Observable<InstitutionDto> {
+    return this.http.get<InstitutionDto>(`${this.apiUrl}/${institutionId}`);
   }
 
-  createInstitution(institution: InstitutionDto): Observable<InstitutionDto> {
-    return this.http.post<InstitutionDto>(`${this.baseUrl}/add-institution`, institution);
+  // Create a new institution
+  createInstitution(institutionDto: InstitutionDto): Observable<InstitutionDto> {
+    return this.http.post<InstitutionDto>(`${this.apiUrl}/add-institution`, institutionDto);
   }
 
-  updateInstitution(id: number, institution: InstitutionDto): Observable<InstitutionDto> {
-    return this.http.put<InstitutionDto>(`${this.baseUrl}/${id}`, institution);
+  // Update an institution
+  updateInstitution(id: number, institutionDto: InstitutionDto): Observable<InstitutionDto> {
+    return this.http.put<InstitutionDto>(`${this.apiUrl}/edit/${id}`, institutionDto);
   }
 
-
+  // Delete an institution
   deleteInstitution(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
   }
 
+  // Filter and sort institutions
   filterAndSortInstitutions(
-    institutionType: InstitutionType | null,
-    institutionName: string,
-    address: string
-  ): Observable<Institution[]> {
+    institutionType?: InstitutionType,
+    institutionName?: string,
+    address?: string
+  ): Observable<InstitutionDto[]> {
     let params = new HttpParams();
-
     if (institutionType) {
       params = params.append('institutionType', institutionType);
     }
-
     if (institutionName) {
       params = params.append('institutionName', institutionName);
     }
-
     if (address) {
       params = params.append('address', address);
     }
-
-    return this.http.get<Institution[]>(`${this.baseUrl}/filter`, { params });
+    return this.http.get<InstitutionDto[]>(`${this.apiUrl}/filter`, { params });
   }
 }

@@ -12,6 +12,8 @@ public class InstitutionDto {
     private String description;
     private String address;
     private String website;
+    private String institutionLogo;
+    private Double averageRating;
     private InstitutionType institutionType;
 
 }

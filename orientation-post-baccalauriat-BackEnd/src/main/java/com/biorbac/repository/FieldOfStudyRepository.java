@@ -1,5 +1,6 @@
 package com.biorbac.repository;
 
+import com.biorbac.enums.BacType;
 import com.biorbac.enums.InstitutionType;
 import com.biorbac.model.FieldOfStudy;
 import com.biorbac.model.Institution;
@@ -12,4 +13,5 @@ import java.util.List;
 
 public interface FieldOfStudyRepository extends JpaRepository<FieldOfStudy, Long> {
 
-}
+    @Query("SELECT f FROM FieldOfStudy f WHERE f.bacTypeRequired = :bacType AND f.minimumBacNote <= :bacScore")
+    List<FieldOfStudy> findMatchingFieldsOfStudy(String bacType, double bacScore);}
