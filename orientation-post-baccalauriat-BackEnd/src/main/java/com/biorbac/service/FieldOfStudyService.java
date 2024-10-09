@@ -8,9 +8,12 @@ import com.biorbac.model.Institution;
 import com.biorbac.model.Student;
 import com.biorbac.repository.FieldOfStudyRepository;
 import com.biorbac.repository.InstitutionRepository;
+import com.biorbac.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +31,9 @@ public class FieldOfStudyService {
 
     @Autowired
     private InstitutionRepository institutionRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
 
     public List<FieldOfStudy> getAllFieldOfStudy() {
@@ -72,7 +78,17 @@ public class FieldOfStudyService {
     }
 
 
-    public List<FieldOfStudy> recommendBasedOnStudent(Student student) {
-        return fieldOfStudyRepository.findByMinimumBacNoteLessThanEqualAndBacTypeRequired(student.getBacScore(), student.getBacType());
+    public List<FieldOfStudy> recommendBasedOnStudent() {
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        Student student1 = studentRepository.findStudentByUserName(loggedInUser.getName());
+        return fieldOfStudyRepository.findByMinimumBacNoteLessThanEqualAndBacTypeRequired(student1.getBacScore(), student1.getBacType());
+    }
+
+
+    public List<FieldOfStudyDto> filterAndSearchFields(BacType bacTypeRequired, Double minimumBacNote, String searchText) {
+        List<FieldOfStudy> fieldsOfStudy = fieldOfStudyRepository.filterAndSearch(bacTypeRequired, minimumBacNote, searchText);
+        return fieldsOfStudy.stream()
+                .map(fieldOfStudyMapper::toFieldOfStudyDto)
+                .collect(Collectors.toList());
     }
 }

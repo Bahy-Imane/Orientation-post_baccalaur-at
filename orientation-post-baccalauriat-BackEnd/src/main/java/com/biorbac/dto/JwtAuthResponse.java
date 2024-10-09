@@ -18,5 +18,4 @@ public class JwtAuthResponse {
     private String userName;
     private String role;
     private Long userId;
-    private List<FieldOfStudy> recommendations;
 }

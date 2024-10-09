@@ -96,9 +96,12 @@ public class InstitutionService {
     }
 
 
-    public List<Institution> filterAndSortInstitutions(InstitutionType institutionType, String institutionName, String address) {
-        return institutionRepository.findByInstitutionTypeContainingIgnoreCaseOrInstitutionNameContainingIgnoreCaseOrAddressContainingIgnoreCase(
-                institutionType, institutionName, address, Sort.by(Sort.Order.asc("institutionName"), Sort.Order.asc("address")));
+    public List<InstitutionDto> filterAndSearchInstitutions(InstitutionType institutionType, String searchText) {
+        List<Institution> institutions = institutionRepository.filterAndSearch(institutionType, searchText);
+        return institutions.stream()
+                .map(institutionMapper::toInstitutionDto)
+                .collect(Collectors.toList());
     }
+
 
 }

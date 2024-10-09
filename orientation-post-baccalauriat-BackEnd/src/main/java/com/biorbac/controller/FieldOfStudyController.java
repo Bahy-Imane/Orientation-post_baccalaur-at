@@ -23,11 +23,6 @@ public class FieldOfStudyController {
     @Autowired
     private FieldOfStudyService fieldOfStudyService;
 
-    @Autowired
-    private StudentRepository studentRepository;
-
-    @Autowired
-    private FieldOfStudyMapper fieldOfStudyMapper;
 
     @GetMapping("/all-fields")
     public ResponseEntity<List<FieldOfStudy>> getAllFieldsOfStudy() {
@@ -63,6 +58,21 @@ public class FieldOfStudyController {
     public ResponseEntity<Void> deleteFieldOfStudy(@RequestParam Long fieldOfStudyId) {
         fieldOfStudyService.deleteFieldOfStudy(fieldOfStudyId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PreAuthorize("hasRole('ROLE_STUDENT')")
+    @GetMapping("/recommendation")
+    public List<FieldOfStudy> getRecommendation(){
+        return fieldOfStudyService.recommendBasedOnStudent();
+    }
+
+    @GetMapping("/filter-fields")
+    public ResponseEntity<List<FieldOfStudyDto>> filterAndSearchFields(
+            @RequestParam(required = false) BacType bacTypeRequired,
+            @RequestParam(required = false) Double minimumBacNote,
+            @RequestParam(required = false, defaultValue = "") String searchText) {
+        List<FieldOfStudyDto> fieldsOfStudy = fieldOfStudyService.filterAndSearchFields(bacTypeRequired, minimumBacNote, searchText);
+        return ResponseEntity.ok(fieldsOfStudy);
     }
 
 }

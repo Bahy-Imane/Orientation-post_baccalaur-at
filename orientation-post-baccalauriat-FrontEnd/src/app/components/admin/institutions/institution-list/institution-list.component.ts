@@ -42,7 +42,7 @@ export class InstitutionListComponent implements OnInit {
   institutionType: InstitutionType | null = null;
   loading: boolean = false;
 
-  institutionTypes: InstitutionType[] = Object.values(InstitutionType); // Liste des types d'institutions
+  institutionTypes: InstitutionType[] = Object.values(InstitutionType);
 
   constructor(private institutionService: InstitutionService, private snackBar: MatSnackBar) {}
 

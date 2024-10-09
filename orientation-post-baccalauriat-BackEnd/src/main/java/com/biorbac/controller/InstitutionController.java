@@ -47,11 +47,19 @@ public class InstitutionController {
         return institutionService.deleteInstitution(id);
     }
 
-    @GetMapping("/filter")
-    public List<Institution> filterAndSortInstitutions(
+    @GetMapping("/filter-institutions")
+    public ResponseEntity<List<InstitutionDto>> filterAndSearchInstitutions(
             @RequestParam(required = false) InstitutionType institutionType,
-            @RequestParam(required = false) String institutionName,
-            @RequestParam(required = false) String address) {
-        return institutionService.filterAndSortInstitutions(institutionType, institutionName, address);
+            @RequestParam(required = false, defaultValue = "") String searchText) {
+        List<InstitutionDto> institutions = institutionService.filterAndSearchInstitutions(institutionType, searchText);
+        return ResponseEntity.ok(institutions);
     }
+
+//    @GetMapping("/filter")
+//    public List<Institution> filterAndSortInstitutions(
+//            @RequestParam(required = false) InstitutionType institutionType,
+//            @RequestParam(required = false) String institutionName,
+//            @RequestParam(required = false) String address) {
+//        return institutionService.filterAndSortInstitutions(institutionType, institutionName, address);
+//    }
 }

@@ -7,7 +7,7 @@ import {ReviewDto} from "../Dto/review-dto";
   providedIn: 'root',
 })
 export class ReviewService {
-  private apiUrl = 'http://localhost:8082/api/reviews'; // Your API base URL
+  private apiUrl = 'http://localhost:8081/api/reviews'; // Your API base URL
 
   constructor(private http: HttpClient) {}
 

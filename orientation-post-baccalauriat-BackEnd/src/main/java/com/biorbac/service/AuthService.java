@@ -46,10 +46,10 @@ public class AuthService {
         response.setRole(String.valueOf(user.getRole()));
         response.setUserId(user.getUserId());
 
-        if (user instanceof Student) {
-            List<FieldOfStudy> recommendations = fieldOfStudyService.recommendBasedOnStudent((Student) user);
-            response.setRecommendations(recommendations);
-        }
+//        if (user instanceof Student) {
+//            List<FieldOfStudy> recommendations = fieldOfStudyService.recommendBasedOnStudent((Student) user);
+//            response.setRecommendations(recommendations);
+//        }
 
         return response;
     }
