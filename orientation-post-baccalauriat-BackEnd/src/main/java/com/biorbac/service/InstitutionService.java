@@ -51,7 +51,7 @@ public class InstitutionService {
         return dto;
     }
 
-    private double calculateAverageRating(Long institutionId) {
+    public double calculateAverageRating(Long institutionId) {
         List<Review> reviews = reviewRepository.findByInstitution_InstitutionId(institutionId);
         return reviews.stream()
                 .mapToInt(Review::getRating)

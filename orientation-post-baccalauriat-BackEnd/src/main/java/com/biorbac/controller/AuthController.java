@@ -26,7 +26,6 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-    @PreAuthorize("hasRole('ROLE_STUDENT')")
     @PostMapping("/signup")
     public ResponseEntity<String> register(@RequestBody SignUpDto signUpDto) {
         String response = authService.signUp(signUpDto);

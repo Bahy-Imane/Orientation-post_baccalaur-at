@@ -72,11 +72,7 @@ public class FieldOfStudyService {
     }
 
 
-    public List<FieldOfStudy> recommendFieldsOfStudy(Student student) {
-        return fieldOfStudyRepository.findMatchingFieldsOfStudy(
-                student.getBacType().name(),
-                student.getBacScore()
-        );
+    public List<FieldOfStudy> recommendBasedOnStudent(Student student) {
+        return fieldOfStudyRepository.findByMinimumBacNoteLessThanEqualAndBacTypeRequired(student.getBacScore(), student.getBacType());
     }
-
 }

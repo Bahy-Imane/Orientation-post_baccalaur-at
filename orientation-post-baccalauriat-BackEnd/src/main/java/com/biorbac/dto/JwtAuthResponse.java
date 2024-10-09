@@ -1,9 +1,12 @@
 package com.biorbac.dto;
 
+import com.biorbac.model.FieldOfStudy;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,4 +18,5 @@ public class JwtAuthResponse {
     private String userName;
     private String role;
     private Long userId;
+    private List<FieldOfStudy> recommendations;
 }

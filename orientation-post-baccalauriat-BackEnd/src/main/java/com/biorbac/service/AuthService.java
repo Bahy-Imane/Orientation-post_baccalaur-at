@@ -5,6 +5,7 @@ import com.biorbac.dto.LoginDto;
 import com.biorbac.dto.SignUpDto;
 import com.biorbac.enums.Role;
 import com.biorbac.jwt.JwtTokenProvider;
+import com.biorbac.model.FieldOfStudy;
 import com.biorbac.model.Student;
 import com.biorbac.model.User;
 import com.biorbac.repository.UserRepository;
@@ -16,6 +17,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class AuthService {
@@ -24,6 +27,7 @@ public class AuthService {
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
+    private final FieldOfStudyService fieldOfStudyService;
 
     public JwtAuthResponse login(LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -34,17 +38,19 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String token = jwtTokenProvider.generateToken(authentication);
-        System.out.println("token"+token);
         User user = userRepository.findByUserNameOrEmail(loginDto.getUserNameOrEmail(), loginDto.getUserNameOrEmail());
-        System.out.println("user"+user);
-
         JwtAuthResponse response = new JwtAuthResponse();
         response.setAccessToken(token);
         response.setTokenType("Bearer");
         response.setUserName(user.getUsername());
         response.setRole(String.valueOf(user.getRole()));
         response.setUserId(user.getUserId());
-        System.out.println("response"+response);
+
+        if (user instanceof Student) {
+            List<FieldOfStudy> recommendations = fieldOfStudyService.recommendBasedOnStudent((Student) user);
+            response.setRecommendations(recommendations);
+        }
+
         return response;
     }
 
