@@ -1,0 +1,93 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'mvn'
+    }
+
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerHubCredentials')
+        SONARQUBE_TOKEN = 'squ_0244d32ce30f7a83bd9b5810acf510c642716489'
+        SONARQUBE_SERVER = 'http://localhost:9000'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Bahy-Imane/Orientation-post_baccalaur-at.git'
+            }
+        }
+
+        stage('Build & Test filRouge') {
+            steps {
+                dir('orientation-post-baccalauriat-BackEnd') {
+                    withMaven(maven: 'mvn') {
+                        bat 'mvn clean install'
+                    }
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'SonarQubeScanner'
+                    dir('orientation-post-baccalauriat-BackEnd') {
+                        bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=BackEnd -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN} -Dsonar.java.binaries=target/classes"
+                    }
+                }
+            }
+        }
+
+        stage('Build Docker Image & Push') {
+            steps {
+                dir('orientation-post-baccalauriat-BackEnd') {
+                    script {
+                        try {
+                            bat 'docker context use default'
+
+                            def imageTag = env.TAG_VERSION ?: 'latest'
+                            def dockerImage = docker.build("zinebaz/filrouge:${imageTag}")
+
+                            docker.withRegistry('https://index.docker.io/v1/', 'dockerHubCredentials') {
+                                dockerImage.push()
+                            }
+                        } catch (Exception e) {
+                            error "Docker build or push failed: ${e.message}"
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Quality Gate Check') {
+                    steps {
+                        timeout(time: 5, unit: 'MINUTES') {
+                            waitForQualityGate abortPipeline: true
+                        }
+                    }
+                }
+
+        stage('Deploy with Docker Compose') {
+            steps {
+                dir('orientation-post-baccalauriat-BackEnd') {
+                    bat 'docker-compose up -d'
+                }
+            }
+        }
+    }
+
+
+
+        post {
+            always {
+                cleanWs()
+            }
+            success {
+                echo 'Pipeline completed successfully!'
+            }
+            failure {
+                echo 'Pipeline failed!'
+            }
+        }
+}
