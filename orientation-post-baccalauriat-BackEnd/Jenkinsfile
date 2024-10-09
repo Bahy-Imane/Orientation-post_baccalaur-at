@@ -31,7 +31,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    def scannerHome = tool 'SonarQubeScanner'
+                    def scannerHome = tool 'sonarscanner'
                     dir('orientation-post-baccalauriat-BackEnd') {
                         bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=BackEnd -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_SERVER} -Dsonar.login=${SONARQUBE_TOKEN} -Dsonar.java.binaries=target/classes"
                     }
