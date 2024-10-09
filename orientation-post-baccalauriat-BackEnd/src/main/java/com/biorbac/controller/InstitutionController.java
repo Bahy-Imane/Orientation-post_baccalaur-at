@@ -55,11 +55,4 @@ public class InstitutionController {
         return ResponseEntity.ok(institutions);
     }
 
-//    @GetMapping("/filter")
-//    public List<Institution> filterAndSortInstitutions(
-//            @RequestParam(required = false) InstitutionType institutionType,
-//            @RequestParam(required = false) String institutionName,
-//            @RequestParam(required = false) String address) {
-//        return institutionService.filterAndSortInstitutions(institutionType, institutionName, address);
-//    }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {InstitutionDto} from "../../../core/Dto/institution-dto";
 import {InstitutionService} from "../../../core/services/institution-service";
-import {DecimalPipe, NgForOf} from "@angular/common";
+import {DecimalPipe, NgClass, NgForOf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 
 @Component({
@@ -10,7 +10,8 @@ import {RouterLink} from "@angular/router";
   imports: [
     DecimalPipe,
     RouterLink,
-    NgForOf
+    NgForOf,
+    NgClass
   ],
   templateUrl: './institutions-home.component.html',
   styleUrl: './institutions-home.component.css'
@@ -21,17 +22,17 @@ export class InstitutionsHomeComponent  implements OnInit{
   constructor(private institutionService: InstitutionService) {}
 
   ngOnInit(): void {
-    this.getAllInstitutions();
-  }
-
-  getAllInstitutions(): void {
-    this.institutionService.getAllInstitutions().subscribe({
-      next: (data) => {
+    this.institutionService.getAllInstitutions().subscribe(
+      (data) => {
         this.institutions = data;
       },
-      error: (err) => {
-        console.error('Error fetching institutions', err);
+      (error) => {
+        console.error('Error fetching institutions', error);
       }
-    });
+    );
+  }
+
+  getStars(rating: number): boolean[] {
+    return new Array(5).fill(false).map((_, index) => index < rating);
   }
 }

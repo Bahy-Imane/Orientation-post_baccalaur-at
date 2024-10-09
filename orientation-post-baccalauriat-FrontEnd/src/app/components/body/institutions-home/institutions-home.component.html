@@ -1,17 +1,25 @@
-<div class="container mt-5">
+<div class="container">
   <div class="row">
+    <!-- col-md-4 for 3 cards per row -->
     <div class="col-md-4 mb-4" *ngFor="let institution of institutions">
-      <div class="card shadow-sm border-light rounded">
-        <img [src]="institution.institutionLogo" class="card-img-top" alt="{{ institution.institutionName }} logo">
+      <div class="card">
+        <img [src]="institution.institutionLogo" class="card-img-top" alt="{{ institution.institutionName }} Logo" />
         <div class="card-body">
-          <h5 class="card-title text-center">{{ institution.institutionName }}</h5>
-          <p class="card-text">
-            <strong>Type:</strong> {{ institution.institutionType }}<br>
-            <strong>Address:</strong> {{ institution.address }}<br>
-            <strong>Rating:</strong> {{ institution.rating | number: '1.0-1' }} / 5
-          </p>
-          <div class="text-center">
-            <a [routerLink]="['/institutions', institution.institutionId]" class="btn btn-primary">Explore More</a>
+          <h6 class="card-title">
+            <i class="pi pi-building-columns wow-icon" style="color: slateblue"></i>
+            {{ institution.institutionName }}
+          </h6>
+          <p  class="card-text"> <i class="pi pi-ethereum wow-icon" style="color: slateblue"></i>
+            {{ institution.address }}</p>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="star-rating">
+              <ng-container *ngFor="let star of getStars(institution.averageRating); let i = index">
+                <i class="bi" [ngClass]="star ? 'bi-star-fill' : 'bi-star'"></i>
+              </ng-container>
+            </div>
+            <button class="btn btn-primary explore-button">Explore More</button>
           </div>
         </div>
       </div>

@@ -1,24 +1,66 @@
 .card {
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 340px; /* Height of the card */
+  background: #f8f9fa;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative; /* Allow absolute positioning inside the card */
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Full width */
+  max-width: 280px; /* Max width for cards */
+  margin: 0 auto; /* Centering the card */
 }
 
 .card img {
-  height: 200px; /* Ajuster la hauteur de l'image */
-  object-fit: cover; /* S'assurer que l'image couvre le conteneur */
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  flex-grow: 1;
 }
 
 .card-title {
+  font-size: 1rem;
   font-weight: bold;
-  font-size: 1.25rem; /* Taille de police */
-  color: #333; /* Couleur du texte */
+  color: #343a40;
+  margin: 0;
 }
 
-.card-text {
-  color: #555; /* Couleur du texte */
-  margin-bottom: 1.5rem; /* Espacement entre les paragraphes */
+.card-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background: #fff;
+  border-top: 1px  #ddd;
 }
+
+.star-rating .bi {
+  font-size: 1.2rem;
+  color: gold;
+}
+
+.explore-button {
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.explore-button:hover {
+  background-color: #0056b3;
+}
+
+.wow-icon {
+  font-size: 1.5rem; /* Adjust the size of the icon */
+  margin-right: 8px; /* Space between the icon and the institution name */
+  transition: transform 0.3s; /* Smooth transition for the transform */
+}
+
+
+

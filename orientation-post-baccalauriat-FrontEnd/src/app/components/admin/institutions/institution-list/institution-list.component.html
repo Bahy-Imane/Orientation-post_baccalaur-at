@@ -4,9 +4,7 @@
   <div>
     <h2>Filtrer les Institutions</h2>
     <form (ngSubmit)="onFilter()">
-      <input type="text" [(ngModel)]="institutionName" placeholder="Nom de l'Institution" name="institutionName">
-      <input type="text" [(ngModel)]="address" placeholder="Adresse" name="address">
-
+      <input type="text" [(ngModel)]="searchText" placeholder="search here" name="searchText">
       <select [(ngModel)]="institutionType" name="institutionType">
         <option value="">Sélectionner le type</option>
         <option *ngFor="let type of institutionTypes" [value]="type">{{ type }}</option>

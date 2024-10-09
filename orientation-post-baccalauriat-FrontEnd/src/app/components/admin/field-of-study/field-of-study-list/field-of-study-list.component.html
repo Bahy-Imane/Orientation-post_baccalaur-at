@@ -7,10 +7,21 @@
     placeholder="Search Field of Study"
     class="search-input"
   />
+  <select [(ngModel)]="bacTypeRequired" class="filter-select">
+    <option value="">Select Bac Type</option>
+    <option *ngFor="let bacType of bacTypeOptions" [value]="bacType">{{ bacType }}</option>
+  </select>
+  <input
+    type="number"
+    [(ngModel)]="minimumBacNote"
+    placeholder="Minimum Bac Note"
+    class="filter-input"
+  />
   <button (click)="openModal()" class="add-button" mat-button>
     <i class="fas fa-plus"></i> Add Field of Study
   </button>
 </div>
+
 <!-- Modal for Adding/Editing Field of Study -->
 <div class="modal" *ngIf="showModal">
   <div class="modal-content">
@@ -21,6 +32,7 @@
     ></app-field-of-study-form>
   </div>
 </div>
+
 <!-- Table for Displaying Fields of Study -->
 <div class="task-table">
   <div class="task-header">

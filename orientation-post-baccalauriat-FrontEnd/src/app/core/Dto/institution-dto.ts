@@ -8,5 +8,6 @@ export interface InstitutionDto {
   website: string;
   averageRating:number;
   institutionLogo:string;
+  searchText:string;
   institutionType: InstitutionType;
 }

@@ -42,7 +42,7 @@ export class InstitutionListComponent implements OnInit {
   institutionType: InstitutionType | null = null;
   loading: boolean = false;
 
-  institutionTypes: InstitutionType[] = Object.values(InstitutionType);
+  institutionTypes: InstitutionType[] = Object.values(InstitutionType); // Liste des types d'institutions
 
   constructor(private institutionService: InstitutionService, private snackBar: MatSnackBar) {}
 
@@ -62,7 +62,7 @@ export class InstitutionListComponent implements OnInit {
 
   onFilter(): void {
     this.loading = true;
-    this.institutionService.filterAndSortInstitutions(this.institutionType, this.institutionName, this.address)
+    this.institutionService.filterAndSearchInstitutions(this.institutionType, this.searchText)
       .subscribe((data: InstitutionDto[]) => {
         this.filteredInstitutions = data; // Mettre à jour les résultats filtrés
         this.totalInstitutions = data.length; // Mettre à jour le nombre total après le filtrage

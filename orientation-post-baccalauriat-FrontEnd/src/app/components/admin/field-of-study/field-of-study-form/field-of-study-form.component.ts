@@ -47,7 +47,7 @@ export class FieldOfStudyFormComponent implements OnInit {
       const fieldOfStudyDto: FieldOfStudyDto = this.fieldOfStudyForm.value;
       const institutionId = fieldOfStudyDto.institutionId; // Récupérer l'ID de l'institution depuis le formulaire
 
-      this.fieldOfStudyService.addFieldOfStudy(institutionId, fieldOfStudyDto).subscribe({
+      this.fieldOfStudyService.addFieldOfStudy(fieldOfStudyDto).subscribe({
         next: (response) => {
           this.snackBar.open('Field of Study added successfully', 'Close', { duration: 3000 });
           this.closeModal();

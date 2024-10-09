@@ -43,11 +43,11 @@ export const routes: Routes = [
         canActivate: [AuthGuard, RoleGuard],
         data: {expectedRole: Role.ADMIN}
       },
-      { path : 'field-of-study',
-        component : FieldOfStudyListComponent,
-        canActivate: [AuthGuard, RoleGuard],
-        data: {expectedRole: Role.ADMIN}
-      },
+      // { path : 'field-of-study',
+      //   component : FieldOfStudyListComponent,
+      //   canActivate: [AuthGuard, RoleGuard],
+      //   data: {expectedRole: Role.ADMIN}
+      // },
       {
         path: 'institution/add',
         component: InstitutionFormComponent,
@@ -60,18 +60,18 @@ export const routes: Routes = [
         canActivate: [AuthGuard, RoleGuard],
         data: { expectedRole: Role.ADMIN }
       },
-      {
-        path: 'field-of-study/add/:id',
-        component: FieldOfStudyFormComponent,
-        canActivate: [AuthGuard, RoleGuard],
-        data: { expectedRole: Role.ADMIN }
-      },
-      {
-        path: 'field-of-study/edit/:id',
-        component: FieldOfStudyFormComponent,
-        canActivate: [AuthGuard, RoleGuard],
-        data: { expectedRole: Role.ADMIN }
-      },
+      // {
+      //   path: 'field-of-study/add/:id',
+      //   component: FieldOfStudyFormComponent,
+      //   canActivate: [AuthGuard, RoleGuard],
+      //   data: { expectedRole: Role.ADMIN }
+      // },
+      // {
+      //   path: 'field-of-study/edit/:id',
+      //   component: FieldOfStudyFormComponent,
+      //   canActivate: [AuthGuard, RoleGuard],
+      //   data: { expectedRole: Role.ADMIN }
+      // },
 
     ]
   },

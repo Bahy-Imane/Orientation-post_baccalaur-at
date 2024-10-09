@@ -7,27 +7,27 @@ import {ReviewDto} from "../Dto/review-dto";
   providedIn: 'root',
 })
 export class ReviewService {
-  private apiUrl = 'http://localhost:8081/api/reviews'; // Your API base URL
+  private baseUrl = 'http://localhost:8081/api/reviews'; // Your API base URL
 
   constructor(private http: HttpClient) {}
 
   // Fetch reviews by institution ID
   getReviewsByInstitutionId(institutionId: number): Observable<ReviewDto[]> {
-    return this.http.get<ReviewDto[]>(`${this.apiUrl}/institution/${institutionId}`);
+    return this.http.get<ReviewDto[]>(`${this.baseUrl}/institution/${institutionId}`);
   }
 
   // Create a new review
   createReview(reviewDto: ReviewDto): Observable<ReviewDto> {
-    return this.http.post<ReviewDto>(this.apiUrl, reviewDto);
+    return this.http.post<ReviewDto>(this.baseUrl, reviewDto);
   }
 
   // Update a review
   updateReview(reviewId: number, reviewDto: ReviewDto): Observable<ReviewDto> {
-    return this.http.put<ReviewDto>(`${this.apiUrl}/edit/${reviewId}`, reviewDto);
+    return this.http.put<ReviewDto>(`${this.baseUrl}/edit/${reviewId}`, reviewDto);
   }
 
   // Delete a review
   deleteReview(reviewId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${reviewId}`);
+    return this.http.delete<void>(`${this.baseUrl}/delete/${reviewId}`);
   }
 }

@@ -4,56 +4,47 @@ import { Observable } from 'rxjs';
 import {InstitutionDto} from "../Dto/institution-dto";
 import {InstitutionType} from "../enums/institution-type";
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class InstitutionService {
-  private apiUrl = 'http://localhost:8081/api/institutions';
+  private baseUrl = 'http://localhost:8081/api/institutions';
 
   constructor(private http: HttpClient) {}
 
-  // Fetch all institutions
   getAllInstitutions(): Observable<InstitutionDto[]> {
-    return this.http.get<InstitutionDto[]>(`${this.apiUrl}/all-institutions`);
+    return this.http.get<InstitutionDto[]>(`${this.baseUrl}/all-institutions`);
   }
 
-  // Fetch an institution by ID
   getInstitutionById(institutionId: number): Observable<InstitutionDto> {
-    return this.http.get<InstitutionDto>(`${this.apiUrl}/${institutionId}`);
+    return this.http.get<InstitutionDto>(`${this.baseUrl}/${institutionId}`);
   }
 
-  // Create a new institution
   createInstitution(institutionDto: InstitutionDto): Observable<InstitutionDto> {
-    return this.http.post<InstitutionDto>(`${this.apiUrl}/add-institution`, institutionDto);
+    return this.http.post<InstitutionDto>(`${this.baseUrl}/add-institution`, institutionDto);
   }
 
-  // Update an institution
   updateInstitution(id: number, institutionDto: InstitutionDto): Observable<InstitutionDto> {
-    return this.http.put<InstitutionDto>(`${this.apiUrl}/edit/${id}`, institutionDto);
+    return this.http.put<InstitutionDto>(`${this.baseUrl}/edit/${id}`, institutionDto);
   }
 
-  // Delete an institution
   deleteInstitution(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
   }
 
-  // Filter and sort institutions
-  filterAndSortInstitutions(
-    institutionType?: InstitutionType,
-    institutionName?: string,
-    address?: string
+  filterAndSearchInstitutions(
+    institutionType?: InstitutionType | null,
+    searchText?: string
   ): Observable<InstitutionDto[]> {
     let params = new HttpParams();
+
     if (institutionType) {
       params = params.append('institutionType', institutionType);
     }
-    if (institutionName) {
-      params = params.append('institutionName', institutionName);
+    if (searchText) {
+      params = params.append('searchText', searchText);
     }
-    if (address) {
-      params = params.append('address', address);
-    }
-    return this.http.get<InstitutionDto[]>(`${this.apiUrl}/filter`, { params });
+
+    return this.http.get<InstitutionDto[]>(`${this.baseUrl}/filter-institutions`, { params });
   }
 }
