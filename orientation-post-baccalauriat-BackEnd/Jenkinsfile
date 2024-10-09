@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'mvn'
-    }
+     tools {
+            maven 'mvn'
+        }
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerHubCredentials')
@@ -18,15 +18,16 @@ pipeline {
             }
         }
 
-        stage('Build & Test filRouge') {
-            steps {
-                dir('orientation-post-baccalauriat-BackEnd') {
-                    withMaven(maven: 'mvn') {
-                        bat 'mvn clean install'
-                    }
-                }
-            }
-        }
+
+          stage('Build') {
+                       steps {
+                           script {
+                               withMaven(maven: 'mvn') {
+                                   bat 'mvn clean install'
+                               }
+                           }
+                       }
+                   }
 
         stage('SonarQube Analysis') {
             steps {
