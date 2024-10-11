@@ -18,10 +18,12 @@ public class Review {
     private String comment;
     private Integer rating;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
     private Student student;
 
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Institution institution;
 
 }

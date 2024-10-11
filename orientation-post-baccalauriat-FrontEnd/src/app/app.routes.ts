@@ -4,7 +4,6 @@ import {HomeComponent} from "./components/body/home/home.component";
 import {AboutUsComponent} from "./components/body/about-us/about-us.component";
 import {ContactUsComponent} from "./components/body/contact-us/contact-us.component";
 import {SignUpComponent} from "./components/Authentication/sign-up/sign-up.component";
-import {StudentProfileComponent} from "./components/student/student-profile/student-profile.component";
 import {HeaderComponent} from "./components/body/header/header.component";
 import {SideBarComponent} from "./components/body/side-bar/side-bar.component";
 import {AuthGuard} from "./core/services/auth-guard";
@@ -20,6 +19,12 @@ import {
   FieldOfStudyFormComponent
 } from "./components/admin/field-of-study/field-of-study-form/field-of-study-form.component";
 import {InstitutionsHomeComponent} from "./components/body/institutions-home/institutions-home.component";
+import {InstitutionDetailsComponent} from "./components/body/institution-details/institution-details.component";
+import {FieldOfStudyHomeComponent} from "./components/body/field-of-study-home/field-of-study-home.component";
+import {StudentProfileComponent} from "./components/body/student-profile/student-profile.component";
+import {ReviewListComponent} from "./components/admin/review/review-list/review-list.component";
+import {AdminHomeComponent} from "./components/admin/admin-home/admin-home.component";
+import {RecommendationComponent} from "./components/student/recommendation/recommendation.component";
 
 
 export const routes: Routes = [
@@ -31,23 +36,34 @@ export const routes: Routes = [
   { path: 'contact-us' , component : ContactUsComponent},
   { path : 'advice' , component : AdvicesComponent},
   { path : 'institutions' , component : InstitutionsHomeComponent},
-
+  { path : 'fields' , component : FieldOfStudyHomeComponent},
+  { path: 'institution-details/:institutionId', component: InstitutionDetailsComponent },
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
     canActivate: [AuthGuard, RoleGuard],
     data: {expectedRole: Role.ADMIN},
     children:[
+      { path : 'admin-home',
+        component : AdminHomeComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: {expectedRole: Role.ADMIN}
+      },
       { path : 'institution',
         component : InstitutionListComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: {expectedRole: Role.ADMIN}
       },
-      // { path : 'field-of-study',
-      //   component : FieldOfStudyListComponent,
-      //   canActivate: [AuthGuard, RoleGuard],
-      //   data: {expectedRole: Role.ADMIN}
-      // },
+      { path : 'field-of-study',
+        component : FieldOfStudyListComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: {expectedRole: Role.ADMIN}
+      },
+      { path : 'review',
+        component : ReviewListComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: {expectedRole: Role.ADMIN}
+      },
       {
         path: 'institution/add',
         component: InstitutionFormComponent,
@@ -82,7 +98,22 @@ export const routes: Routes = [
         data: {expectedRole: Role.ADMIN}
       },
 
-  {path : 'student-profile' , component : StudentProfileComponent},
+  {path : 'vos-recommend' ,
+    component : RecommendationComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {expectedRole: Role.STUDENT}
+  },
+
+
+  { path : 'student-profile' ,
+    component : StudentProfileComponent,
+    data: {expectedRole: Role.STUDENT},
+    children :[
+      { path: 'home' , component : HomeComponent},
+    ]
+  },
+
+
   {path : 'side-bar' , component : SideBarComponent},
 
 ];

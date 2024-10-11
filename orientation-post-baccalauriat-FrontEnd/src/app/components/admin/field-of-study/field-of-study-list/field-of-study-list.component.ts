@@ -88,9 +88,16 @@ export class FieldOfStudyListComponent implements OnInit {
   }
 
   deleteField(id: number): void {
-    this.fieldOfStudyService.deleteFieldOfStudy(id).subscribe(() => {
-      this.snackBar.open('Field of study deleted', 'Close', { duration: 2000 });
-      this.loadFieldsOfStudy();
-    });
+    if (confirm('Are you sure you want to delete this Field of study?')) {
+      this.fieldOfStudyService.deleteFieldOfStudy(id).subscribe(
+        () => {
+          this.snackBar.open('Institution deleted successfully', 'Close', { duration: 3000 });
+          this.loadFieldsOfStudy();
+        },
+        (error) => {
+          console.error('Error deleting institution:', error);
+        }
+      );
+    }
   }
 }

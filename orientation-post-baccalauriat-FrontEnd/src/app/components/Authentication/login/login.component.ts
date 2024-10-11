@@ -60,7 +60,7 @@ export class LoginComponent {
             if (userRole === "ADMIN") {
               this.router.navigate(['/admin-dashboard']);
             } else if (userRole === "STUDENT") {
-              this.router.navigate(['/student-profile']);
+              this.router.navigate(['/home']);
             }
 
           } else {

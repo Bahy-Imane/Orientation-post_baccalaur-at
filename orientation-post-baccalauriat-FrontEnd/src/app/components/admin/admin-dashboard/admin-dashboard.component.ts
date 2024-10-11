@@ -21,7 +21,7 @@ import {FieldOfStudyListComponent} from "../field-of-study/field-of-study-list/f
     InstitutionListComponent,
     InstitutionFormComponent,
     FieldOfStudyListComponent,
-    RouterOutlet
+    RouterOutlet,
   ],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'

@@ -6,5 +6,6 @@ export interface FieldOfStudyDto {
   minimumBacNote: number;
   departmentName: string;
   fieldOfStudyLogo:string;
+  institutionName:string;
   institutionId: number;
 }

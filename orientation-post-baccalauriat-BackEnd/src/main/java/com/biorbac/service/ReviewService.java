@@ -11,42 +11,62 @@ import com.biorbac.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 public class ReviewService {
 
     @Autowired
-    private ReviewRepository reviewRepository;
+    public ReviewRepository reviewRepository;
 
     @Autowired
-    private ReviewMapper reviewMapper;
+    public ReviewMapper reviewMapper;
 
     @Autowired
-    private InstitutionRepository institutionRepository;
+    public InstitutionRepository institutionRepository;
 
     @Autowired
-    private StudentRepository studentRepository;
+    public StudentRepository studentRepository;
+
+
+    public List<ReviewDto> getAllReviews(){
+        List<Review> reviews = reviewRepository.findAll();
+        return reviews.stream().map(rev->{
+            ReviewDto reviewDto = new ReviewDto();
+            reviewDto.setReviewId(rev.getReviewId());
+            reviewDto.setComment(rev.getComment());
+            reviewDto.setInstitutionId(rev.getInstitution().getInstitutionId());
+            reviewDto.setReviewId(rev.getReviewId());
+            reviewDto.setUserId(rev.getReviewId());
+            reviewDto.setRating(rev.getRating());
+            return reviewDto;
+        }).collect(Collectors.toList());
+    }
 
     public List<ReviewDto> getReviewsByInstitutionId(Long institutionId) {
         List<Review> reviews = reviewRepository.findByInstitution_InstitutionId(institutionId);
         return reviews.stream().map(reviewMapper::toReviewDto).collect(Collectors.toList());
     }
 
-    public ReviewDto createReview(ReviewDto reviewDto) {
+    public Map<String , String> createReview(ReviewDto reviewDto) {
         Institution institution = institutionRepository.findById(reviewDto.getInstitutionId())
                 .orElseThrow(() -> new RuntimeException("Institution not found"));
 
         Student student = studentRepository.findById(reviewDto.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        Review review = reviewMapper.toReview(reviewDto);
+        Review review = new Review();
         review.setInstitution(institution);
         review.setStudent(student);
-
-        Review savedReview = reviewRepository.save(review);
-        return reviewMapper.toReviewDto(savedReview);
+        review.setComment(reviewDto.getComment());
+        review.setRating(reviewDto.getRating());
+        reviewRepository.save(review);
+        Map<String , String> map = new HashMap<>();
+        map.put("msg", "Review created");
+        return map;
     }
 
     public ReviewDto updateReview(Long reviewId, ReviewDto reviewDetails) {
@@ -67,6 +87,7 @@ public class ReviewService {
         Review updatedReview = reviewRepository.save(review);
         return reviewMapper.toReviewDto(updatedReview);
     }
+
 
     public void deleteReview(Long reviewId) {
         Review review = reviewRepository.findById(reviewId)

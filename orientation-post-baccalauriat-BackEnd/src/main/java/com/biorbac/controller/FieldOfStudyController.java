@@ -2,17 +2,13 @@ package com.biorbac.controller;
 
 import com.biorbac.dto.FieldOfStudyDto;
 import com.biorbac.enums.BacType;
-import com.biorbac.mapper.FieldOfStudyMapper;
 import com.biorbac.model.FieldOfStudy;
-import com.biorbac.model.Student;
-import com.biorbac.repository.StudentRepository;
 import com.biorbac.service.FieldOfStudyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -65,6 +61,7 @@ public class FieldOfStudyController {
     public List<FieldOfStudy> getRecommendation(){
         return fieldOfStudyService.recommendBasedOnStudent();
     }
+
 
     @GetMapping("/filter-fields")
     public ResponseEntity<List<FieldOfStudyDto>> filterAndSearchFields(

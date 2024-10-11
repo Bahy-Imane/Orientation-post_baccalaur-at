@@ -81,8 +81,13 @@ public class FieldOfStudyService {
     public List<FieldOfStudy> recommendBasedOnStudent() {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         Student student1 = studentRepository.findStudentByUserName(loggedInUser.getName());
+
+        if (student1 == null) {
+            throw new IllegalArgumentException("Student not found for the current authenticated user.");
+        }
         return fieldOfStudyRepository.findByMinimumBacNoteLessThanEqualAndBacTypeRequired(student1.getBacScore(), student1.getBacType());
     }
+
 
 
     public List<FieldOfStudyDto> filterAndSearchFields(BacType bacTypeRequired, Double minimumBacNote, String searchText) {

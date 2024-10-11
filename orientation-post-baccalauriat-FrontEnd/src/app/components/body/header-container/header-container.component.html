@@ -1,0 +1,7 @@
+<!-- header-container.component.html -->
+<ng-container *ngIf="_authService.isLoggedIn(); else guestHeader">
+  <app-student-header></app-student-header>
+</ng-container>
+<ng-template #guestHeader>
+  <app-header></app-header>
+</ng-template>

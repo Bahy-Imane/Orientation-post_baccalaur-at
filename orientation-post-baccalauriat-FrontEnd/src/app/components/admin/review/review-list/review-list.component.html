@@ -1,1 +1,31 @@
-<p>review-list works!</p>
+<div class="card task-table">
+  <h2 class="title">Reviews List</h2>
+  <div class="bar">
+    <input type="text" class="search-input" placeholder="Rechercher des critiques..." />
+    <button mat-button>Ajouter une critique</button>
+  </div>
+  <p-table [value]="reviews" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+      <tr class="task-header">
+        <th class="header-item">Commentaire</th>
+        <th class="header-item">Évaluation</th>
+        <th class="header-item">ID Utilisateur</th>
+        <th class="header-item">ID Institution</th>
+        <th class="header-item">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-review let-columns="columns">
+      <tr class="task-row">
+        <td class="row-item">{{ review.comment }}</td>
+        <td class="row-item">
+          <p-rating [(ngModel)]="review.rating" [readonly]="true" [cancel]="false"></p-rating>
+        </td>
+        <td class="row-item">{{ review.userId }}</td>
+        <td class="row-item">{{ review.institutionId }}</td>
+        <td class="row-item actions">
+          <button mat-button (click)="deleteReview(review.reviewId)">Supprimer</button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

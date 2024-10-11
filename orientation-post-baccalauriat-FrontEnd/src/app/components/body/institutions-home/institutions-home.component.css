@@ -11,7 +11,7 @@
   flex-direction: column;
   width: 100%; /* Full width */
   max-width: 280px; /* Max width for cards */
-  margin: 0 auto; /* Centering the card */
+  margin: 7% auto; /* Centering the card */
 }
 
 .card img {
@@ -28,7 +28,7 @@
   font-size: 1rem;
   font-weight: bold;
   color: #343a40;
-  margin: 0;
+  margin: 3px;
 }
 
 .card-footer {
@@ -60,6 +60,76 @@
   font-size: 1.5rem; /* Adjust the size of the icon */
   margin-right: 8px; /* Space between the icon and the institution name */
   transition: transform 0.3s; /* Smooth transition for the transform */
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.card-carte{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.card-bod {
+  background-color: #007bff;
+  width: 80%;
+  height: 30vh;
+  border-radius: 15px;
+  padding: 40px 40px;
+  line-height: 24px;
+  font-size: 1rem;
+}
+
+form {
+  margin-top: 20px;
+}
+
+a.text-danger {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a.text-danger:hover {
+  text-decoration: underline;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+}
+
+.card-body h5 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.bg-danger {
+  background-color: #ff4d4d !important;
+}
+
+.bg-success {
+  background-color: #00cc44 !important;
+}
+
+.bg-info {
+  background-color: #66d9ff !important;
+}
+
+a.text-danger {
+  color: #ff4d4d;
+  text-decoration: none;
+}
+
+a.text-danger:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 

@@ -7,11 +7,14 @@ import {ReviewDto} from "../Dto/review-dto";
   providedIn: 'root',
 })
 export class ReviewService {
-  private baseUrl = 'http://localhost:8081/api/reviews'; // Your API base URL
+  private baseUrl = 'http://localhost:8081/api/reviews';
 
   constructor(private http: HttpClient) {}
 
-  // Fetch reviews by institution ID
+  getAllReviews(): Observable<ReviewDto[]> {
+    return this.http.get<ReviewDto[]>(`${this.baseUrl}/all-reviews`);
+  }
+
   getReviewsByInstitutionId(institutionId: number): Observable<ReviewDto[]> {
     return this.http.get<ReviewDto[]>(`${this.baseUrl}/institution/${institutionId}`);
   }

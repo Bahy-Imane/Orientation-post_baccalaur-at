@@ -1,0 +1,206 @@
+.institution-details-container {
+  display: flex;
+  align-items: center;
+  max-width: 800px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  height: 50vh;
+}
+
+.card-body {
+  background-color: #ffffff;
+}
+
+.institution-info {
+  flex: 1;
+}
+
+.institution-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.institution-description {
+  font-size: 14px;
+  color: #666;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.info-item i {
+  color: #007bff;
+}
+
+.website-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.website-link:hover {
+  text-decoration: underline;
+}
+
+.star-rating {
+  display: flex;
+  align-items: center;
+}
+
+.star-rating i {
+  color: #eeff07;
+  font-size: 18px;
+}
+
+.rating-text {
+  font-size: 14px;
+  color: #666;
+}
+
+.institution-logo-container {
+  width: 400px;
+  overflow: hidden;
+}
+
+.institution-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .card-body {
+    flex-direction: column-reverse;
+  }
+
+  .institution-logo-container {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+/* institution-search.component.css */
+.search-container {
+  background-image: url('/assets/images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* institution-search.component.css */
+.search-container {
+  background-image: url('/assets/images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.row-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px; /* Space between form groups */
+}
+
+/* Form Group Styles */
+.form-group {
+  flex-basis: 30%; /* Each input takes 30% of the width */
+  position: relative;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Icon inside the input container */
+.input-icon {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input-icon i {
+  position: absolute;
+  left: 10px;
+  font-size: 16px;
+  color: #555;
+}
+
+.input-icon input,
+.input-icon select {
+  padding-left: 35px; /* Space for the icon */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Button Styling */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  flex-basis: 100%; /* Button spans the full width */
+}
+
+.search-bar{
+  display: flex;
+  width: 90%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .form-group {
+    flex-basis: 100%; /* Full width on smaller screens */
+  }
+
+  .row-layout {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+

@@ -1,0 +1,26 @@
+<!-- recommendations.component.html -->
+<div class="card">
+  <h2 class="title">Recommandations pour les Étudiants</h2>
+  <table class="task-table">
+    <thead class="task-header">
+    <tr>
+      <th>Nom du Domaine d'Étude</th>
+      <th>Type de Bac Requis</th>
+      <th>Note Minimum au Bac</th>
+      <th>Nom du Département</th>
+      <th>Logo du Domaine d'Étude</th>
+      <th>Nom de l'Institution</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let recommendation of recommendations">
+      <td>{{ recommendation.name }}</td>
+      <td>{{ recommendation.bacTypeRequired }}</td>
+      <td>{{ recommendation.minimumBacNote }}</td>
+      <td>{{ recommendation.departmentName }}</td>
+      <td><img [src]="recommendation.fieldOfStudyLogo" [alt]="recommendation.name" width="50" /></td>
+      <td>{{ recommendation.institutionName }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

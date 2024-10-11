@@ -9,14 +9,24 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/reviews")
+@CrossOrigin("http://localhost:4200")
 public class ReviewController {
 
     @Autowired
     private ReviewService reviewService;
 
+    @PreAuthorize("hasRole('ROLE_STUDENT') or hasRole('ROLE_ADMIN')")
+    @GetMapping("/all-reviews")
+    public List<ReviewDto> getAllReviews() {
+        return reviewService.getAllReviews();
+    }
+
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/institution/{institutionId}")
     public ResponseEntity<List<ReviewDto>> getReviewsByInstitutionId(@PathVariable Long institutionId) {
         List<ReviewDto> reviews = reviewService.getReviewsByInstitutionId(institutionId);
@@ -24,9 +34,8 @@ public class ReviewController {
     }
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     @PostMapping
-    public ResponseEntity<ReviewDto> createReview(@RequestBody ReviewDto reviewDto) {
-        ReviewDto createdReview = reviewService.createReview(reviewDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdReview);
+    public Map<String, String> createReview(@RequestBody ReviewDto reviewDto) {
+        return reviewService.createReview(reviewDto);
     }
 
     @PreAuthorize("hasRole('ROLE_STUDENT')")

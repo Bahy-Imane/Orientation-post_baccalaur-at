@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 public class InstitutionDto {
 
+    private Long institutionId;
     private String institutionName;
     private String description;
     private String address;

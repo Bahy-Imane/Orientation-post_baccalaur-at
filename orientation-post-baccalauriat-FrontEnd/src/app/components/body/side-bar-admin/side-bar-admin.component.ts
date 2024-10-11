@@ -33,7 +33,7 @@ export class SideBarAdminComponent {
   // }
 
   // sidebarVisible: boolean = false;
-  activeSection: string = 'profile-admin';
+  activeSection: string = 'admin-dashboard';
 
  constructor(public _authService: AuthService) {}
 

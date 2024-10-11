@@ -20,6 +20,5 @@ export class HeaderComponent {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  constructor(public _authService: AuthService) {}
 
 }

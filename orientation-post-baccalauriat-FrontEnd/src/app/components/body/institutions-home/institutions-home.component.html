@@ -1,3 +1,57 @@
+<app-header-container/>
+<div class="container mt-5">
+  <div class="text-center">
+    <h1>Écoles et formations du supérieur</h1>
+  </div>
+  <div class="card-carte">
+    <div class=" card-bod text-white bg-primary" >
+      <div class="d-flex align-items-center">
+        <i class="bi bi-people-fill" style="font-size: 5rem;"></i>
+        <p class="mb-0 ms-3">
+          Vous recherchez des informations sur un établissement ? Présentation des formations, contacts, avis, plaquettes,
+          événements clés, vidéos de présentation, calendrier des portes ouvertes, actualité de l’école, programmes,
+          débouchés... Retrouvez tous les renseignements dont vous avez besoin dans cet espace on-line entièrement dédié
+          aux établissements.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <!-- Search et filter bar -->
+  <div class="mt-5">
+    <h3>Vous recherchez</h3>
+    <form class="row g-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Mot(s) clef(s)" />
+      </div>
+      <div class="col-md-4">
+        <select class="form-select">
+          <option selected>Filière</option>
+          <option value="1">Sciences</option>
+          <option value="2">Arts</option>
+          <option value="3">Commerce</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <select class="form-select">
+          <option selected>Secteur études</option>
+          <option value="1">Public</option>
+          <option value="2">Privé</option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+<!-- All institutions -->
 <div class="container">
   <div class="row">
     <!-- col-md-4 for 3 cards per row -->
@@ -19,10 +73,13 @@
                 <i class="bi" [ngClass]="star ? 'bi-star-fill' : 'bi-star'"></i>
               </ng-container>
             </div>
-            <button class="btn btn-primary explore-button">Explore More</button>
+            <button (click)="showDetails(institution.institutionId)" class="btn btn-primary explore-button">
+              Explore More
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<app-footer/>

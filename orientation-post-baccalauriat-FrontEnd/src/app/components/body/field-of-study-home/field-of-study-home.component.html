@@ -1,1 +1,69 @@
-<p>field-of-study-home works!</p>
+<app-header-container/>
+<!-- field-of-study.component.html -->
+<!--<section class="filter-section">-->
+<!--  <div class="overlay">-->
+<!--&lt;!&ndash;    <form (ngSubmit)="onSearch()" class="search-form row-layout">&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;        <label for="fieldOfStudyName">Field of Study Name:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="input-icon">&ndash;&gt;-->
+<!--&lt;!&ndash;          <i class="fas fa-book"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;          <input type="text" id="fieldOfStudyName" [(ngModel)]="fiels.name" name="fieldOfStudyName" placeholder="Enter Field of Study Name" />&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+
+<!--      <div class="form-group">-->
+<!--        <label for="bacTypeRequired">Bac Type Required:</label>-->
+<!--        <div class="input-icon">-->
+<!--          <i class="fas fa-graduation-cap"></i>-->
+<!--          <input type="text" id="bacTypeRequired" [(ngModel)]="fieldOfStudy.bacTypeRequired" name="bacTypeRequired" placeholder="Enter Bac Type Required" />-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="form-group">-->
+<!--        <label for="minimumBacNote">Minimum Bac Note:</label>-->
+<!--        <div class="input-icon">-->
+<!--          <i class="fas fa-star-half-alt"></i>-->
+<!--          <input type="number" id="minimumBacNote" [(ngModel)]="fieldOfStudy.minimumBacNote" name="minimumBacNote" placeholder="Enter Minimum Bac Note" />-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="form-group">-->
+<!--        <label for="departmentName">Department Name:</label>-->
+<!--        <div class="input-icon">-->
+<!--          <i class="fas fa-building"></i>-->
+<!--          <input type="text" id="departmentName" [(ngModel)]="fieldOfStudy.departmentName" name="departmentName" placeholder="Enter Department Name" />-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="form-group">-->
+<!--        <label for="fieldOfStudyLogo">Field of Study Logo URL:</label>-->
+<!--        <div class="input-icon">-->
+<!--          <i class="fas fa-image"></i>-->
+<!--          <input type="text" id="fieldOfStudyLogo" [(ngModel)]="fieldOfStudy.fieldOfStudyLogo" name="fieldOfStudyLogo" placeholder="Enter Field of Study Logo URL" />-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</section>-->
+
+<div class="container">
+  <div class="row">
+    <!-- col-md-4 for displaying cards if needed -->
+    <div class="col-md-4 mb-4" *ngFor="let field of fieldsOfStudy">
+      <div class="card">
+        <img [src]="field.fieldOfStudyLogo" class="card-img-top" alt="{{ field.name }} Logo" />
+        <div class="card-body">
+          <h6 class="card-title">{{ field.name }}</h6>
+          <p class="card-text">
+            Bac Type Required: {{ field.bacTypeRequired }}<br />
+            Minimum Bac Note: {{ field.minimumBacNote }}<br />
+            Department: {{ field.departmentName }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer/>

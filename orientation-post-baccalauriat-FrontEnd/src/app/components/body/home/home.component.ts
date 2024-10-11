@@ -4,6 +4,7 @@ import {LoginComponent} from "../../Authentication/login/login.component";
 import {AdminDashboardComponent} from "../../admin/admin-dashboard/admin-dashboard.component";
 import {HeaderComponent} from "../header/header.component";
 import {FooterComponent} from "../footer/footer.component";
+import {HeaderContainerComponent} from "../header-container/header-container.component";
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ import {FooterComponent} from "../footer/footer.component";
     NgForOf,
     AdminDashboardComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HeaderContainerComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']

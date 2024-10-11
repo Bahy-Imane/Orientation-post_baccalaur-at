@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class FieldOfStudyDto {
 
+    private Long fosId;
     private String name;
     private String bacTypeRequired;
     private double minimumBacNote;
