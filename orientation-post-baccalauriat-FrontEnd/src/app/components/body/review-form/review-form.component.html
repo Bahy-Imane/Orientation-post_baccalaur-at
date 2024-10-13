@@ -3,9 +3,7 @@
 
     <div class="form-group">
       <label for="rating">Rating</label>
-      <select id="rating" formControlName="rating" class="form-control">
-        <option *ngFor="let star of [1, 2, 3, 4, 5]" [value]="star">{{ star }}</option>
-      </select>
+      <p-rating id="rating" formControlName="rating" [cancel]="false" stars="5"></p-rating>
       <div *ngIf="reviewForm.get('rating')?.invalid && reviewForm.get('rating')?.touched" class="text-danger">
         Rating is required
       </div>
@@ -13,12 +11,26 @@
 
     <div class="form-group">
       <label for="comment">Comment</label>
-      <textarea id="comment" formControlName="comment" class="form-control" placeholder="Leave your comment"></textarea>
+      <textarea
+        id="comment"
+        formControlName="comment"
+        class="form-control"
+        placeholder="Leave your comment"
+        [ngClass]="{'is-invalid': reviewForm.get('comment')?.invalid && reviewForm.get('comment')?.touched}"
+      ></textarea>
       <div *ngIf="reviewForm.get('comment')?.invalid && reviewForm.get('comment')?.touched" class="text-danger">
         Comment is required
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="reviewForm.invalid">Submit Review</button>
+    <button type="submit" class="btn btn-primary" [disabled]="reviewForm.invalid">
+      Submit Review
+    </button>
+
   </form>
+
+  <!-- Debug -->
+  <div *ngIf="!reviewForm.valid" class="text-danger">
+    Please fill out all fields before submitting.
+  </div>
 </div>

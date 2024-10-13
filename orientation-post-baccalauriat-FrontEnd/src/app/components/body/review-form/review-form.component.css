@@ -2,3 +2,16 @@
   max-height: 300px; /* Limite la hauteur de la zone de commentaire */
   overflow-y: auto; /* Ajoute un défilement si nécessaire */
 }
+.review-form-container {
+  padding: 20px;
+}
+
+textarea.form-control {
+  min-height: 120px;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+}
+

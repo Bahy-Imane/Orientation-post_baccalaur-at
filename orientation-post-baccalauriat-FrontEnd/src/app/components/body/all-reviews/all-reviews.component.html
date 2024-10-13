@@ -2,7 +2,7 @@
   <h3>Évaluations des étudiants</h3>
 
   <!-- Button to open the modal for adding a review, only if the user is logged in -->
-  <div>
+  <>
     <button *ngIf="authService.isLoggedIn()" (click)="openModal()" class="btn btn-primary">
       Laisser un avis
     </button>
@@ -11,16 +11,17 @@
     <div class="modal" *ngIf="showModal">
       <div class="modal-content">
         <span class="close" (click)="closeModal()">&times;</span>
-        <!-- Pass institutionId to the review form if it's not null -->
+
+        <!-- Review Form -->
+        <h2>Laisser un avis</h2>
         <app-review-form
           *ngIf="selectedInstitutionId !== null"
-          [institutionId]="selectedInstitutionId!"
+          [institutionId]="selectedInstitutionId"
           (modalClose)="closeModal()"
         ></app-review-form>
       </div>
     </div>
   </div>
-</div>
 
 <!-- List of reviews -->
 <div class="review-list-container">

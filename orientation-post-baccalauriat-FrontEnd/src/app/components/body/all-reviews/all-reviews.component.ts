@@ -22,8 +22,8 @@ import {ReviewFormComponent} from "../review-form/review-form.component";
 })
 export class AllReviewsComponent implements OnInit {
   reviews: ReviewDto[] = [];
-  showModal: boolean = false;  // Manage modal visibility
-  selectedInstitutionId: number | null = null;  // Institution ID passed to the form
+  showModal: boolean = false;
+  selectedInstitutionId: number | null = null;
 
   constructor(
     private reviewService: ReviewService,
@@ -52,17 +52,18 @@ export class AllReviewsComponent implements OnInit {
     }
   }
 
-  // Open modal to add a new review
+
   openModal(): void {
+    console.log('Opening modal');
     this.showModal = true;
   }
 
-  // Close modal after review submission or cancel
   closeModal(): void {
+    console.log('Closing modal');
     this.showModal = false;
   }
 
-  // Convert numeric rating into stars (boolean array)
+
   getStars(rating: number): boolean[] {
     return Array(5).fill(false).map((_, i) => i < rating);
   }
