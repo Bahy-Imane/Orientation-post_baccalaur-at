@@ -40,7 +40,7 @@ public class ReviewService {
             reviewDto.setComment(rev.getComment());
             reviewDto.setInstitutionId(rev.getInstitution().getInstitutionId());
             reviewDto.setReviewId(rev.getReviewId());
-            reviewDto.setUserId(rev.getReviewId());
+            reviewDto.setUserName(rev.getStudent().getUsername());
             reviewDto.setRating(rev.getRating());
             return reviewDto;
         }).collect(Collectors.toList());
@@ -48,15 +48,22 @@ public class ReviewService {
 
     public List<ReviewDto> getReviewsByInstitutionId(Long institutionId) {
         List<Review> reviews = reviewRepository.findByInstitution_InstitutionId(institutionId);
-        return reviews.stream().map(reviewMapper::toReviewDto).collect(Collectors.toList());
-    }
+        return reviews.stream().map(rev->{
+            ReviewDto reviewDto = new ReviewDto();
+            reviewDto.setReviewId(rev.getReviewId());
+            reviewDto.setComment(rev.getComment());
+            reviewDto.setInstitutionId(rev.getInstitution().getInstitutionId());
+            reviewDto.setReviewId(rev.getReviewId());
+            reviewDto.setUserName(rev.getStudent().getUsername());
+            reviewDto.setRating(rev.getRating());
+            return reviewDto;
+        }).collect(Collectors.toList());    }
 
     public Map<String , String> createReview(ReviewDto reviewDto) {
         Institution institution = institutionRepository.findById(reviewDto.getInstitutionId())
                 .orElseThrow(() -> new RuntimeException("Institution not found"));
 
-        Student student = studentRepository.findById(reviewDto.getUserId())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+        Student student = studentRepository.findStudentByUserName(reviewDto.getUserName());
 
         Review review = new Review();
         review.setInstitution(institution);
@@ -78,8 +85,7 @@ public class ReviewService {
         Institution institution = institutionRepository.findById(reviewDetails.getInstitutionId())
                 .orElseThrow(() -> new RuntimeException("Institution not found"));
 
-        Student student = studentRepository.findById(reviewDetails.getUserId())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+        Student student = studentRepository.findStudentByUserName(reviewDetails.getUserName());
 
         review.setInstitution(institution); // Update institution reference
         review.setStudent(student);          // Update student reference

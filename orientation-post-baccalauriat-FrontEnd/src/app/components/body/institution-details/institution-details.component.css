@@ -1,3 +1,4 @@
+/* Container for the institution details card */
 .institution-details-container {
   display: flex;
   align-items: center;
@@ -6,14 +7,23 @@
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   height: 50vh;
+  width: 50%;
+  margin-left : 4%;
+  margin-top : 3%;
 }
 
+/* Card body layout */
 .card-body {
+  display: flex;
   background-color: #ffffff;
+  width: 100%;
 }
 
+/* Information about the institution */
 .institution-info {
   flex: 1;
+  width: 50%; /* 50% of the card for information */
+  padding: 20px;
 }
 
 .institution-name {
@@ -25,16 +35,20 @@
 .institution-description {
   font-size: 14px;
   color: #666;
+  margin-bottom: 20px;
 }
 
+/* Info items (address, website, etc.) */
 .info-item {
   display: flex;
   align-items: center;
   font-size: 14px;
+  margin-bottom: 10px;
 }
 
 .info-item i {
   color: #007bff;
+  margin-right: 10px;
 }
 
 .website-link {
@@ -46,6 +60,7 @@
   text-decoration: underline;
 }
 
+/* Star rating system */
 .star-rating {
   display: flex;
   align-items: center;
@@ -59,10 +74,13 @@
 .rating-text {
   font-size: 14px;
   color: #666;
+  margin-left: 10px;
 }
 
+/* Institution logo container */
 .institution-logo-container {
-  width: 400px;
+  width: 50%; /* 50% of the card for the logo */
+  height: 100%;
   overflow: hidden;
 }
 
@@ -72,9 +90,14 @@
   object-fit: cover;
 }
 
+/* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .card-body {
     flex-direction: column-reverse;
+  }
+
+  .institution-info {
+    width: 100%; /* Full width for smaller screens */
   }
 
   .institution-logo-container {
@@ -83,7 +106,7 @@
   }
 }
 
-/* institution-search.component.css */
+/* Search container styles */
 .search-container {
   background-image: url('/assets/images/background.jpg');
   background-size: cover;
@@ -91,44 +114,7 @@
   padding: 20px;
   border-radius: 10px;
   color: white;
-}
-
-.search-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.form-group label {
-  font-weight: bold;
-}
-
-.form-group input,
-.form-group select {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  width: 100%;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-/* institution-search.component.css */
-.search-container {
-  background-image: url('/assets/images/background.jpg');
-  background-size: cover;
-  background-position: center;
-  padding: 20px;
-  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: white;
 }
 
 .row-layout {
@@ -186,7 +172,7 @@ button {
   flex-basis: 100%; /* Button spans the full width */
 }
 
-.search-bar{
+.search-bar {
   display: flex;
   width: 90%;
 }
@@ -203,4 +189,14 @@ button {
   }
 }
 
+.instit-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 
+}
+.reviews{
+  margin-top:3%;
+  width: 40%;
+  background: #10cbef;
+}

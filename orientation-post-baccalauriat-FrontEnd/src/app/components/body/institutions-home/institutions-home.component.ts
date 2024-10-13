@@ -55,10 +55,10 @@ export class InstitutionsHomeComponent  implements OnInit{
     this.router.navigate(['institution-details', institutionId]);
   }
 
-  onSearch(): void {
-    this.institutionService.filterAndSearchInstitutions(this.institutionType, this.searchText)
-      .subscribe((institutions: InstitutionDto[]) => {
-        console.log(institutions); // Process and display the results as needed
-      });
-  }
+  // onSearch(): void {
+  //   this.institutionService.filterAndSearchInstitutions(this.institutionType, this.searchText)
+  //     .subscribe((institutions: InstitutionDto[]) => {
+  //       console.log(institutions); // Process and display the results as needed
+  //     });
+  // }
 }

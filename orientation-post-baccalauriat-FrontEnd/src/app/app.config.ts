@@ -11,5 +11,5 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync(),
      provideHttpClient(withInterceptors([AuthInterceptor])),
-    importProvidersFrom(FormsModule), provideAnimationsAsync(), provideAnimationsAsync()
+    importProvidersFrom(FormsModule), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync()
   ]};

@@ -34,7 +34,6 @@ export class InstitutionListComponent implements OnInit {
 
   showModal: boolean = false;
   selectedInstitutionId: number | null = null;
-  selectedInstitution: InstitutionDto | null = null;
   modalTitle: string = '';
 
   institutionName: string = '';
@@ -42,7 +41,7 @@ export class InstitutionListComponent implements OnInit {
   institutionType: InstitutionType | null = null;
   loading: boolean = false;
 
-  institutionTypes: InstitutionType[] = Object.values(InstitutionType); // Liste des types d'institutions
+  institutionTypes: InstitutionType[] = Object.values(InstitutionType); // List of institution types
 
   constructor(private institutionService: InstitutionService, private snackBar: MatSnackBar) {}
 
@@ -60,22 +59,7 @@ export class InstitutionListComponent implements OnInit {
     });
   }
 
-  onFilter(): void {
-    this.loading = true;
-    this.institutionService.filterAndSearchInstitutions(this.institutionType, this.searchText)
-      .subscribe((data: InstitutionDto[]) => {
-        this.filteredInstitutions = data; // Mettre à jour les résultats filtrés
-        this.totalInstitutions = data.length; // Mettre à jour le nombre total après le filtrage
-        this.currentPage = 0; // Réinitialiser à la première page après un filtrage
-        this.loading = false;
-      }, error => {
-        console.error('Erreur lors du filtrage des institutions', error);
-        this.loading = false;
-      });
-  }
-
   filteredProjects(): InstitutionDto[] {
-    // Pagination et recherche globale sur la liste filtrée
     return this.filteredInstitutions
       .filter(inst => this.searchText === '' || inst.institutionName.toLowerCase().includes(this.searchText.toLowerCase()))
       .slice(this.currentPage * this.pageSize, (this.currentPage + 1) * this.pageSize);
@@ -88,47 +72,60 @@ export class InstitutionListComponent implements OnInit {
 
   getInstitutionTypeLabel(type: InstitutionType): string {
     switch (type) {
-      case InstitutionType.EXECUTIVE_TRAINING_INSTITUTION:
-        return 'Executive Training Institution';
-      case InstitutionType.HIGHER_INSTITUTE:
-        return 'Higher Institute';
-      case InstitutionType.RESEARCH_INSTITUTE:
-        return 'Research Institute';
-      case InstitutionType.POLYTECHNIC_SCHOOL:
-        return 'Polytechnic School';
-      case InstitutionType.PRIVATE_UNIVERSITY:
-        return 'Private University';
-      case InstitutionType.PUBLIC_UNIVERSITY:
-        return 'Public University';
-      case InstitutionType.ROYAL_ACADEMY:
-        return 'Royal Academy';
-      case InstitutionType.VOCATIONAL_TRAINING_CENTER:
-        return 'Vocational Training Center';
-      default:
-        return 'Unknown';
+      case InstitutionType.EXECUTIVE_TRAINING_INSTITUTION: return 'Executive Training Institution';
+      case InstitutionType.HIGHER_INSTITUTE: return 'Higher Institute';
+      case InstitutionType.RESEARCH_INSTITUTE: return 'Research Institute';
+      case InstitutionType.POLYTECHNIC_SCHOOL: return 'Polytechnic School';
+      case InstitutionType.PRIVATE_UNIVERSITY: return 'Private University';
+      case InstitutionType.PUBLIC_UNIVERSITY: return 'Public University';
+      case InstitutionType.ROYAL_ACADEMY: return 'Royal Academy';
+      case InstitutionType.VOCATIONAL_TRAINING_CENTER: return 'Vocational Training Center';
+      default: return 'Unknown';
     }
   }
 
   openModal(institutionId?: number): void {
     if (institutionId) {
-      // Cas d'édition
       this.modalTitle = 'Edit Institution';
       this.selectedInstitutionId = institutionId;
       this.institutionService.getInstitutionById(institutionId).subscribe((institution: InstitutionDto) => {
-        this.selectedInstitutionId = institution.institutionId;
+        this.institutionName = institution.institutionName;
+        this.address = institution.address;
+        this.institutionType = institution.institutionType;
         this.showModal = true;
       });
     } else {
-      // Cas d'ajout
       this.modalTitle = 'Add Institution';
-      this.selectedInstitutionId = null; // Pas d'ID, c'est un ajout
+      this.selectedInstitutionId = null;
+      this.institutionName = '';
+      this.address = '';
+      this.institutionType = null;
       this.showModal = true;
     }
   }
 
   closeModal(): void {
     this.showModal = false;
-    this.selectedInstitution = null;
+    this.selectedInstitutionId = null; // Clear the selected institution
+    this.loadInstitutions(); // Reload the institutions to reflect changes
+  }
+
+  editInstitution(institutionId: number): void {
+    this.openModal(institutionId);
+  }
+
+  deleteInstitution(institutionId: number): void {
+    if (confirm('Are you sure you want to delete this institution?')) {
+      this.institutionService.deleteInstitution(institutionId).subscribe(
+        () => {
+          this.snackBar.open('Institution deleted successfully', 'Close', { duration: 3000 });
+          this.loadInstitutions(); // Reload the institutions after deletion
+        },
+        (error) => {
+          console.error('Error deleting institution:', error);
+        }
+      );
+    }
   }
 
   sort(field: keyof InstitutionDto) {
@@ -139,32 +136,5 @@ export class InstitutionListComponent implements OnInit {
       if (aValue > bValue) return 1;
       return 0;
     });
-  }
-
-  editInstitution(id: number): void {
-    this.institutionService.getInstitutionById(id).subscribe(
-      (institution: InstitutionDto) => {
-        this.selectedInstitution = institution;
-        this.selectedInstitutionId = id;
-        this.showModal = true;
-      },
-      (error) => {
-        console.error('Error fetching institution:', error);
-      }
-    );
-  }
-
-  deleteInstitution(id: number): void {
-    if (confirm('Are you sure you want to delete this institution?')) {
-      this.institutionService.deleteInstitution(id).subscribe(
-        () => {
-          this.snackBar.open('Institution deleted successfully', 'Close', { duration: 3000 });
-          this.loadInstitutions();
-        },
-        (error) => {
-          console.error('Error deleting institution:', error);
-        }
-      );
-    }
   }
 }

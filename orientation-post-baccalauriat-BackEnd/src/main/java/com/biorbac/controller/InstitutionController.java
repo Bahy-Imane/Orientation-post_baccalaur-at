@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/institutions")
@@ -31,13 +32,13 @@ public class InstitutionController {
     }
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add-institution")
-    public InstitutionDto createInstitution(@RequestBody InstitutionDto institutionDto) {
+    public Map<String , String> createInstitution(@RequestBody InstitutionDto institutionDto) {
         return institutionService.createInstitution(institutionDto);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/edit/{id}")
-    public ResponseEntity<InstitutionDto> updateInstitution(@PathVariable Long id, @RequestBody InstitutionDto institutionDto) {
+    public Map<String , String> updateInstitution(@PathVariable Long id, @RequestBody InstitutionDto institutionDto) {
         return institutionService.updateInstitution(id, institutionDto);
     }
 

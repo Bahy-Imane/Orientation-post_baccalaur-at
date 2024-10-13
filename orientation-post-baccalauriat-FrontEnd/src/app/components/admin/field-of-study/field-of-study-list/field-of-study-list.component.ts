@@ -66,10 +66,12 @@ export class FieldOfStudyListComponent implements OnInit {
 
   // Open modal for adding a new field of study
   openModal(fosId?: number): void {
+    console.log('Opening modal');  // Ajouté pour tester
     this.selectedFieldOfStudyId = fosId || null;
     this.showModal = true;
     this.modalTitle = fosId ? 'Edit Field of Study' : 'Add Field of Study';
   }
+
 
   closeModal(): void {
     this.showModal = false;

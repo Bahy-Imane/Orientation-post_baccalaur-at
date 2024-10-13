@@ -1,8 +1,8 @@
 package com.biorbac.controller;
 
 import com.biorbac.dto.FieldOfStudyDto;
+import com.biorbac.dto.ReviewDto;
 import com.biorbac.enums.BacType;
-import com.biorbac.model.FieldOfStudy;
 import com.biorbac.service.FieldOfStudyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/fields-of-study")
@@ -21,44 +22,46 @@ public class FieldOfStudyController {
 
 
     @GetMapping("/all-fields")
-    public ResponseEntity<List<FieldOfStudy>> getAllFieldsOfStudy() {
-        List<FieldOfStudy> fieldsOfStudy = fieldOfStudyService.getAllFieldOfStudy();
-        return ResponseEntity.ok(fieldsOfStudy);
+    public List<FieldOfStudyDto> getAllFieldsOfStudy() {
+        return fieldOfStudyService.getAllFieldOfStudy();
+    }
+
+    @GetMapping("/institution/{institutionId}")
+    public List<FieldOfStudyDto> getFieldOfStudiesByInstitutionId(@PathVariable Long institutionId) {
+        return fieldOfStudyService.getFieldOfStudiesByInstitutionId(institutionId);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FieldOfStudyDto> getFieldOfStudyById(@PathVariable Long id) {
-        return fieldOfStudyService.getFieldOfStudyById(id);
-    }
+    public List<FieldOfStudyDto> getFieldOfStudyById(@PathVariable Long id) {
+    return fieldOfStudyService.getFieldOfStudyById(id);
+   }
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add-field-of-study")
-    public ResponseEntity<FieldOfStudyDto> addFieldOfStudy(
-            @RequestBody FieldOfStudyDto fieldOfStudyDto) {
-        FieldOfStudyDto newFieldOfStudy = fieldOfStudyService.addFieldOfStudy(fieldOfStudyDto);
-        return ResponseEntity.ok(newFieldOfStudy);
+    public Map<String, String> addFieldOfStudy(@RequestBody FieldOfStudyDto fieldOfStudyDto) {
+        return fieldOfStudyService.addFieldOfStudy(fieldOfStudyDto);
     }
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PutMapping("/update")
-    public ResponseEntity<FieldOfStudyDto> updateFieldOfStudy(@RequestParam Long fosId,
+    @PutMapping("/update/{fosId}")
+    public Map<String, String> updateFieldOfStudy(@PathVariable Long fosId,
                                                               @RequestBody FieldOfStudyDto fieldOfStudyDto) {
-        FieldOfStudyDto updatedFieldOfStudy = fieldOfStudyService.updateFieldOfStudy(fosId, fieldOfStudyDto);
-        return ResponseEntity.ok(updatedFieldOfStudy);
+       return fieldOfStudyService.updateFieldOfStudy(fosId,fieldOfStudyDto);
+
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @DeleteMapping("/delete")
-    public ResponseEntity<Void> deleteFieldOfStudy(@RequestParam Long fieldOfStudyId) {
-        fieldOfStudyService.deleteFieldOfStudy(fieldOfStudyId);
+    @DeleteMapping("/delete/{fosId}")
+    public ResponseEntity<Void> deleteFieldOfStudy(@PathVariable Long fosId) {
+        fieldOfStudyService.deleteFieldOfStudy(fosId);
         return ResponseEntity.noContent().build();
     }
 
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     @GetMapping("/recommendation")
-    public List<FieldOfStudy> getRecommendation(){
+    public List<FieldOfStudyDto> getRecommendation(){
         return fieldOfStudyService.recommendBasedOnStudent();
     }
 

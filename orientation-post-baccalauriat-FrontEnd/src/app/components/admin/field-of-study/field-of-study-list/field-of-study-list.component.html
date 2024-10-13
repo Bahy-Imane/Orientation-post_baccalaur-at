@@ -27,11 +27,12 @@
   <div class="modal-content">
     <span class="close" (click)="closeModal()">&times;</span>
     <app-field-of-study-form
-      [fieldOfStudyId]="selectedFieldOfStudyId"
+      [fosId]="selectedFieldOfStudyId"
       (modalClose)="closeModal()"
     ></app-field-of-study-form>
   </div>
 </div>
+
 
 <!-- Table for Displaying Fields of Study -->
 <div class="task-table">
@@ -40,6 +41,8 @@
     <div class="header-item">Bac Type Required</div>
     <div class="header-item">Minimum Bac Note</div>
     <div class="header-item">Department Name</div>
+    <div class="header-item">Institution Name</div>
+
     <div class="header-item">Actions</div>
   </div>
   <div class="task-row" *ngFor="let field of filteredFieldsOfStudy()">
@@ -47,6 +50,7 @@
     <div class="row-item">{{ field.bacTypeRequired }}</div>
     <div class="row-item">{{ field.minimumBacNote }}</div>
     <div class="row-item">{{ field.departmentName }}</div>
+    <div class="row-item">{{ field.institutionName }}</div>
     <div class="row-item actions">
       <div class="row-item">
         <button (click)="editField(field.fosId)">Edit</button>

@@ -24,7 +24,7 @@ export class RecommendationComponent implements OnInit {
   }
 
   loadRecommendations(): void {
-    this.fieldOfStudyService.getRecommendations().subscribe(
+    this.fieldOfStudyService.getRecommendation().subscribe(
       (data) => {
         this.recommendations = data;
       },

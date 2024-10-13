@@ -40,10 +40,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> {
                     authorize.requestMatchers("/api/auth/**").permitAll();
                     authorize.requestMatchers("/api/institutions/all-institutions").permitAll();
-                    authorize.requestMatchers("/api/institutions/{institutionId}").permitAll();  // Autoriser l'accès à l'institution par ID
+                    authorize.requestMatchers("/api/institutions/{institutionId}").permitAll();
                     authorize.requestMatchers("/api/reviews/all-reviews").permitAll();
+                    authorize.requestMatchers("/api/reviews/institution/{institutionId}").permitAll();
                     authorize.requestMatchers("/api/fields-of-study/all-fields").permitAll();
-                    authorize.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll();
+                    authorize.requestMatchers("/api/fields-of-study/institution/{institutionId}").permitAll();
                     authorize.anyRequest().authenticated();
                 })
                 .exceptionHandling(exception -> exception

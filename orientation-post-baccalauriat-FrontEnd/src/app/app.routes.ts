@@ -25,6 +25,7 @@ import {StudentProfileComponent} from "./components/body/student-profile/student
 import {ReviewListComponent} from "./components/admin/review/review-list/review-list.component";
 import {AdminHomeComponent} from "./components/admin/admin-home/admin-home.component";
 import {RecommendationComponent} from "./components/student/recommendation/recommendation.component";
+import {AllReviewsComponent} from "./components/body/all-reviews/all-reviews.component";
 
 
 export const routes: Routes = [
@@ -37,7 +38,8 @@ export const routes: Routes = [
   { path : 'advice' , component : AdvicesComponent},
   { path : 'institutions' , component : InstitutionsHomeComponent},
   { path : 'fields' , component : FieldOfStudyHomeComponent},
-  { path: 'institution-details/:institutionId', component: InstitutionDetailsComponent },
+  { path: 'institution-details/:institutionId', component: InstitutionDetailsComponent},
+  { path : 'review/:institutionId', component : AllReviewsComponent },
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
@@ -59,11 +61,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard, RoleGuard],
         data: {expectedRole: Role.ADMIN}
       },
-      { path : 'review',
-        component : ReviewListComponent,
-        canActivate: [AuthGuard, RoleGuard],
-        data: {expectedRole: Role.ADMIN}
-      },
+
       {
         path: 'institution/add',
         component: InstitutionFormComponent,
@@ -71,23 +69,23 @@ export const routes: Routes = [
         data: { expectedRole: Role.ADMIN }
       },
       {
-        path: 'institution/edit/:id',
+        path: 'institution/edit/:institutionId',
         component: InstitutionFormComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { expectedRole: Role.ADMIN }
       },
-      // {
-      //   path: 'field-of-study/add/:id',
-      //   component: FieldOfStudyFormComponent,
-      //   canActivate: [AuthGuard, RoleGuard],
-      //   data: { expectedRole: Role.ADMIN }
-      // },
-      // {
-      //   path: 'field-of-study/edit/:id',
-      //   component: FieldOfStudyFormComponent,
-      //   canActivate: [AuthGuard, RoleGuard],
-      //   data: { expectedRole: Role.ADMIN }
-      // },
+      {
+        path: 'field-of-study/add/:fosId',
+        component: FieldOfStudyFormComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { expectedRole: Role.ADMIN }
+      },
+      {
+        path: 'field-of-study/edit/:fosId',
+        component: FieldOfStudyFormComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { expectedRole: Role.ADMIN }
+      },
 
     ]
   },
@@ -113,6 +111,7 @@ export const routes: Routes = [
     ]
   },
 
+  { path: 'reviews/:institutionId', component: InstitutionDetailsComponent },
 
   {path : 'side-bar' , component : SideBarComponent},
 

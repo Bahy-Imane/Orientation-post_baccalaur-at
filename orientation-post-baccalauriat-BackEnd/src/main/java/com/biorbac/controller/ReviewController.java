@@ -19,19 +19,18 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @PreAuthorize("hasRole('ROLE_STUDENT') or hasRole('ROLE_ADMIN')")
     @GetMapping("/all-reviews")
     public List<ReviewDto> getAllReviews() {
         return reviewService.getAllReviews();
     }
 
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/institution/{institutionId}")
     public ResponseEntity<List<ReviewDto>> getReviewsByInstitutionId(@PathVariable Long institutionId) {
         List<ReviewDto> reviews = reviewService.getReviewsByInstitutionId(institutionId);
         return ResponseEntity.ok(reviews);
     }
+
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     @PostMapping
     public Map<String, String> createReview(@RequestBody ReviewDto reviewDto) {

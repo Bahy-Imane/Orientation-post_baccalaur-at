@@ -3,24 +3,15 @@
 
   <div>
     <h2>Filtrer les Institutions</h2>
-    <form (ngSubmit)="onFilter()">
-      <input type="text" [(ngModel)]="searchText" placeholder="search here" name="searchText">
-      <select [(ngModel)]="institutionType" name="institutionType">
-        <option value="">Sélectionner le type</option>
-        <option *ngFor="let type of institutionTypes" [value]="type">{{ type }}</option>
-      </select>
-
-      <button type="submit">Filtrer</button>
-    </form>
 
     <div *ngIf="loading">Chargement des institutions...</div>
-
     <div *ngIf="!loading && filteredInstitutions.length === 0">Aucune institution trouvée.</div>
+
     <button (click)="openModal()" class="add-button">
       <i class="fas fa-plus"></i>
       Add Institution
     </button>
-    <!-- Modal -->
+
     <div class="modal" *ngIf="showModal">
       <div class="modal-content">
         <span class="close" (click)="closeModal()">&times;</span>
@@ -31,38 +22,41 @@
       </div>
     </div>
   </div>
+</div>
 
+<div class="task-table">
+  <div class="task-header">
+    <div class="header-item">Logo</div>
+    <div class="header-item" (click)="sort('institutionName')">Institution Name</div>
+    <div class="header-item" (click)="sort('description')">Description</div>
+    <div class="header-item" (click)="sort('address')">Address</div>
+    <div class="header-item" (click)="sort('institutionType')">Institution Type</div>
+    <div class="header-item">Website</div>
+    <div class="header-item">Actions</div>
   </div>
 
-  <div class="task-table">
-    <div class="task-header">
-      <div class="header-item" (click)="sort('institutionName')">Institution Name</div>
-      <div class="header-item" (click)="sort('description')">Description</div>
-      <div class="header-item" (click)="sort('address')">Address</div>
-      <div class="header-item" (click)="sort('institutionType')">Institution Type</div>
-      <div class="header-item">Website</div>
-      <div class="header-item">Actions</div>
+  <div class="task-row" *ngFor="let institution of filteredInstitutions">
+    <div class="row-item">
+      <img *ngIf="institution.institutionLogo" [src]="institution.institutionLogo" alt="Institution Logo" style="width: 50px; height: 50px;border-radius:50%;" />
     </div>
-
-    <div class="task-row" *ngFor="let institution of filteredProjects()">
-      <div class="row-item">{{ institution.institutionName }}</div>
-      <div class="row-item">{{ institution.description }}</div>
-      <div class="row-item">{{ institution.address }}</div>
-      <div class="row-item">{{ getInstitutionTypeLabel(institution.institutionType) }}</div>
-      <div class="row-item">
-        <a [href]="institution.website" target="_blank">{{ institution.website }}</a>
-      </div>
-      <div class="row-item">
-        <button (click)="editInstitution(institution.institutionId)">Edit</button>
-        <button (click)="deleteInstitution(institution.institutionId)">Delete</button>
-      </div>
+    <div class="row-item">{{ institution.institutionName }}</div>
+    <div class="row-item">{{ institution.description }}</div>
+    <div class="row-item">{{ institution.address }}</div>
+    <div class="row-item">{{ getInstitutionTypeLabel(institution.institutionType) }}</div>
+    <div class="row-item">
+      <a [href]="institution.website" target="_blank">{{ institution.website }}</a>
     </div>
-
-    <mat-paginator
-      [length]="totalInstitutions"
-      [pageSize]="pageSize"
-      [pageSizeOptions]="[3, 5, 10, 25, 50, 100]"
-      (page)="onPageChange($event)"
-    >
-    </mat-paginator>
+    <div class="row-item">
+      <button (click)="editInstitution(institution.institutionId)">Edit</button>
+      <button (click)="deleteInstitution(institution.institutionId)">Delete</button>
+    </div>
   </div>
+
+  <mat-paginator
+    [length]="totalInstitutions"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[3, 5, 10, 25, 50, 100]"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</div>

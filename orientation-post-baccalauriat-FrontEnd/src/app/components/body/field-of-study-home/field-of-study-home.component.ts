@@ -1,47 +1,48 @@
-import { Component } from '@angular/core';
-import {FooterComponent} from "../footer/footer.component";
+// src/app/components/field-of-study-home/field-of-study-home.component.ts
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FieldOfStudyDto } from '../../../core/Dto/field-of-study-dto';
+import { InstitutionDto } from '../../../core/Dto/institution-dto';
+import { InstitutionService } from '../../../core/services/institution-service';
+import { FieldOfStudyService } from '../../../core/services/field-of-study-service';
+import {FieldOfStudy} from "../../../core/model/field-of-study";
 import {HeaderContainerComponent} from "../header-container/header-container.component";
-import {FormsModule} from "@angular/forms";
-import {InstitutionDto} from "../../../core/Dto/institution-dto";
-import {InstitutionType} from "../../../core/enums/institution-type";
-import {InstitutionService} from "../../../core/services/institution-service";
-import {Router} from "@angular/router";
-import {FieldOfStudyDto} from "../../../core/Dto/field-of-study-dto";
-import {BacType} from "../../../core/enums/bac-type";
-import {FieldOfStudyService} from "../../../core/services/field-of-study-service";
+import {FooterComponent} from "../footer/footer.component";
 import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-field-of-study-home',
+  templateUrl: './field-of-study-home.component.html',
   standalone: true,
   imports: [
-    FooterComponent,
     HeaderContainerComponent,
-    FormsModule,
+    FooterComponent,
     NgForOf
   ],
-  templateUrl: './field-of-study-home.component.html',
-  styleUrl: './field-of-study-home.component.css'
+  styleUrls: ['./field-of-study-home.component.css']
 })
-export class FieldOfStudyHomeComponent {
+export class FieldOfStudyHomeComponent implements OnInit {
+  institution: InstitutionDto | undefined;
+  fieldsOfStudy: FieldOfStudy[] = [];
 
-  fieldsOfStudy: FieldOfStudyDto[] = [];
-  bacTypeRequired: BacType | null = null;
-  searchText: string = '';
-
-  bacTypesRequired = Object.values(InstitutionType);
-
-  constructor(private fieldOfStudyService: FieldOfStudyService, private router :Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private institutionService: InstitutionService,
+    private fieldOfStudyService: FieldOfStudyService
+  ) {}
 
   ngOnInit(): void {
-    this.fieldOfStudyService.getAllFieldsOfStudy().subscribe(
-      (data) => {
-        this.fieldsOfStudy = data;
-        console.log(data)
-      },
-      (error) => {
-        console.error('Error fetching institutions', error);
-      }
-    );
+    const institutionId = Number(this.route.snapshot.paramMap.get('institutionId'));
+
+    // Récupérer les détails de l'institution
+    this.institutionService.getInstitutionById(institutionId).subscribe((data) => {
+      this.institution = data;
+
+      // Récupérer les champs d'études associés à l'institution
+      this.fieldOfStudyService.getFieldOfStudiesByInstitutionId(institutionId).subscribe((fields) => {
+        this.fieldsOfStudy = fields;
+      });
+    });
   }
 }

@@ -1,51 +1,61 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BacType } from '../enums/bac-type';
 import {FieldOfStudyDto} from "../Dto/field-of-study-dto";
+import {BacType} from "../enums/bac-type";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class FieldOfStudyService {
-  private apiUrl = 'http://localhost:8081/api/fields-of-study';
 
-  constructor(private http: HttpClient) { }
+  private baseUrl = 'http://localhost:8081/api/fields-of-study';
+
+  constructor(private http: HttpClient) {}
 
   getAllFieldsOfStudy(): Observable<FieldOfStudyDto[]> {
-    return this.http.get<FieldOfStudyDto[]>(`${this.apiUrl}/all-fields`);
+    return this.http.get<FieldOfStudyDto[]>(`${this.baseUrl}/all-fields`);
   }
 
-  getFieldOfStudyById(id: number): Observable<FieldOfStudyDto> {
-    return this.http.get<FieldOfStudyDto>(`${this.apiUrl}/${id}`);
+  getFieldOfStudiesByInstitutionId(institutionId: number): Observable<FieldOfStudyDto[]> {
+    return this.http.get<FieldOfStudyDto[]>(`${this.baseUrl}/institution/${institutionId}`);
   }
 
-  addFieldOfStudy(fieldOfStudyDto: FieldOfStudyDto): Observable<FieldOfStudyDto> {
-    return this.http.post<FieldOfStudyDto>(`${this.apiUrl}/add-field-of-study`, fieldOfStudyDto);
+  getFieldOfStudyById(fosId: number): Observable<FieldOfStudyDto[]> {
+    return this.http.get<FieldOfStudyDto[]>(`${this.baseUrl}/${fosId}`);
   }
 
-  updateFieldOfStudy(fosId: number, fieldOfStudyDto: FieldOfStudyDto): Observable<FieldOfStudyDto> {
-    return this.http.put<FieldOfStudyDto>(`${this.apiUrl}/update?fosId=${fosId}`, fieldOfStudyDto);
+  addFieldOfStudy(fieldOfStudyDto: FieldOfStudyDto): Observable<{ msg: string }> {
+    return this.http.post<{ msg: string }>(`${this.baseUrl}/add-field-of-study`, fieldOfStudyDto);
   }
 
-  deleteFieldOfStudy(fieldOfStudyId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete?fieldOfStudyId=${fieldOfStudyId}`);
+  updateFieldOfStudy(fosId: number, fieldOfStudyDto: FieldOfStudyDto): Observable<{ msg: string }> {
+    return this.http.put<{ msg: string }>(`${this.baseUrl}/update/${fosId}`, fieldOfStudyDto);
   }
 
-  getRecommendations(): Observable<FieldOfStudyDto[]> {
-    return this.http.get<FieldOfStudyDto[]>(`${this.apiUrl}/recommendation`);
+  deleteFieldOfStudy(fosId: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/delete/${fosId}`);
   }
 
-  filterAndSearchFields(bacTypeRequired?: BacType, minimumBacNote?: number, searchText: string = ''): Observable<FieldOfStudyDto[]> {
+  getRecommendation(): Observable<FieldOfStudyDto[]> {
+    return this.http.get<FieldOfStudyDto[]>(`${this.baseUrl}/recommendation`);
+  }
+
+  filterAndSearchFields(
+    bacTypeRequired?: BacType,
+    minimumBacNote?: number,
+    searchText: string = ''
+  ): Observable<FieldOfStudyDto[]> {
     let params = new HttpParams();
     if (bacTypeRequired) {
       params = params.set('bacTypeRequired', bacTypeRequired);
     }
-    if (minimumBacNote) {
+    if (minimumBacNote !== undefined) {
       params = params.set('minimumBacNote', minimumBacNote.toString());
     }
     params = params.set('searchText', searchText);
 
-    return this.http.get<FieldOfStudyDto[]>(`${this.apiUrl}/filter-fields`, { params });
+    return this.http.get<FieldOfStudyDto[]>(`${this.baseUrl}/filter-fields`, { params });
   }
 }

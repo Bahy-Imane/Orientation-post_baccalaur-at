@@ -1,4 +1,3 @@
-<app-header-container/>
 <!-- field-of-study.component.html -->
 <!--<section class="filter-section">-->
 <!--  <div class="overlay">-->
@@ -47,23 +46,25 @@
 <!--    </form>-->
 <!--  </div>-->
 <!--</section>-->
+<!-- src/app/components/field-of-study-home/field-of-study-home.component.html -->
 
-<div class="container">
+<div class="container mt-5">
+  <h1>{{ institution?.institutionName }}</h1>
+  <h2>Champs d'études</h2>
+
   <div class="row">
-    <!-- col-md-4 for displaying cards if needed -->
     <div class="col-md-4 mb-4" *ngFor="let field of fieldsOfStudy">
       <div class="card">
         <img [src]="field.fieldOfStudyLogo" class="card-img-top" alt="{{ field.name }} Logo" />
         <div class="card-body">
-          <h6 class="card-title">{{ field.name }}</h6>
-          <p class="card-text">
-            Bac Type Required: {{ field.bacTypeRequired }}<br />
-            Minimum Bac Note: {{ field.minimumBacNote }}<br />
-            Department: {{ field.departmentName }}
-          </p>
+          <h5 class="card-title">{{ field.name }}</h5>
+          <p class="card-text">Bac type requis: {{ field.bacTypeRequired }}</p>
+          <p class="card-text">Note minimum: {{ field.minimumBacNote }}</p>
+          <p class="card-text">Département: {{ field.departmentName }}</p>
         </div>
       </div>
     </div>
   </div>
 </div>
-<app-footer/>
+
+

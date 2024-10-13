@@ -1,70 +1,15 @@
-.modal-overlay {
-  position: fixed; /* Fixe la position du fond modal */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Fond sombre et semi-transparent */
+
+
+.modal-footer {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Assure que le modal soit au-dessus du contenu */
+  justify-content: flex-end;
+  margin-top: 20px;
 }
 
-.modal-content {
-  background-color: #fff; /* Fond blanc pour la modal */
-  border-radius: 8px; /* Coins arrondis */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Ombre pour le relief */
-  padding: 20px; /* Espacement à l'intérieur de la modal */
-  width: 300px; /* Largeur de la modal, réduite */
-  max-width: 90%; /* Largeur maximale pour petits écrans */
-  text-align: center; /* Centrer le texte à l'intérieur de la modal */
-}
-
-h5 {
-  margin-bottom: 20px; /* Espacement sous le titre */
-  color: #333; /* Couleur du texte du titre */
-}
-
-label {
-  display: block; /* Chaque label sur une nouvelle ligne */
-  margin-bottom: 5px; /* Espacement sous chaque label */
-  font-weight: bold; /* Mettre le label en gras */
-}
-
-input, textarea, select {
-  width: 100%; /* Utiliser toute la largeur */
-  padding: 10px; /* Espacement à l'intérieur des champs */
-  border: 1px solid #ccc; /* Bordure grise pour les champs */
-  border-radius: 4px; /* Coins arrondis pour les champs */
-  margin-bottom: 15px; /* Espacement sous chaque champ */
-  font-size: 14px; /* Taille de la police */
-  transition: border-color 0.3s; /* Transition pour l'effet de survol */
-}
-
-input:focus, textarea:focus, select:focus {
-  border-color: #007bff; /* Changer la couleur de la bordure au focus */
-  outline: none; /* Enlever le contour par défaut */
-}
-
-button {
-  background-color: #007bff; /* Couleur de fond pour le bouton */
-  color: white; /* Couleur du texte du bouton */
-  border: none; /* Pas de bordure */
-  padding: 10px 15px; /* Espacement à l'intérieur du bouton */
-  border-radius: 4px; /* Coins arrondis pour le bouton */
-  cursor: pointer; /* Curseur en main au survol */
-  font-size: 16px; /* Taille de la police du bouton */
-  transition: background-color 0.3s; /* Transition pour l'effet de survol */
-  margin-top: 10px; /* Espacement au-dessus du bouton */
-}
-
-button:hover {
-  background-color: #0056b3; /* Couleur de fond du bouton au survol */
+.form-group {
+  margin-bottom: 15px;
 }
 
 .text-danger {
-  color: red; /* Couleur pour le message d'erreur */
-  margin-top: 15px; /* Espacement au-dessus du message */
-  text-align: center; /* Centrer le message d'erreur */
+  color: red;
 }

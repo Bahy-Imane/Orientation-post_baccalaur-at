@@ -1,5 +1,6 @@
 <app-header-container/>
-<div class="d-flex justify-content-center" style="margin-top: 5%;">
+
+<div class="instit-details">
 <div class="card institution-details-container">
   <div class="card-body d-flex justify-content-between p-0">
     <!-- Left side: Institution Information -->
@@ -34,30 +35,12 @@
     </div>
   </div>
 </div>
+  <div class="reviews">
+    <app-all-reviews/>
+  </div>
 </div>
 
-
-<!-- Search et filter bar -->
-<div class=" mt-5" style="padding: 10px 80px;" >
-  <h3>Vous recherchez</h3>
-  <form class=" row g-3">
-    <div class="col-md-4">
-      <input type="text" class="form-control" placeholder="Mot(s) clef(s)" />
-    </div>
-    <div class="col-md-4">
-      <select class="form-select">
-        <option selected>Filière</option>
-        <option value="1">Sciences</option>
-        <option value="2">Arts</option>
-        <option value="3">Commerce</option>
-      </select>
-    </div>
-    <div class="col-md-4">
-      <select class="form-select">
-        <option selected>Secteur études</option>
-        <option value="1">Public</option>
-        <option value="2">Privé</option>
-      </select>
-    </div>
-  </form>
+<div>
+  <app-field-of-study-home/>
 </div>
+

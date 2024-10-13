@@ -14,6 +14,8 @@ import java.util.List;
 public interface FieldOfStudyRepository extends JpaRepository<FieldOfStudy, Long> {
     List<FieldOfStudy> findByMinimumBacNoteLessThanEqualAndBacTypeRequired(double bacScore, BacType bacType);
 
+    List<FieldOfStudy> findFieldOfStudiesByInstitution_InstitutionId(Long institutionId);
+
     @Query("SELECT f FROM FieldOfStudy f WHERE " +
             "(:bacTypeRequired IS NULL OR f.bacTypeRequired = :bacTypeRequired) OR " +
             "(:minimumBacNote IS NULL OR f.minimumBacNote <= :minimumBacNote) OR " +

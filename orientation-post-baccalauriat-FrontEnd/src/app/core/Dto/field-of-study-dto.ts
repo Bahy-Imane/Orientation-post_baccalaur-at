@@ -1,11 +1,10 @@
-
 export interface FieldOfStudyDto {
-  fosId:number;
+  fosId: number;
   name: string;
   bacTypeRequired: string;
   minimumBacNote: number;
   departmentName: string;
-  fieldOfStudyLogo:string;
-  institutionName:string;
+  institutionName: string;
+  fieldOfStudyLogo: string;
   institutionId: number;
 }

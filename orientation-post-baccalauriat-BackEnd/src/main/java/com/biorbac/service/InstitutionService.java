@@ -15,7 +15,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -59,10 +61,21 @@ public class InstitutionService {
                 .orElse(0.0);
     }
 
-    public InstitutionDto createInstitution(InstitutionDto institutionDto) {
-        Institution institution = institutionMapper.toInstitution(institutionDto);
-        Institution savedInstitution = institutionRepository.save(institution);
-        return institutionMapper.toInstitutionDto(savedInstitution);
+    public Map<String , String> createInstitution(InstitutionDto institutionDto) {
+
+        Institution institution = new Institution();
+        institution.setInstitutionId(institutionDto.getInstitutionId());
+        institution.setInstitutionName(institutionDto.getInstitutionName());
+        institution.setInstitutionType(institutionDto.getInstitutionType());
+        institution.setDescription(institutionDto.getDescription());
+        institution.setWebsite(institutionDto.getWebsite());
+        institution.setAddress(institutionDto.getAddress());
+        institution.setInstitutionLogo(institutionDto.getInstitutionLogo());
+
+        institutionRepository.save(institution);
+        Map<String , String> map = new HashMap<>();
+        map.put("msg", "Review created");
+        return map;
     }
 
 
@@ -73,16 +86,23 @@ public class InstitutionService {
 //        return institutionMapper.toInstitution(savedInstitution);
 //    }
 
-    public ResponseEntity<InstitutionDto> updateInstitution(Long id, InstitutionDto institutionDto) {
-        Optional<Institution> institutionOpt = institutionRepository.findById(id);
-        if (institutionOpt.isPresent()) {
-            Institution institution = institutionOpt.get();
-            institutionMapper.updateInstitutionFromDto(institutionDto, institution);
-            Institution updatedInstitution = institutionRepository.save(institution);
-            return ResponseEntity.ok(institutionMapper.toInstitutionDto(updatedInstitution));
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+    public Map<String , String> updateInstitution(Long id, InstitutionDto institutionDto) {
+            Institution institutionOpt = institutionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("institution not found"));;
+
+        institutionOpt.setInstitutionName(institutionDto.getInstitutionName());
+        institutionOpt.setInstitutionType(institutionDto.getInstitutionType());
+        institutionOpt.setInstitutionLogo(institutionDto.getInstitutionLogo());
+        institutionOpt.setDescription(institutionDto.getDescription());
+        institutionOpt.setAddress(institutionDto.getAddress());
+        institutionOpt.setWebsite(institutionDto.getWebsite());
+
+        institutionRepository.save(institutionOpt);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("msg", "Field of study created");
+
+        return  response;
     }
 
 

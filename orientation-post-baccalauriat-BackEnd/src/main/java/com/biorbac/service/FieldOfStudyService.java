@@ -1,22 +1,24 @@
 package com.biorbac.service;
 
 import com.biorbac.dto.FieldOfStudyDto;
+import com.biorbac.dto.ReviewDto;
 import com.biorbac.enums.BacType;
 import com.biorbac.mapper.FieldOfStudyMapper;
 import com.biorbac.model.FieldOfStudy;
 import com.biorbac.model.Institution;
+import com.biorbac.model.Review;
 import com.biorbac.model.Student;
 import com.biorbac.repository.FieldOfStudyRepository;
 import com.biorbac.repository.InstitutionRepository;
 import com.biorbac.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -36,41 +38,96 @@ public class FieldOfStudyService {
     private StudentRepository studentRepository;
 
 
-    public List<FieldOfStudy> getAllFieldOfStudy() {
-        return fieldOfStudyRepository.findAll();
+    public List<FieldOfStudyDto> getAllFieldOfStudy() {
+        List<FieldOfStudy> fieldOfStudyList = fieldOfStudyRepository.findAll();
+        return fieldOfStudyList.stream().map(fos -> {
+            FieldOfStudyDto fieldOfStudyDto = new FieldOfStudyDto();
+            fieldOfStudyDto.setFosId(fos.getFosId());
+            fieldOfStudyDto.setName(fos.getName());
+            fieldOfStudyDto.setBacTypeRequired(fos.getBacTypeRequired().name());
+            fieldOfStudyDto.setMinimumBacNote(fos.getMinimumBacNote());
+            fieldOfStudyDto.setFieldOfStudyLogo(fos.getFieldOfStudyLogo());
+            fieldOfStudyDto.setInstitutionName(fos.getInstitution().getInstitutionName());
+            fieldOfStudyDto.setDepartmentName(fos.getDepartmentName());
+            fieldOfStudyDto.setInstitutionId(fos.getInstitution().getInstitutionId());
+
+            return fieldOfStudyDto;
+        }).collect(Collectors.toList());
     }
 
-    public ResponseEntity<FieldOfStudyDto> getFieldOfStudyById(Long id) {
-        Optional<FieldOfStudy> fieldOfStudyOpt = fieldOfStudyRepository.findById(id);
-        return fieldOfStudyOpt.map(fieldOfStudy -> ResponseEntity.ok(fieldOfStudyMapper.toFieldOfStudyDto(fieldOfStudy)))
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    public List<FieldOfStudyDto> getFieldOfStudyById(Long fosId) {
+        Optional<FieldOfStudy> fieldOfStudyList = fieldOfStudyRepository.findById(fosId);
+        return fieldOfStudyList.stream().map(fos -> {
+            FieldOfStudyDto fieldOfStudyDto = new FieldOfStudyDto();
+            fieldOfStudyDto.setFosId(fos.getFosId());
+            fieldOfStudyDto.setName(fos.getName());
+            fieldOfStudyDto.setBacTypeRequired(fos.getBacTypeRequired().name());
+            fieldOfStudyDto.setMinimumBacNote(fos.getMinimumBacNote());
+            fieldOfStudyDto.setFieldOfStudyLogo(fos.getFieldOfStudyLogo());
+            fieldOfStudyDto.setInstitutionName(fos.getInstitution().getInstitutionName());
+            fieldOfStudyDto.setDepartmentName(fos.getDepartmentName());
+            fieldOfStudyDto.setInstitutionId(fos.getInstitution().getInstitutionId());
+
+            return fieldOfStudyDto;
+        }).collect(Collectors.toList());
     }
 
-    public FieldOfStudyDto addFieldOfStudy(FieldOfStudyDto fieldOfStudyDto) {
+    public List<FieldOfStudyDto> getFieldOfStudiesByInstitutionId(Long institutionId) {
+        List<FieldOfStudy> fieldOfStudyList =  fieldOfStudyRepository.findFieldOfStudiesByInstitution_InstitutionId(institutionId);
+        return fieldOfStudyList.stream().map(fos -> {
+            FieldOfStudyDto fieldOfStudyDto = new FieldOfStudyDto();
+            fieldOfStudyDto.setFosId(fos.getFosId());
+            fieldOfStudyDto.setName(fos.getName());
+            fieldOfStudyDto.setBacTypeRequired(fos.getBacTypeRequired().name());
+            fieldOfStudyDto.setMinimumBacNote(fos.getMinimumBacNote());
+            fieldOfStudyDto.setFieldOfStudyLogo(fos.getFieldOfStudyLogo());
+            fieldOfStudyDto.setInstitutionName(fos.getInstitution().getInstitutionName());
+            fieldOfStudyDto.setDepartmentName(fos.getDepartmentName());
+            fieldOfStudyDto.setInstitutionId(fos.getInstitution().getInstitutionId());
+
+            return fieldOfStudyDto;
+        }).collect(Collectors.toList());
+    }
+
+
+    public Map<String, String> addFieldOfStudy(FieldOfStudyDto fieldOfStudyDto) {
         Institution institution = institutionRepository.findById(fieldOfStudyDto.getInstitutionId())
                 .orElseThrow(() -> new RuntimeException("Institution not found"));
 
-        FieldOfStudy fieldOfStudy = fieldOfStudyMapper.toFieldOfStudy(fieldOfStudyDto);
+        FieldOfStudy fieldOfStudy = new FieldOfStudy();
         fieldOfStudy.setInstitution(institution);
+        fieldOfStudy.setName(fieldOfStudyDto.getName());
+        fieldOfStudy.setBacTypeRequired(BacType.valueOf(fieldOfStudyDto.getBacTypeRequired()));
+        fieldOfStudy.setMinimumBacNote(fieldOfStudyDto.getMinimumBacNote());
+        fieldOfStudy.setFieldOfStudyLogo(fieldOfStudyDto.getFieldOfStudyLogo());
+        fieldOfStudy.setDepartmentName(fieldOfStudyDto.getDepartmentName());
 
-        FieldOfStudy savedFieldOfStudy = fieldOfStudyRepository.save(fieldOfStudy);
+        fieldOfStudyRepository.save(fieldOfStudy);
 
-        return fieldOfStudyMapper.toFieldOfStudyDto(savedFieldOfStudy);
+        Map<String, String> responseMap = new HashMap<>();
+        responseMap.put("msg", "Field of study created");
+
+        return responseMap;
     }
 
-    public FieldOfStudyDto updateFieldOfStudy(Long fosId, FieldOfStudyDto fieldOfStudyDto) {
-        if (fieldOfStudyDto.getName() == null || fieldOfStudyDto.getName().isEmpty()) {
-            throw new IllegalArgumentException("Field Of Study name cannot be null or empty");
-        }
 
+    public Map<String, String>  updateFieldOfStudy(Long fosId, FieldOfStudyDto fieldOfStudyDto) {
         FieldOfStudy fieldOfStudy = fieldOfStudyRepository.findById(fosId)
                 .orElseThrow(() -> new RuntimeException("Field Of Study not found"));
 
-        fieldOfStudyMapper.updateFieldOfStudyFromDto(fieldOfStudyDto, fieldOfStudy);
+        fieldOfStudy.setInstitution(fieldOfStudy.getInstitution());
+        fieldOfStudy.setName(fieldOfStudyDto.getName());
+        fieldOfStudy.setBacTypeRequired(BacType.valueOf(fieldOfStudyDto.getBacTypeRequired()));
+        fieldOfStudy.setMinimumBacNote(fieldOfStudyDto.getMinimumBacNote());
+        fieldOfStudy.setFieldOfStudyLogo(fieldOfStudyDto.getFieldOfStudyLogo());
+        fieldOfStudy.setDepartmentName(fieldOfStudyDto.getDepartmentName());
 
-        FieldOfStudy updatedFieldOfStudy = fieldOfStudyRepository.save(fieldOfStudy);
+        fieldOfStudyRepository.save(fieldOfStudy);
 
-        return fieldOfStudyMapper.toFieldOfStudyDto(updatedFieldOfStudy);
+        Map<String, String> response = new HashMap<>();
+        response.put("msg", "Field of study created");
+
+        return  response;
     }
 
     public void deleteFieldOfStudy(Long fieldOfStudyId) {
@@ -78,14 +135,27 @@ public class FieldOfStudyService {
     }
 
 
-    public List<FieldOfStudy> recommendBasedOnStudent() {
+    public List<FieldOfStudyDto> recommendBasedOnStudent() {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         Student student1 = studentRepository.findStudentByUserName(loggedInUser.getName());
 
         if (student1 == null) {
             throw new IllegalArgumentException("Student not found for the current authenticated user.");
         }
-        return fieldOfStudyRepository.findByMinimumBacNoteLessThanEqualAndBacTypeRequired(student1.getBacScore(), student1.getBacType());
+        List<FieldOfStudy> fieldOfStudyList = fieldOfStudyRepository.findByMinimumBacNoteLessThanEqualAndBacTypeRequired(student1.getBacScore(), student1.getBacType());
+        return fieldOfStudyList.stream().map(fos -> {
+            FieldOfStudyDto fieldOfStudyDto = new FieldOfStudyDto();
+            fieldOfStudyDto.setFosId(fos.getFosId());
+            fieldOfStudyDto.setName(fos.getName());
+            fieldOfStudyDto.setBacTypeRequired(fos.getBacTypeRequired().name());
+            fieldOfStudyDto.setMinimumBacNote(fos.getMinimumBacNote());
+            fieldOfStudyDto.setFieldOfStudyLogo(fos.getFieldOfStudyLogo());
+            fieldOfStudyDto.setInstitutionName(fos.getInstitution().getInstitutionName());
+            fieldOfStudyDto.setDepartmentName(fos.getDepartmentName());
+            fieldOfStudyDto.setInstitutionId(fos.getInstitution().getInstitutionId());
+
+            return fieldOfStudyDto;
+        }).collect(Collectors.toList());
     }
 
 
