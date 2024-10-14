@@ -5,6 +5,7 @@ import com.biorbac.dto.ReviewDto;
 import com.biorbac.enums.BacType;
 import com.biorbac.service.FieldOfStudyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -66,13 +67,18 @@ public class FieldOfStudyController {
     }
 
 
-    @GetMapping("/filter-fields")
-    public ResponseEntity<List<FieldOfStudyDto>> filterAndSearchFields(
-            @RequestParam(required = false) BacType bacTypeRequired,
-            @RequestParam(required = false) Double minimumBacNote,
-            @RequestParam(required = false, defaultValue = "") String searchText) {
-        List<FieldOfStudyDto> fieldsOfStudy = fieldOfStudyService.filterAndSearchFields(bacTypeRequired, minimumBacNote, searchText);
-        return ResponseEntity.ok(fieldsOfStudy);
+    @GetMapping("/search")
+    public ResponseEntity<List<FieldOfStudyDto>> searchFieldsOfStudy(
+            @RequestParam(value = "searchText", required = false) String searchText) {
+        List<FieldOfStudyDto> fieldsOfStudy = fieldOfStudyService.searchByText(searchText);
+        return new ResponseEntity<>(fieldsOfStudy, HttpStatus.OK);
+    }
+
+    @GetMapping("/filter/bac-type")
+    public ResponseEntity<List<FieldOfStudyDto>> filterFieldsOfStudyByBacType(
+            @RequestParam(value = "bacType", required = false) String bacTypeRequired) {
+        List<FieldOfStudyDto> fieldsOfStudy = fieldOfStudyService.filterByBacType(bacTypeRequired);
+        return new ResponseEntity<>(fieldsOfStudy, HttpStatus.OK);
     }
 
 }

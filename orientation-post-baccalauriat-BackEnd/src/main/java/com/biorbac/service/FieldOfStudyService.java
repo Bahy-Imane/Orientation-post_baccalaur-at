@@ -160,8 +160,23 @@ public class FieldOfStudyService {
 
 
 
-    public List<FieldOfStudyDto> filterAndSearchFields(BacType bacTypeRequired, Double minimumBacNote, String searchText) {
-        List<FieldOfStudy> fieldsOfStudy = fieldOfStudyRepository.filterAndSearch(bacTypeRequired, minimumBacNote, searchText);
+    public List<FieldOfStudyDto> searchByText(String searchText) {
+        List<FieldOfStudy> fieldsOfStudy = fieldOfStudyRepository.searchByText(searchText);
+        return fieldsOfStudy.stream()
+                .map(fieldOfStudyMapper::toFieldOfStudyDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<FieldOfStudyDto> filterByBacType(String bacTypeRequired) {
+        List<FieldOfStudy> fieldsOfStudy;
+
+        if (bacTypeRequired == null || bacTypeRequired.isEmpty()) {
+            fieldsOfStudy = fieldOfStudyRepository.findAll();
+        } else {
+            BacType bacType = BacType.valueOf(bacTypeRequired.toUpperCase());
+            fieldsOfStudy = fieldOfStudyRepository.findByBacTypeRequired(bacType);
+        }
+
         return fieldsOfStudy.stream()
                 .map(fieldOfStudyMapper::toFieldOfStudyDto)
                 .collect(Collectors.toList());

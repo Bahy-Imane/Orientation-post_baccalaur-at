@@ -16,12 +16,9 @@ public interface FieldOfStudyRepository extends JpaRepository<FieldOfStudy, Long
 
     List<FieldOfStudy> findFieldOfStudiesByInstitution_InstitutionId(Long institutionId);
 
-    @Query("SELECT f FROM FieldOfStudy f WHERE " +
-            "(:bacTypeRequired IS NULL OR f.bacTypeRequired = :bacTypeRequired) OR " +
-            "(:minimumBacNote IS NULL OR f.minimumBacNote <= :minimumBacNote) OR " +
-            "(LOWER(f.name) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " +
-            "LOWER(f.departmentName) LIKE LOWER(CONCAT('%', :searchText, '%')))")
-    List<FieldOfStudy> filterAndSearch(@Param("bacTypeRequired") BacType bacTypeRequired,
-                                       @Param("minimumBacNote") Double minimumBacNote,
-                                       @Param("searchText") String searchText);
+    List<FieldOfStudy> findByBacTypeRequired(BacType bacTypeRequired);
+
+    @Query("SELECT f FROM FieldOfStudy f WHERE LOWER(f.name) LIKE LOWER(CONCAT('%', :searchText, '%')) " +
+            "OR LOWER(f.departmentName) LIKE LOWER(CONCAT('%', :searchText, '%')) ")
+    List<FieldOfStudy> searchByText(String searchText);
 }

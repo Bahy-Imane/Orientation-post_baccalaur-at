@@ -41,10 +41,16 @@ public class SecurityConfig {
                     authorize.requestMatchers("/api/auth/**").permitAll();
                     authorize.requestMatchers("/api/institutions/all-institutions").permitAll();
                     authorize.requestMatchers("/api/institutions/{institutionId}").permitAll();
+                    authorize.requestMatchers("/api/institutions/search").permitAll();
+                    authorize.requestMatchers("/api/institutions/filter/type").permitAll();
+                    authorize.requestMatchers("/api/institutions/filter/rating").permitAll();
                     authorize.requestMatchers("/api/reviews/all-reviews").permitAll();
                     authorize.requestMatchers("/api/reviews/institution/{institutionId}").permitAll();
                     authorize.requestMatchers("/api/fields-of-study/all-fields").permitAll();
                     authorize.requestMatchers("/api/fields-of-study/institution/{institutionId}").permitAll();
+                    authorize.requestMatchers("/api/fields-of-study/search").permitAll();
+                    authorize.requestMatchers("/api/fields-of-study/filter/bac-type").permitAll();
+
                     authorize.anyRequest().authenticated();
                 })
                 .exceptionHandling(exception -> exception

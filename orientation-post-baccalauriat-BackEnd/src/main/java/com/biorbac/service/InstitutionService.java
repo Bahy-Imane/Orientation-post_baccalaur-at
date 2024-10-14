@@ -116,8 +116,25 @@ public class InstitutionService {
     }
 
 
-    public List<InstitutionDto> filterAndSearchInstitutions(InstitutionType institutionType, String searchText) {
-        List<Institution> institutions = institutionRepository.filterAndSearch(institutionType, searchText);
+    // Rechercher par texte
+    public List<InstitutionDto> searchByText(String searchText) {
+        List<Institution> institutions = institutionRepository.searchByText(searchText);
+        return institutions.stream()
+                .map(institutionMapper::toInstitutionDto)
+                .collect(Collectors.toList());
+    }
+
+    // Filtrer par type d'institution
+    public List<InstitutionDto> filterByType(InstitutionType institutionType) {
+        List<Institution> institutions = institutionRepository.findByInstitutionType(institutionType);
+        return institutions.stream()
+                .map(institutionMapper::toInstitutionDto)
+                .collect(Collectors.toList());
+    }
+
+    // Filtrer par note moyenne
+    public List<InstitutionDto> filterByRating(Double minRating) {
+        List<Institution> institutions = institutionRepository.findByAverageRatingGreaterThanEqual(minRating);
         return institutions.stream()
                 .map(institutionMapper::toInstitutionDto)
                 .collect(Collectors.toList());

@@ -1,4 +1,20 @@
 <app-header-container/>
+
+<!-- Main Content -->
+<div class="contents">
+  <div class="text-content">
+    <h6>GUIDE D'ORIENTATION ACADÉMIQUE</h6>
+    <h1>Construisez votre avenir avec les bons choix éducatifs</h1>
+    <p>Découvrez les meilleures formations, écoles et parcours académiques pour vous guider vers une carrière réussie.</p>
+
+  </div>
+
+  <!-- Image Section -->
+  <div class="image-content">
+    <img src="/assets/pictures/img-student-3.png" alt="Étudiante en orientation" />
+  </div>
+</div>
+
 <div class="container mt-5">
   <div class="text-center">
     <h1>Écoles et formations du supérieur</h1>
@@ -17,44 +33,55 @@
     </div>
   </div>
 
-
-
-
-
-
-  <!-- Search et filter bar -->
-  <div class="mt-5">
-    <h3>Vous recherchez</h3>
-    <form class="row g-3">
+  <!-- Search and Filter Bar -->
+  <div > <!-- Utiliser g-3 pour espacer les éléments -->
+    <h3 class="me-3">Vous recherchez</h3>
+    <div class="d-flex flex-row align-items-center ">
+    <form class="d-flex flex-row g-3" (ngSubmit)="searchByKeywords()">
       <div class="col-md-4">
-        <input type="text" class="form-control" placeholder="Mot(s) clef(s)" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Mot(s) clef(s)"
+          [(ngModel)]="searchText"
+          name="searchText"
+          (input)="searchByKeywords()"
+        />
+      </div>
+      <div>
+        <i class="pi pi-replay" style="font-size: 1.5rem; " (click)="resetFilters()"></i>
       </div>
       <div class="col-md-4">
-        <select class="form-select">
-          <option selected>Filière</option>
-          <option value="1">Sciences</option>
-          <option value="2">Arts</option>
-          <option value="3">Commerce</option>
+        <select class="form-select" [(ngModel)]="selectedType" name="type" (change)="filterByType()">
+          <option value="" disabled selected>Filière</option>
+          <option *ngFor="let type of institutionTypes" [value]="type">{{ type }}</option>
         </select>
       </div>
+      <div>
+        <i class="pi pi-filter" style="font-size: 1.5rem; cursor: pointer;" (click)="resetFilters()"></i>
+      </div>
       <div class="col-md-4">
-        <select class="form-select">
-          <option selected>Secteur études</option>
-          <option value="1">Public</option>
-          <option value="2">Privé</option>
+        <select class="form-select" [(ngModel)]="selectedRating" name="rating" (change)="filterByRating()">
+          <option value="" disabled selected>Note minimum</option>
+          <option value="1">1 étoile</option>
+          <option value="2">2 étoiles</option>
+          <option value="3">3 étoiles</option>
+          <option value="4">4 étoiles</option>
+          <option value="5">5 étoiles</option>
         </select>
+      </div>
+      <div>
+        <i class="pi pi-filter" style="font-size: 1.5rem; cursor: pointer;" (click)="resetFilters()"></i>
       </div>
     </form>
+    </div>
   </div>
+
 </div>
-
-
-
 
 <!-- All institutions -->
 <div class="container">
   <div class="row">
-    <!-- col-md-4 for 3 cards per row -->
     <div class="col-md-4 mb-4" *ngFor="let institution of institutions">
       <div class="card">
         <img [src]="institution.institutionLogo" class="card-img-top" alt="{{ institution.institutionName }} Logo" />
@@ -63,8 +90,10 @@
             <i class="pi pi-building-columns wow-icon" style="color: slateblue"></i>
             {{ institution.institutionName }}
           </h6>
-          <p  class="card-text"> <i class="pi pi-ethereum wow-icon" style="color: slateblue"></i>
-            {{ institution.address }}</p>
+          <p class="card-text">
+            <i class="pi pi-ethereum wow-icon" style="color: slateblue"></i>
+            {{ institution.address }}
+          </p>
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-between align-items-center">

@@ -34,13 +34,31 @@ export class InstitutionService {
     return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
   }
 
-  filterAndSearchInstitutions(institutionType?: InstitutionType, searchText: string = ''): Observable<InstitutionDto[]> {
-    let params = new HttpParams();
-    if (institutionType) {
-      params = params.set('institutionType', institutionType);
-    }
-    params = params.set('searchText', searchText);
 
-    return this.http.get<InstitutionDto[]>(`${this.baseUrl}/filter-institutions`, { params });
+  searchInstitutions(searchText?: string): Observable<InstitutionDto[]> {
+    let params = new HttpParams();
+    if (searchText) {
+      params = params.set('searchText', searchText);
+    }
+
+    return this.http.get<InstitutionDto[]>(`${this.baseUrl}/search`, { params });
+  }
+
+  filterInstitutionsByType(type?: InstitutionType | null): Observable<InstitutionDto[]> {
+    let params = new HttpParams();
+    if (type) {
+      params = params.set('type', type);
+    }
+
+    return this.http.get<InstitutionDto[]>(`${this.baseUrl}/filter/type`, { params });
+  }
+
+  filterInstitutionsByRating(minRating?: number | null): Observable<InstitutionDto[]> {
+    let params = new HttpParams();
+    if (minRating) {
+      params = params.set('minRating', minRating.toString());
+    }
+
+    return this.http.get<InstitutionDto[]>(`${this.baseUrl}/filter/rating`, { params });
   }
 }

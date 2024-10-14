@@ -24,6 +24,7 @@ public class Institution {
         private String description;
         private String address;
         private String website;
+        private Double averageRating;
         private String institutionLogo;
 
 

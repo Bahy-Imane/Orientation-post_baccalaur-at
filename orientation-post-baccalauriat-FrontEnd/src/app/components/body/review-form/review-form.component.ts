@@ -53,7 +53,7 @@ export class ReviewFormComponent implements OnInit {
           this.allReviewList.loadReviews();
         },
         error: (error) => {
-          console.error('Error submitting review:', error); // Gérer l'erreur
+          console.error('Error submitting review:', error);
         }
       });
     } else {

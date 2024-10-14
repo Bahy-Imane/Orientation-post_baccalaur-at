@@ -42,20 +42,21 @@ export class FieldOfStudyService {
     return this.http.get<FieldOfStudyDto[]>(`${this.baseUrl}/recommendation`);
   }
 
-  filterAndSearchFields(
-    bacTypeRequired?: BacType,
-    minimumBacNote?: number,
-    searchText: string = ''
-  ): Observable<FieldOfStudyDto[]> {
+  searchFieldsOfStudy(searchText?: string): Observable<FieldOfStudyDto[]> {
+    let params = new HttpParams();
+    if (searchText) {
+      params = params.set('searchText', searchText);
+    }
+
+    return this.http.get<FieldOfStudyDto[]>(`${this.baseUrl}/search`, { params });
+  }
+
+  filterFieldsOfStudyByBacType(bacTypeRequired?: string): Observable<FieldOfStudyDto[]> {
     let params = new HttpParams();
     if (bacTypeRequired) {
-      params = params.set('bacTypeRequired', bacTypeRequired);
+      params = params.set('bacType', bacTypeRequired);
     }
-    if (minimumBacNote !== undefined) {
-      params = params.set('minimumBacNote', minimumBacNote.toString());
-    }
-    params = params.set('searchText', searchText);
 
-    return this.http.get<FieldOfStudyDto[]>(`${this.baseUrl}/filter-fields`, { params });
+    return this.http.get<FieldOfStudyDto[]>(`${this.baseUrl}/filter/bac-type`, { params });
   }
 }

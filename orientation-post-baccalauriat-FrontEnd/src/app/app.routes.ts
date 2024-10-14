@@ -86,6 +86,12 @@ export const routes: Routes = [
         canActivate: [AuthGuard, RoleGuard],
         data: { expectedRole: Role.ADMIN }
       },
+      {
+        path: 'reviews',
+        component: ReviewListComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { expectedRole: Role.ADMIN }
+      },
 
     ]
   },

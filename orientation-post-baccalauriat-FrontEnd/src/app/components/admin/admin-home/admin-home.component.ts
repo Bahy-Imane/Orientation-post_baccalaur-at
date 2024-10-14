@@ -39,16 +39,15 @@ export class AdminHomeComponent implements OnInit {
 
   fetchDashboardData() {
 
-    // Fetch total reviews
     this.studentService.getAllStudents().subscribe({
       next: (students) => {
+        console.log(students);
         this.totalStudents = students.length;
       },
       error: (error) => {
-        console.error('Error fetching reviews:', error);
+        console.error('Error fetching students:', error);
       }
     });
-    // Fetch total institutions
     this.institutionService.getAllInstitutions().subscribe({
       next: (institutions: InstitutionDto[]) => {
         this.totalInstitutions = institutions.length;

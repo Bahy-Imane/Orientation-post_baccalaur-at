@@ -5,6 +5,7 @@ import com.biorbac.enums.InstitutionType;
 import com.biorbac.model.Institution;
 import com.biorbac.service.InstitutionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -48,12 +49,26 @@ public class InstitutionController {
         return institutionService.deleteInstitution(id);
     }
 
-    @GetMapping("/filter-institutions")
-    public ResponseEntity<List<InstitutionDto>> filterAndSearchInstitutions(
-            @RequestParam(required = false) InstitutionType institutionType,
-            @RequestParam(required = false, defaultValue = "") String searchText) {
-        List<InstitutionDto> institutions = institutionService.filterAndSearchInstitutions(institutionType, searchText);
-        return ResponseEntity.ok(institutions);
+
+    @GetMapping("/search")
+    public ResponseEntity<List<InstitutionDto>> searchInstitutions(
+            @RequestParam(value = "searchText", required = false) String searchText) {
+        List<InstitutionDto> institutions = institutionService.searchByText(searchText);
+        return new ResponseEntity<>(institutions, HttpStatus.OK);
+    }
+
+    @GetMapping("/filter/type")
+    public ResponseEntity<List<InstitutionDto>> filterInstitutionsByType(
+            @RequestParam(value = "type", required = false) InstitutionType type) {
+        List<InstitutionDto> institutions = institutionService.filterByType(type);
+        return new ResponseEntity<>(institutions, HttpStatus.OK);
+    }
+
+    @GetMapping("/filter/rating")
+    public ResponseEntity<List<InstitutionDto>> filterInstitutionsByRating(
+            @RequestParam(value = "minRating", required = false) Double minRating) {
+        List<InstitutionDto> institutions = institutionService.filterByRating(minRating);
+        return new ResponseEntity<>(institutions, HttpStatus.OK);
     }
 
 }
