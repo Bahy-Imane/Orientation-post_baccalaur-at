@@ -32,7 +32,7 @@
 }
 
 .highlight {
-  color: #ff9b26;
+  color: rgba(142, 142, 142, 0.74);
 }
 
 .about-text {
@@ -95,7 +95,7 @@
 }
 
 .features-subtitle {
-  color:  #ff9b26;
+  color: #000000;
   font-size: 38px;
   font-weight: 600;
   line-height: 1.2;

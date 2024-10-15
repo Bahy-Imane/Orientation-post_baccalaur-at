@@ -1,26 +1,35 @@
-<!-- recommendations.component.html -->
-<div class="card">
-  <h2 class="title">Recommandations pour les Étudiants</h2>
-  <table class="task-table">
-    <thead class="task-header">
-    <tr>
-      <th>Nom du Domaine d'Étude</th>
-      <th>Type de Bac Requis</th>
-      <th>Note Minimum au Bac</th>
-      <th>Nom du Département</th>
-      <th>Logo du Domaine d'Étude</th>
-      <th>Nom de l'Institution</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let recommendation of recommendations">
-      <td>{{ recommendation.name }}</td>
-      <td>{{ recommendation.bacTypeRequired }}</td>
-      <td>{{ recommendation.minimumBacNote }}</td>
-      <td>{{ recommendation.departmentName }}</td>
-      <td><img [src]="recommendation.fieldOfStudyLogo" [alt]="recommendation.name" width="50" /></td>
-      <td>{{ recommendation.institutionName }}</td>
-    </tr>
-    </tbody>
-  </table>
+<app-header-container/>
+<div class="recommendations-container">
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Découvrez Votre Avenir Académique</h1>
+      <p>Explorez nos recommandations personnalisées pour votre parcours d'études</p>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="intro">
+      <h2>Recommandations pour les Étudiants</h2>
+      <p>Basées sur vos intérêts et vos performances, voici les meilleures options pour votre futur académique.</p>
+    </section>
+
+    <section class="recommendations">
+      @for (recommendation of recommendations; track recommendation.name) {
+        <div class="recommendation-card">
+          <div class="card-header">
+            <img [src]="recommendation.fieldOfStudyLogo" [alt]="recommendation.name" class="logo"/>
+            <h3>{{ recommendation.name }}</h3>
+          </div>
+          <div class="card-body">
+            <p><strong>Institution :</strong> {{ recommendation.institutionName }}</p>
+            <p><strong>Département :</strong> {{ recommendation.departmentName }}</p>
+            <p><strong>Type de Bac :</strong> {{ recommendation.bacTypeRequired }}</p>
+            <p><strong>Note Minimum :</strong> {{ recommendation.minimumBacNote }}/20</p>
+          </div>
+        </div>
+      }
+    </section>
+  </main>
 </div>
+
+<app-footer/>

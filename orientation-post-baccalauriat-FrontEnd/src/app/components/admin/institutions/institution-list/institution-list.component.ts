@@ -25,6 +25,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class InstitutionListComponent implements OnInit {
   searchText: string = '';
+  selectedInstitutionType: InstitutionType | null = null;
   currentPage: number = 0;
   pageSize: number = 5;
   totalInstitutions: number = 0;
@@ -35,13 +36,8 @@ export class InstitutionListComponent implements OnInit {
   showModal: boolean = false;
   selectedInstitutionId: number | null = null;
   modalTitle: string = '';
-
-  institutionName: string = '';
-  address: string = '';
-  institutionType: InstitutionType | null = null;
   loading: boolean = false;
-
-  institutionTypes: InstitutionType[] = Object.values(InstitutionType); // List of institution types
+  institutionTypes: InstitutionType[] = Object.values(InstitutionType);
 
   constructor(private institutionService: InstitutionService, private snackBar: MatSnackBar) {}
 
@@ -59,17 +55,6 @@ export class InstitutionListComponent implements OnInit {
     });
   }
 
-  filteredProjects(): InstitutionDto[] {
-    return this.filteredInstitutions
-      .filter(inst => this.searchText === '' || inst.institutionName.toLowerCase().includes(this.searchText.toLowerCase()))
-      .slice(this.currentPage * this.pageSize, (this.currentPage + 1) * this.pageSize);
-  }
-
-  onPageChange(event: PageEvent) {
-    this.currentPage = event.pageIndex;
-    this.pageSize = event.pageSize;
-  }
-
   getInstitutionTypeLabel(type: InstitutionType): string {
     switch (type) {
       case InstitutionType.EXECUTIVE_TRAINING_INSTITUTION: return 'Executive Training Institution';
@@ -84,22 +69,28 @@ export class InstitutionListComponent implements OnInit {
     }
   }
 
+  filteredProjects(): InstitutionDto[] {
+    return this.filteredInstitutions.slice(
+      this.currentPage * this.pageSize,
+      (this.currentPage + 1) * this.pageSize
+    );
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.currentPage = event.pageIndex; // Update page index
+    this.pageSize = event.pageSize; // Update page size
+  }
+
   openModal(institutionId?: number): void {
     if (institutionId) {
       this.modalTitle = 'Edit Institution';
       this.selectedInstitutionId = institutionId;
       this.institutionService.getInstitutionById(institutionId).subscribe((institution: InstitutionDto) => {
-        this.institutionName = institution.institutionName;
-        this.address = institution.address;
-        this.institutionType = institution.institutionType;
         this.showModal = true;
       });
     } else {
       this.modalTitle = 'Add Institution';
       this.selectedInstitutionId = null;
-      this.institutionName = '';
-      this.address = '';
-      this.institutionType = null;
       this.showModal = true;
     }
   }
@@ -136,5 +127,29 @@ export class InstitutionListComponent implements OnInit {
       if (aValue > bValue) return 1;
       return 0;
     });
+  }
+
+
+  onSearch() {
+    this.institutionService.searchInstitutions(this.searchText).subscribe(
+      (institutions) => {
+        this.filteredInstitutions = institutions;
+      }
+    );
+  }
+
+  onFilter() {
+    this.institutionService.filterInstitutionsByType(this.selectedInstitutionType).subscribe(
+      (institutions) => {
+        this.filteredInstitutions = institutions;
+      }
+    );
+  }
+
+
+  resetInstitutions() {
+    this.searchText = ''; // Réinitialiser le texte de recherche
+    this.selectedInstitutionType = null; // Réinitialiser le type d'institution
+    this.loadInstitutions(); // Recharger toutes les institutions
   }
 }

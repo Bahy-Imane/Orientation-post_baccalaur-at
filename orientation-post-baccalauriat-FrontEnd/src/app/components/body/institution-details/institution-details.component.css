@@ -2,13 +2,10 @@
 .institution-details-container {
   display: flex;
   align-items: center;
-  max-width: 800px;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  height: 50vh;
-  width: 50%;
-  margin-left : 4%;
+  height: fit-content;
   margin-top : 3%;
 }
 
@@ -27,13 +24,13 @@
 }
 
 .institution-name {
-  font-size: 24px;
+  font-size: 40px;
   font-weight: bold;
   color: #333;
 }
 
 .institution-description {
-  font-size: 14px;
+  font-size: 25px;
   color: #666;
   margin-bottom: 20px;
 }
@@ -42,7 +39,7 @@
 .info-item {
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
@@ -76,12 +73,15 @@
   color: #666;
   margin-left: 10px;
 }
-
-/* Institution logo container */
 .institution-logo-container {
-  width: 50%; /* 50% of the card for the logo */
-  height: 100%;
+  width: 600px;
+  height: fit-content; /* Ajuste la hauteur selon tes besoins */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  border-radius: 8px;
+  background-color: #f7f7f7; /* Couleur de fond pour le conteneur */
 }
 
 .institution-logo {
@@ -89,6 +89,8 @@
   height: 100%;
   object-fit: cover;
 }
+
+
 
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
@@ -189,14 +191,88 @@ button {
   }
 }
 
-.instit-details{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
 
-}
 .reviews{
   margin-top:3%;
   width: 40%;
-  background: #10cbef;
 }
+
+
+/*search*/
+.event-search {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 25px 50px 37px;
+  border-radius: 20px;
+  background-color: #e8e8ea;
+
+}
+.search-options {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  font-family: 'Product Sans', sans-serif;
+  justify-content: start;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  flex-basis: auto;
+}
+.search-option {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  flex-basis: 0%;
+  min-width: 240px;
+  min-height: 70px;
+}
+.option-title {
+  color: black;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 11px;
+}
+.accordion-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  font-size: 12px;
+  color: #10107b;
+  cursor: pointer;
+}
+.accordion-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.search-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 5px;
+  background-color: #7848f4;
+  cursor: pointer;
+}
+.search-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+@media (max-width: 991px) {
+  .event-search {
+    padding: 40px;
+  }
+}
+
+

@@ -1,42 +1,50 @@
-<div class="task-list-container">
-  <h3>Évaluations des étudiants</h3>
+<div class="main-review-container">
+  <div class="d-flex justify-content-between">
+    <h3 class="title-r">Review</h3>
 
-  <!-- Button to open the modal for adding a review, only if the user is logged in -->
-  <>
     <button *ngIf="authService.isLoggedIn()" (click)="openModal()" class="btn btn-primary">
-      Laisser un avis
+      <i class="pi pi-twitch" style="font-size :2rem"></i>
     </button>
+  </div>
 
-    <!-- Modal for adding a new review -->
-    <div class="modal" *ngIf="showModal">
-      <div class="modal-content">
-        <span class="close" (click)="closeModal()">&times;</span>
 
-        <!-- Review Form -->
-        <h2>Laisser un avis</h2>
-        <app-review-form
-          *ngIf="selectedInstitutionId !== null"
-          [institutionId]="selectedInstitutionId"
-          (modalClose)="closeModal()"
-        ></app-review-form>
-      </div>
+  <!-- Modal for adding a new review -->
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+
+      <!-- Review Form -->
+      <h2>Laisser un avis</h2>
+      <app-review-form
+        *ngIf="selectedInstitutionId !== null"
+        [institutionId]="selectedInstitutionId"
+        (modalClose)="closeModal()"
+      ></app-review-form>
     </div>
   </div>
 
-<!-- List of reviews -->
-<div class="review-list-container">
-  <div *ngFor="let review of reviews" class="review-container">
-    <div class="review-header">
+  <!-- Container for all reviews -->
+  <div class="all-reviews-container">
+    <!-- Loop through each review -->
+    <div class="review-card" *ngFor="let review of reviews">
       <h5 class="user-name">{{ review.userName }}</h5>
-      <div class="star-rating">
-        <ng-container *ngFor="let star of getStars(review.rating); let i = index">
-          <i class="bi" [ngClass]="star ? 'bi-star-fill' : 'bi-star'" style="color: #ffbf00;"></i>
-        </ng-container>
-        <span class="rating-text ms-2">{{ review.rating }} / 5</span>
+      <div class="review-header">
+
+        <div class="review-comment">
+          <p>{{ review.comment }}</p>
+        </div>
+
+        <div class="star-rating">
+          <ng-container *ngFor="let star of getStars(review.rating); let i = index">
+            <i class="bi" [ngClass]="star ? 'bi-star-fill' : 'bi-star'" style="color: #ffbf00;"></i>
+          </ng-container>
+          <span class="rating-text ms-2"> </span>
+        </div>
+
       </div>
-    </div>
-    <div class="review-comment">
-      <p>{{ review.comment }}</p>
+
+
+
     </div>
   </div>
 </div>

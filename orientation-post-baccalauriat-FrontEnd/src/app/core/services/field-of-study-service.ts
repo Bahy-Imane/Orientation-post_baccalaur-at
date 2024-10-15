@@ -51,7 +51,7 @@ export class FieldOfStudyService {
     return this.http.get<FieldOfStudyDto[]>(`${this.baseUrl}/search`, { params });
   }
 
-  filterFieldsOfStudyByBacType(bacTypeRequired?: string): Observable<FieldOfStudyDto[]> {
+  filterFieldsOfStudyByBacType(bacTypeRequired?: BacType | null): Observable<FieldOfStudyDto[]> {
     let params = new HttpParams();
     if (bacTypeRequired) {
       params = params.set('bacType', bacTypeRequired);

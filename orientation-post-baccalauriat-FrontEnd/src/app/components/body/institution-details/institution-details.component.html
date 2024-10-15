@@ -1,46 +1,87 @@
-<app-header-container/>
+<app-header-container></app-header-container>
 
-<div class="instit-details">
-<div class="card institution-details-container">
-  <div class="card-body d-flex justify-content-between p-0">
-    <!-- Left side: Institution Information -->
-    <div class="institution-info p-4">
-      <h2 class="institution-name mb-3">{{ institution?.institutionName }}</h2>
-      <p class="institution-description mb-4">{{ institution?.description }}</p>
-      <div class="info-item mb-2">
-        <i class="pi pi-map-marker me-2"></i>
-        <span>{{ institution?.address }}</span>
-      </div>
-      <div class="info-item mb-2">
-        <i class="pi pi-globe me-2"></i>
-        <a [href]="institution?.website" target="_blank" class="website-link">{{ institution?.website }}</a>
-      </div>
-      <div class="info-item mb-3">
-        <i class="pi pi-building me-2"></i>
-        <span><strong>Type:</strong> {{ institution?.institutionType }}</span>
+<div class="d-flex flex-column gap-3 mx-4">
+  <div class="card institution-details-container">
+    <div class="card-body d-flex justify-content-between p-0">
+      <!-- Côté gauche : Informations sur l'institution -->
+      <div class="institution-info p-4 my-4">
+        <h2 class="institution-name mb-3">{{ institution?.institutionName }}</h2>
+        <p class="institution-description mb-5">{{ institution?.description }}</p>
+
+        <div class="d-flex flex-column gap-2 mt-5">
+          <div class="info-item mb-4">
+            <i class="pi pi-map-marker me-2"></i>
+            <span>{{ institution?.address }}</span>
+          </div>
+
+          <div class="info-item mb-4">
+            <i class="pi pi-globe me-2"></i>
+            <a [href]="institution?.website" target="_blank" class="website-link">{{ institution?.website }}</a>
+          </div>
+
+          <div class="info-item mb-4">
+            <i class="pi pi-building me-2"></i>
+            <span><strong>Type :</strong> {{ institution?.institutionType }}</span>
+          </div>
+
+          <!-- Évaluation par étoiles -->
+          <div class="star-rating d-flex align-items-center">
+            <ng-container *ngFor="let star of getStars(institution?.averageRating); let i = index">
+              <i class="bi" [ngClass]="star ? 'bi-star-fill' : 'bi-star'"></i>
+            </ng-container>
+            <span class="rating-text ms-2">({{ institution?.averageRating }} / 5)</span>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Star Rating -->
-      <div class="star-rating">
-        <ng-container *ngFor="let star of getStars(institution?.averageRating); let i = index">
-          <i class="bi" [ngClass]="star ? 'bi-star-fill' : 'bi-star'"></i>
-        </ng-container>
-        <span class="rating-text ms-2">({{ institution?.averageRating }} / 5)</span>
+      <!-- Côté droit : Logo de l'institution -->
+      <div class="institution-logo-container d-flex align-items-center">
+        <img [src]="institution?.institutionLogo"
+             [alt]="institution?.institutionName + ' Logo'"
+             class="institution-logo" />
       </div>
     </div>
+  </div>
 
-    <!-- Right side: Institution Logo -->
-    <div class="institution-logo-container">
-      <img [src]="institution?.institutionLogo" [alt]="institution?.institutionName + ' Logo'" class="institution-logo" />
+  <div class="mb-5">
+    <app-all-reviews></app-all-reviews>
+  </div>
+</div>
+
+<section class="event-search mb-5">
+  <div class="search-options">
+    <div class="search-filter-bar pe-5">
+      <h3 class="option-title">Vous recherchez</h3>
+      <form class="d-flex gap-3 search-form" (ngSubmit)="searchFields()">
+        <div class="col-md-4">
+          <input type="text" class="form-control"
+                 placeholder="Mot(s) clé(s)"
+                 [(ngModel)]="searchText"
+                 name="searchText"
+                 (input)="searchFields()" />
+        </div>
+
+        <div class="col-md-4">
+          <select class="form-select"
+                  [(ngModel)]="selectedBacType"
+                  name="bacType"
+                  (change)="filterByBacType()">
+            <option value="" disabled selected>Filière</option>
+            <option *ngFor="let bacType of bacTypes"
+                    [value]="bacType">{{ bacType }}</option>
+          </select>
+        </div>
+
+        <div class="reset-filter">
+          <i class="pi pi-replay" style="font-size: 1.5rem; cursor: pointer;"
+             (click)="resetFilters()"></i>
+        </div>
+      </form>
     </div>
   </div>
-</div>
-  <div class="reviews">
-    <app-all-reviews/>
-  </div>
-</div>
+</section>
 
 <div>
-  <app-field-of-study-home/>
+  <app-field-of-study-home></app-field-of-study-home>
 </div>
-

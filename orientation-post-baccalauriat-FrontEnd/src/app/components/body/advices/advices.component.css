@@ -7,15 +7,15 @@
 
 .benefits-title {
   color: #1f67ff;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
 .benefits-subtitle {
-  color: #ff9b26;
-  font-size: 48px;
-  font-weight: 600;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 400;
   line-height: 1.2;
   margin-bottom: 20px;
 }
@@ -68,6 +68,72 @@
   line-height: 1.6;
 }
 
+
+.contents {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px 15px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  min-height: 200px; /* Hauteur minimale réduite */
+}
+
+.text-content {
+  position: relative;
+  z-index: 1;
+  max-width: 60%;
+}
+
+.text-content h6 {
+  font-size: 20px; /* Taille réduite */
+  color: #3498db;
+  letter-spacing: 0.5px;
+}
+
+.text-content h1 {
+  font-size: 45px; /* Taille du titre réduite */
+  color: #333;
+  margin: 5px 0;
+  line-height: 1.4; /* Espacement entre les lignes */
+
+}
+
+.text-content p {
+  font-size: 16px; /* Taille du texte réduite */
+  color: #555;
+  line-height: 1.3;
+}
+
+.image-content {
+  max-width: 35%; /* Réduction de la taille de l'image */
+}
+
+.image-content img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contents {
+    flex-direction: column;
+    text-align: center;
+    min-height: auto; /* Supprimer la contrainte de hauteur sur mobile */
+  }
+
+  .text-content {
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .image-content {
+    max-width: 100%;
+  }
+
+}
 
 
 
@@ -216,13 +282,13 @@
 }
 
 .cta-button.primary {
-  background-color: #20b486;
+  background-color: #0072ea;
   color: #fff;
 }
 
 .cta-button.secondary {
   background-color: #eafff9;
-  color: #3bc49a;
+  color: rgba(142, 142, 142, 0.74);
 }
 
 .hero-features {
@@ -296,7 +362,7 @@
 .collaboration-title {
   font-size: 30px;
   font-weight: 700;
-  color: #20b486;
+  color: #0072ea;
 }
 
 .collaboration-subtitle {

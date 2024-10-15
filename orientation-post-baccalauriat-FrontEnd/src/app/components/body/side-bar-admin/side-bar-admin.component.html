@@ -1,15 +1,14 @@
-
 <aside class="sidebar">
   <div class="profile-info">
     <img src="/assets/pictures/pexels-moose-photos-170195-1036622.jpg" class="profile-pic">
-    <h3>Welcome Admin</h3>
+    <h3>Bienvenue Admin</h3>
   </div>
 
   <nav class="nv-element">
     <ul>
       <li>
         <a routerLink="/admin-dashboard/admin-home" routerLinkActive="active">
-          <img src="/assets/pictures/home.png" class="nav-icon"> Home
+          <img src="/assets/pictures/home.png" class="nav-icon"> Accueil
         </a>
       </li>
 
@@ -21,19 +20,19 @@
 
       <li>
         <a routerLink="/admin-dashboard/field-of-study" routerLinkActive="active">
-          <img src="/assets/pictures/education.png" class="nav-icon"> Field Of Study
+          <img src="/assets/pictures/education.png" class="nav-icon"> Domaine d'Étude
         </a>
       </li>
 
       <li>
         <a routerLink="/admin-dashboard/reviews" routerLinkActive="active">
-          <img src="/assets/pictures/profile-user.png" class="nav-icon"> Reviews
+          <img src="/assets/pictures/profile-user.png" class="nav-icon"> Avis
         </a>
       </li>
 
       <li style="margin-top: 30%">
         <a *ngIf="_authService.isLoggedIn()" (click)="_authService.logout()" routerLink="/logout">
-          <img src="/assets/pictures/logout.png" class="nav-icon"> Logout
+          <img src="/assets/pictures/logout.png" class="nav-icon"> Déconnexion
         </a>
       </li>
     </ul>

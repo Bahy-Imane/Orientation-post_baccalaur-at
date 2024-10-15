@@ -36,13 +36,14 @@ export class AuthService {
     return <Role>role;
   }
 
+
   logout(): void {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('tokenType');
     localStorage.removeItem('userName');
     localStorage.removeItem('role');
     localStorage.removeItem('personId');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
   }
 
   getUserName(): string | null {

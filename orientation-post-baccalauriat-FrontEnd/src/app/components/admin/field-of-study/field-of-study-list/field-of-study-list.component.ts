@@ -3,11 +3,12 @@ import { FieldOfStudyDto } from "../../../../core/Dto/field-of-study-dto";
 import { FieldOfStudyService } from "../../../../core/services/field-of-study-service";
 import { FormsModule } from "@angular/forms";
 import { FieldOfStudyFormComponent } from "../field-of-study-form/field-of-study-form.component";
-import { MatPaginator } from "@angular/material/paginator";
+import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { NgForOf, NgIf } from "@angular/common";
 import { MatButton } from "@angular/material/button";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { BacType } from "../../../../core/enums/bac-type";
+import { TableModule } from "primeng/table";
 
 @Component({
   selector: 'app-field-of-study-list',
@@ -19,26 +20,24 @@ import { BacType } from "../../../../core/enums/bac-type";
     MatPaginator,
     NgForOf,
     NgIf,
-    MatButton
+    MatButton,
+    TableModule
   ],
   styleUrls: ['./field-of-study-list.component.css']
 })
 export class FieldOfStudyListComponent implements OnInit {
   fieldsOfStudy: FieldOfStudyDto[] = [];
+  filteredFieldsOfStudy: FieldOfStudyDto[] = [];
   searchText = '';
-  bacTypeRequired: BacType | null = null; // Nouvelle propriété pour le type de Bac
-  minimumBacNote: number | null = null; // Nouvelle propriété pour la note minimale de Bac
+  bacTypeRequired: BacType | null = null;
   showModal = false;
   selectedFieldOfStudyId: number | null = null;
-  selectedFieldOfStudy: FieldOfStudyDto | null = null;
   modalTitle: string = '';
 
-  // Pagination
   totalFields = 0;
-  pageSize = 5;
-  pageIndex = 0;
+  pageSize = 5; // Default page size
+  currentPage = 0; // Default to first page
 
-  // Options for Bac types (assuming you have these values defined in your BacType enum)
   bacTypeOptions = Object.values(BacType);
 
   constructor(private fieldOfStudyService: FieldOfStudyService, private snackBar: MatSnackBar) {}
@@ -47,42 +46,59 @@ export class FieldOfStudyListComponent implements OnInit {
     this.loadFieldsOfStudy();
   }
 
-  // Fetch all fields of study
   loadFieldsOfStudy() {
     this.fieldOfStudyService.getAllFieldsOfStudy().subscribe((data) => {
       this.fieldsOfStudy = data;
+      this.filteredFieldsOfStudy = data;
       this.totalFields = data.length;
     });
   }
 
-  // Filter fields of study based on search input and filtering criteria
-  filteredFieldsOfStudy() {
-    return this.fieldsOfStudy.filter(field =>
-      field.name.toLowerCase().includes(this.searchText.toLowerCase()) &&
-      (this.bacTypeRequired ? field.bacTypeRequired === this.bacTypeRequired : true) &&
-      (this.minimumBacNote !== null ? field.minimumBacNote >= this.minimumBacNote : true)
+  onSearch() {
+    this.fieldOfStudyService.searchFieldsOfStudy(this.searchText).subscribe(
+      (results) => {
+        this.filteredFieldsOfStudy = results;
+        this.totalFields = results.length;
+        this.currentPage = 0; // Reset to the first page when searching
+      },
+      (error) => {
+        console.error('Error searching fields of study:', error);
+      }
     );
   }
 
-  // Open modal for adding a new field of study
+  onFilter() {
+    this.fieldOfStudyService.filterFieldsOfStudyByBacType(this.bacTypeRequired).subscribe(
+      (results) => {
+        this.filteredFieldsOfStudy = results;
+        this.totalFields = results.length;
+        this.currentPage = 0; // Reset to the first page when filtering
+      },
+      (error) => {
+        console.error('Error filtering fields of study by Bac Type:', error);
+      }
+    );
+  }
+
   openModal(fosId?: number): void {
-    console.log('Opening modal');  // Ajouté pour tester
     this.selectedFieldOfStudyId = fosId || null;
     this.showModal = true;
     this.modalTitle = fosId ? 'Edit Field of Study' : 'Add Field of Study';
   }
-
 
   closeModal(): void {
     this.showModal = false;
     this.selectedFieldOfStudyId = null;
   }
 
-  // Handle page change event for pagination
-  onPageChange(event: any) {
-    this.pageIndex = event.pageIndex;
+  onPageChange(event: PageEvent) {
+    this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
-    this.loadFieldsOfStudy();
+  }
+
+  get paginatedFields(): FieldOfStudyDto[] {
+    const startIndex = this.currentPage * this.pageSize;
+    return this.filteredFieldsOfStudy.slice(startIndex, startIndex + this.pageSize);
   }
 
   editField(id: number): void {
@@ -90,16 +106,22 @@ export class FieldOfStudyListComponent implements OnInit {
   }
 
   deleteField(id: number): void {
-    if (confirm('Are you sure you want to delete this Field of study?')) {
+    if (confirm('Are you sure you want to delete this Field of Study?')) {
       this.fieldOfStudyService.deleteFieldOfStudy(id).subscribe(
         () => {
-          this.snackBar.open('Institution deleted successfully', 'Close', { duration: 3000 });
+          this.snackBar.open('Field of Study deleted successfully', 'Close', { duration: 3000 });
           this.loadFieldsOfStudy();
         },
         (error) => {
-          console.error('Error deleting institution:', error);
+          console.error('Error deleting Field of Study:', error);
         }
       );
     }
+  }
+
+  resetFilters() {
+    this.searchText = '';
+    this.bacTypeRequired = null;
+    this.loadFieldsOfStudy();
   }
 }

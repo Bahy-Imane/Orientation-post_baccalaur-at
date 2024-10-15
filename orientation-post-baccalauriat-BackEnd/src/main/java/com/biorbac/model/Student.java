@@ -21,10 +21,6 @@ public class Student extends User {
     private BacType bacType;
 
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<Institution> institutions;
-
-
     @OneToMany(mappedBy = "student")
     private List<Review> reviews;
 

@@ -1,29 +1,4 @@
-#version: '3.8'
-#services:
-#  app:
-#    build: .
-#    restart: always
-#    ports:
-#      - "8082:8081"
-#    depends_on:
-#      - db
-#
-#  db:
-#    image: "mysql:latest"
-#    restart: always
-#    ports:
-#      - "3307:3306"
-#    environment:
-#      MYSQL_DATABASE: orientation_db
-#      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-#    volumes:
-#      - data_db:/var/lib/mysql
-#
-#volumes:
-#  data_db:
-#
-#
-#
+
 
 
 version: "3.8"

@@ -1,15 +1,46 @@
-
-
-.modal-footer {
+.form-row {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
-.form-group {
-  margin-bottom: 15px;
+.form-field {
+  flex: 1;
 }
 
-.text-danger {
-  color: red;
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px; /* Bord arrondi */
+  font-size: 14px;
+}
+
+textarea {
+  height: 44px; /* Alignement avec la hauteur des autres champs */
+}
+
+button[type="submit"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #58abfa;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+button[type="submit"]:hover {
+  background-color: #0072ea;
+}
+
+button[type="submit"] .pi {
+  margin-right: 10px;
 }

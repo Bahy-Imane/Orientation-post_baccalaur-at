@@ -26,13 +26,6 @@ import {AuthService} from "../../../core/services/auth.service";
 })
 export class SideBarAdminComponent {
 
-  // @ViewChild('sidebarRef') sidebarRef!: Sidebar;
-  //
-  // closeCallback(e: Event): void {
-  //   this.sidebarRef.close(e);
-  // }
-
-  // sidebarVisible: boolean = false;
   activeSection: string = 'admin-dashboard';
 
  constructor(public _authService: AuthService) {}

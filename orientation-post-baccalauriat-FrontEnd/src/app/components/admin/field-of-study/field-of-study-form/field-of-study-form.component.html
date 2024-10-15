@@ -1,58 +1,65 @@
 <div class="modal-overlay" (click)="closeModal()"></div>
-<h2 *ngIf="!fosId">Ajouter un Domaine d'Étude</h2>
-<h2 *ngIf="fosId">Modifier le Domaine d'Étude</h2>
+<h2 style="color :  #0072ea" class="d-flex justify-content-center" *ngIf="!fosId">Ajouter un Domaine d'Étude</h2>
+<h2 style="color :  #0072ea" class="d-flex justify-content-center" *ngIf="fosId">Modifier le Domaine d'Étude</h2>
 
 <form [formGroup]="fieldOfStudyForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="name">Nom du Domaine d'Étude:</label>
-    <input formControlName="name" type="text" class="form-control" id="name" placeholder="Entrer le nom du domaine" />
-    <div *ngIf="fieldOfStudyForm.get('name')?.invalid && fieldOfStudyForm.get('name')?.touched" class="text-danger">
-      Le nom est requis.
+  <div class="form-row">
+    <div class="form-field">
+      <label for="name">Nom de field:</label>
+      <input formControlName="name" type="text" class="form-control" id="name"  />
+      <div *ngIf="fieldOfStudyForm.get('name')?.invalid && fieldOfStudyForm.get('name')?.touched" class="text-danger">
+        Le nom est requis.
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="bacTypeRequired">bacType Required:</label>
+      <select formControlName="bacTypeRequired" class="form-control" id="bacTypeRequired">
+        <option value="" disabled>Sélectionner le type de Bac</option>
+        <option *ngFor="let bacType of bacTypes" [value]="bacType">{{ bacType }}</option>
+      </select>
+      <div *ngIf="fieldOfStudyForm.get('bacTypeRequired')?.invalid && fieldOfStudyForm.get('bacTypeRequired')?.touched" class="text-danger">
+        Type de Bac requis.
+      </div>
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="bacTypeRequired">Type de Bac Requis:</label>
-    <select formControlName="bacTypeRequired" class="form-control" id="bacTypeRequired">
-      <option value="" disabled>Sélectionner le type de Bac</option>
-      <option *ngFor="let bacType of bacTypes" [value]="bacType">{{ bacType }}</option>
-    </select>
-    <div *ngIf="fieldOfStudyForm.get('bacTypeRequired')?.invalid && fieldOfStudyForm.get('bacTypeRequired')?.touched" class="text-danger">
-      Type de Bac requis.
+  <div class="form-row">
+    <div class="form-field">
+      <label for="minimumBacNote">minimum Bac Note:</label>
+      <input formControlName="minimumBacNote" type="text" class="form-control" id="minimumBacNote" />
+      <div *ngIf="fieldOfStudyForm.get('minimumBacNote')?.invalid && fieldOfStudyForm.get('minimumBacNote')?.touched" class="text-danger">
+        La note minimale est requise et doit être entre 0 et 20.
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="departmentName">department Name:</label>
+      <input formControlName="departmentName" type="text" class="form-control" id="departmentName"  />
+      <div *ngIf="fieldOfStudyForm.get('departmentName')?.invalid && fieldOfStudyForm.get('departmentName')?.touched" class="text-danger">
+        Le nom du département est requis.
+      </div>
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="minimumBacNote">Note Minimale du Bac:</label>
-    <input formControlName="minimumBacNote" type="number" class="form-control" id="minimumBacNote" placeholder="Entrer la note minimale" />
-    <div *ngIf="fieldOfStudyForm.get('minimumBacNote')?.invalid && fieldOfStudyForm.get('minimumBacNote')?.touched" class="text-danger">
-      La note minimale est requise et doit être entre 0 et 20.
+  <div class="form-row">
+    <div class="form-field">
+      <label for="institution">Nom de l'institution:</label>
+      <select formControlName="institutionId" class="form-control" id="institution">
+        <option value="" disabled>Sélectionner une institution</option>
+        <option *ngFor="let institution of institutions" [value]="institution.institutionId">
+          {{ institution.institutionName }}
+        </option>
+      </select>
+      <div *ngIf="fieldOfStudyForm.get('institutionId')?.invalid && fieldOfStudyForm.get('institutionId')?.touched" class="text-danger">
+        Veuillez sélectionner une institution.
+      </div>
     </div>
   </div>
-
-  <div class="form-group">
-    <label for="departmentName">Nom du Département:</label>
-    <input formControlName="departmentName" type="text" class="form-control" id="departmentName" placeholder="Entrer le nom du département" />
-    <div *ngIf="fieldOfStudyForm.get('departmentName')?.invalid && fieldOfStudyForm.get('departmentName')?.touched" class="text-danger">
-      Le nom du département est requis.
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="institution">Sélectionner l'Institution:</label>
-    <select formControlName="institutionId" class="form-control" id="institution">
-      <option value="" disabled>Sélectionner une institution</option>
-      <option *ngFor="let institution of institutions" [value]="institution.institutionId">
-        {{ institution.institutionName }}
-      </option>
-    </select>
-    <div *ngIf="fieldOfStudyForm.get('institutionId')?.invalid && fieldOfStudyForm.get('institutionId')?.touched" class="text-danger">
-      Veuillez sélectionner une institution.
-    </div>
-  </div>
-
 
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary" [disabled]="fieldOfStudyForm.invalid">Soumettre</button>
+    <button type="submit" class="btn btn-primary" [disabled]="fieldOfStudyForm.invalid">
+      <i class="pi pi-check"></i> Soumettre
+    </button>
   </div>
 </form>

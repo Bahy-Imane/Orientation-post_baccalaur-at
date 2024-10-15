@@ -46,6 +46,10 @@ export const routes: Routes = [
     canActivate: [AuthGuard, RoleGuard],
     data: {expectedRole: Role.ADMIN},
     children:[
+      { path : '',
+       redirectTo : 'admin-home',
+        pathMatch : "full"
+      },
       { path : 'admin-home',
         component : AdminHomeComponent,
         canActivate: [AuthGuard, RoleGuard],
@@ -115,6 +119,17 @@ export const routes: Routes = [
     children :[
       { path: 'home' , component : HomeComponent},
     ]
+  },
+
+  {path : 'institution/edit/:institutionId' ,
+    component : RecommendationComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {expectedRole: Role.STUDENT}
+  },
+  {path : 'vos-recommend' ,
+    component : RecommendationComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {expectedRole: Role.STUDENT}
   },
 
   { path: 'reviews/:institutionId', component: InstitutionDetailsComponent },

@@ -31,6 +31,12 @@ public class ReviewController {
         return ResponseEntity.ok(reviews);
     }
 
+    @GetMapping("/Student-name/{studentName}")
+    public ResponseEntity<List<ReviewDto>> getReviewsByStudent(@PathVariable String studentName) {
+        List<ReviewDto> reviews = reviewService.getReviewsByStudentName(studentName);
+        return ResponseEntity.ok(reviews);
+    }
+
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     @PostMapping
     public Map<String, String> createReview(@RequestBody ReviewDto reviewDto) {

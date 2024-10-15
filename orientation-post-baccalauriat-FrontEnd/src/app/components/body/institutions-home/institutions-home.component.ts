@@ -22,6 +22,8 @@ import {HeaderContainerComponent} from "../header-container/header-container.com
   styleUrls: ['./institutions-home.component.css']
 })
 export class InstitutionsHomeComponent implements OnInit {
+  toggleAccordion(section: string): void {
+  }
   institutions: InstitutionDto[] = [];
   searchText: string = '';
   selectedType: InstitutionType | null = null;

@@ -1,88 +1,71 @@
-<app-header-container/>
+<app-header-container></app-header-container>
 
-<!-- Main Content -->
+<!-- Contenu Principal -->
 <div class="contents">
   <div class="text-content">
     <h6>GUIDE D'ORIENTATION ACADÉMIQUE</h6>
     <h1>Construisez votre avenir avec les bons choix éducatifs</h1>
     <p>Découvrez les meilleures formations, écoles et parcours académiques pour vous guider vers une carrière réussie.</p>
-
   </div>
 
-  <!-- Image Section -->
+  <!-- Section Image -->
   <div class="image-content">
     <img src="/assets/pictures/img-student-3.png" alt="Étudiante en orientation" />
   </div>
 </div>
 
-<div class="container mt-5">
+<div class="container mt-5 text-center">
   <div class="text-center">
     <h1>Écoles et formations du supérieur</h1>
   </div>
-  <div class="card-carte">
-    <div class=" card-bod text-white bg-primary" >
-      <div class="d-flex align-items-center">
-        <i class="bi bi-people-fill" style="font-size: 5rem;"></i>
-        <p class="mb-0 ms-3">
-          Vous recherchez des informations sur un établissement ? Présentation des formations, contacts, avis, plaquettes,
-          événements clés, vidéos de présentation, calendrier des portes ouvertes, actualité de l’école, programmes,
-          débouchés... Retrouvez tous les renseignements dont vous avez besoin dans cet espace on-line entièrement dédié
-          aux établissements.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Search and Filter Bar -->
-  <div > <!-- Utiliser g-3 pour espacer les éléments -->
-    <h3 class="me-3">Vous recherchez</h3>
-    <div class="d-flex flex-row align-items-center ">
-    <form class="d-flex flex-row g-3" (ngSubmit)="searchByKeywords()">
-      <div class="col-md-4">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Mot(s) clef(s)"
-          [(ngModel)]="searchText"
-          name="searchText"
-          (input)="searchByKeywords()"
-        />
-      </div>
-      <div>
-        <i class="pi pi-replay" style="font-size: 1.5rem; " (click)="resetFilters()"></i>
-      </div>
-      <div class="col-md-4">
-        <select class="form-select" [(ngModel)]="selectedType" name="type" (change)="filterByType()">
-          <option value="" disabled selected>Filière</option>
-          <option *ngFor="let type of institutionTypes" [value]="type">{{ type }}</option>
-        </select>
-      </div>
-      <div>
-        <i class="pi pi-filter" style="font-size: 1.5rem; cursor: pointer;" (click)="resetFilters()"></i>
-      </div>
-      <div class="col-md-4">
-        <select class="form-select" [(ngModel)]="selectedRating" name="rating" (change)="filterByRating()">
-          <option value="" disabled selected>Note minimum</option>
-          <option value="1">1 étoile</option>
-          <option value="2">2 étoiles</option>
-          <option value="3">3 étoiles</option>
-          <option value="4">4 étoiles</option>
-          <option value="5">5 étoiles</option>
-        </select>
-      </div>
-      <div>
-        <i class="pi pi-filter" style="font-size: 1.5rem; cursor: pointer;" (click)="resetFilters()"></i>
-      </div>
-    </form>
-    </div>
-  </div>
-
 </div>
 
-<!-- All institutions -->
+<section class="event-search mb-5">
+  <div class="search-options">
+    <div class="search-filter-bar pe-5">
+      <h3 class="option-title">Vous recherchez</h3>
+      <form class="d-flex gap-3 search-form" (ngSubmit)="searchByKeywords()">
+        <div class="col-md-4">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Mot(s) clé(s)"
+            [(ngModel)]="searchText"
+            name="searchText"
+            (input)="searchByKeywords()"
+          />
+        </div>
+
+        <div class="col-md-4">
+          <select class="form-select" [(ngModel)]="selectedType" name="type" (change)="filterByType()">
+            <option value="" disabled selected>Filière</option>
+            <option *ngFor="let type of institutionTypes" [value]="type">{{ type }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <select class="form-select" [(ngModel)]="selectedRating" name="rating" (change)="filterByRating()">
+            <option value="" disabled selected>Note minimum</option>
+            <option value="1">1 étoile</option>
+            <option value="2">2 étoiles</option>
+            <option value="3">3 étoiles</option>
+            <option value="4">4 étoiles</option>
+            <option value="5">5 étoiles</option>
+          </select>
+        </div>
+
+        <div class="reset-filter">
+          <i class="pi pi-replay" style="font-size: 1.5rem; cursor: pointer;" (click)="resetFilters()"></i>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Toutes les institutions -->
 <div class="container">
-  <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let institution of institutions">
+  <div class="d-flex flex-lg-row flex-md-row flex-sm-col gap-2">
+    <div class="w-100 mb-4" *ngFor="let institution of institutions">
       <div class="card">
         <img [src]="institution.institutionLogo" class="card-img-top" alt="{{ institution.institutionName }} Logo" />
         <div class="card-body">
@@ -96,19 +79,17 @@
           </p>
         </div>
         <div class="card-footer">
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="star-rating">
-              <ng-container *ngFor="let star of getStars(institution.averageRating); let i = index">
-                <i class="bi" [ngClass]="star ? 'bi-star-fill' : 'bi-star'"></i>
-              </ng-container>
-            </div>
-            <button (click)="showDetails(institution.institutionId)" class="btn btn-primary explore-button">
-              Explore More
-            </button>
+          <div class="star-rating">
+            <ng-container *ngFor="let star of getStars(institution.averageRating); let i = index">
+              <i class="bi" [ngClass]="star ? 'bi-star-fill' : 'bi-star'"></i>
+            </ng-container>
           </div>
+          <button (click)="showDetails(institution.institutionId)" class="btn explore-button">
+            <i class="pi pi-info"></i>
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
-<app-footer/>
+<app-footer></app-footer>

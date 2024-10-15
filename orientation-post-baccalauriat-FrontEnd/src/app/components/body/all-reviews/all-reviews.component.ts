@@ -1,11 +1,15 @@
+// all-reviews.component.ts
+
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ReviewDto } from '../../../core/Dto/review-dto';
 import { ReviewService } from '../../../core/services/review-service';
 import { AuthService } from '../../../core/services/auth.service';
 import { NgClass, NgForOf, NgIf } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import { InstitutionFormComponent } from "../../admin/institutions/institution-form/institution-form.component";
-import {ReviewFormComponent} from "../review-form/review-form.component";
+import { ReviewFormComponent } from "../review-form/review-form.component";
+import { ButtonDirective } from "primeng/button";
 
 @Component({
   selector: 'app-all-reviews',
@@ -16,7 +20,8 @@ import {ReviewFormComponent} from "../review-form/review-form.component";
     NgForOf,
     NgClass,
     InstitutionFormComponent,
-    ReviewFormComponent
+    ReviewFormComponent,
+    ButtonDirective
   ],
   styleUrls: ['./all-reviews.component.css']
 })
@@ -28,14 +33,14 @@ export class AllReviewsComponent implements OnInit {
   constructor(
     private reviewService: ReviewService,
     public authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.loadReviews();
   }
 
-  // Load reviews based on the institution ID from the route parameters
   loadReviews(): void {
     const institutionId = this.route.snapshot.paramMap.get('institutionId');
     this.selectedInstitutionId = institutionId ? +institutionId : null;
@@ -52,19 +57,32 @@ export class AllReviewsComponent implements OnInit {
     }
   }
 
-
   openModal(): void {
-    console.log('Opening modal');
     this.showModal = true;
   }
 
   closeModal(): void {
-    console.log('Closing modal');
     this.showModal = false;
   }
 
-
   getStars(rating: number): boolean[] {
     return Array(5).fill(false).map((_, i) => i < rating);
+  }
+
+  editReview(review: ReviewDto): void {
+    this.router.navigate(['/edit-review', review.reviewId]);
+  }
+
+  deleteReview(reviewId: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cet avis ?')) {
+      this.reviewService.deleteReview(reviewId).subscribe(
+        () => {
+          this.reviews = this.reviews.filter(review => review.reviewId !== reviewId);
+        },
+        error => {
+          console.error('Error deleting review:', error);
+        }
+      );
+    }
   }
 }

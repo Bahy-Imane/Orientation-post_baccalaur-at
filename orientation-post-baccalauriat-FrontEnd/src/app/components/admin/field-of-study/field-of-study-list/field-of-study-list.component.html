@@ -1,68 +1,65 @@
-<h2 class="title">List of Fields of Study</h2>
-<!-- Search Bar and Add Button -->
-<div class="bar">
-  <input
-    type="text"
-    [(ngModel)]="searchText"
-    placeholder="Search Field of Study"
-    class="search-input"
-  />
-  <select [(ngModel)]="bacTypeRequired" class="filter-select">
-    <option value="">Select Bac Type</option>
-    <option *ngFor="let bacType of bacTypeOptions" [value]="bacType">{{ bacType }}</option>
-  </select>
-  <input
-    type="number"
-    [(ngModel)]="minimumBacNote"
-    placeholder="Minimum Bac Note"
-    class="filter-input"
-  />
-  <button (click)="openModal()" class="add-button" mat-button>
-    <i class="fas fa-plus"></i> Add Field of Study
-  </button>
-</div>
+<div class="task-list-container">
+  <h2 class="title">List of Fields of Study</h2>
 
-<!-- Modal for Adding/Editing Field of Study -->
-<div class="modal" *ngIf="showModal">
-  <div class="modal-content">
-    <span class="close" (click)="closeModal()">&times;</span>
-    <app-field-of-study-form
-      [fosId]="selectedFieldOfStudyId"
-      (modalClose)="closeModal()"
-    ></app-field-of-study-form>
+  <div class="search-filter-container">
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      placeholder="Search Field of Study"
+      class="search-input"
+      (ngModelChange)="onSearch()"
+    />
+    <select [(ngModel)]="bacTypeRequired" class="filter-select" (ngModelChange)="onFilter()">
+      <option value="">Select Bac Type</option>
+      <option *ngFor="let bacType of bacTypeOptions" [value]="bacType">{{ bacType }}</option>
+    </select>
+    <button (click)="resetFilters()" class="reset-button">
+      <i class="pi pi-refresh"></i>
+    </button>
+    <button (click)="openModal()" class="add-button">
+      <i class="pi pi-plus"></i>
+    </button>
   </div>
-</div>
+
+  <div class="task-table">
+    <div class="task-header">
+      <div class="header-item">Name</div>
+      <div class="header-item">Bac Type</div>
+      <div class="header-item">Minimum Bac Note</div>
+      <div class="header-item">Actions</div>
+    </div>
+
+    <div class="task-row" *ngFor="let field of paginatedFields">
+      <div class="row-item">{{ field.name }}</div>
+      <div class="row-item">{{ field.bacTypeRequired }}</div>
+      <div class="row-item">{{ field.minimumBacNote }}</div>
+      <div class="row-item actions">
+        <button class="edit-button" (click)="editField(field.fosId)">
+          <i class="pi pi-pencil"></i>
+        </button>
+        <button class="custom-trash-button" (click)="deleteField(field.fosId)">
+          <i class="pi pi-trash"></i>
+        </button>
+      </div>
+    </div>
 
 
-<!-- Table for Displaying Fields of Study -->
-<div class="task-table">
-  <div class="task-header">
-    <div class="header-item">Name</div>
-    <div class="header-item">Bac Type Required</div>
-    <div class="header-item">Minimum Bac Note</div>
-    <div class="header-item">Department Name</div>
-    <div class="header-item">Institution Name</div>
+    <mat-paginator
+      [length]="totalFields"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[3, 5, 10, 25, 50, 100]"
+      (page)="onPageChange($event)"
+    >
+    </mat-paginator>
 
-    <div class="header-item">Actions</div>
-  </div>
-  <div class="task-row" *ngFor="let field of filteredFieldsOfStudy()">
-    <div class="row-item">{{ field.name }}</div>
-    <div class="row-item">{{ field.bacTypeRequired }}</div>
-    <div class="row-item">{{ field.minimumBacNote }}</div>
-    <div class="row-item">{{ field.departmentName }}</div>
-    <div class="row-item">{{ field.institutionName }}</div>
-    <div class="row-item actions">
-      <div class="row-item">
-        <button (click)="editField(field.fosId)">Edit</button>
-        <button (click)="deleteField(field.fosId)">Delete</button>
+    <div class="modal" *ngIf="showModal">
+      <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <app-field-of-study-form
+          [fosId]="selectedFieldOfStudyId"
+          (modalClose)="closeModal()"
+        ></app-field-of-study-form>
       </div>
     </div>
   </div>
-  <!-- Paginator -->
-  <mat-paginator
-    [length]="totalFields"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="[5, 10, 25]"
-    (page)="onPageChange($event)"
-  ></mat-paginator>
 </div>

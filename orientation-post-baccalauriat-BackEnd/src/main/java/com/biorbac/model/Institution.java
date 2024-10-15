@@ -32,13 +32,6 @@ public class Institution {
     private InstitutionType institutionType;
 
 
-    @ManyToOne
-    @JsonIgnore
-    private Student student;
-
-//    @OneToMany(mappedBy = "institution", cascade = CascadeType.ALL)
-//    private List<Recommendation> recommendations;
-
     @OneToMany(mappedBy = "institution", cascade = CascadeType.ALL)
     private List<Review> reviews;
 

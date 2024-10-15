@@ -1,151 +1,228 @@
-//package com.orientation.biorbac;
-//
-//import com.biorbac.dto.FieldOfStudyDto;
-//import com.biorbac.enums.BacType;
-//import com.biorbac.mapper.FieldOfStudyMapper;
-//import com.biorbac.model.FieldOfStudy;
-//import com.biorbac.model.Institution;
-//import com.biorbac.model.Student;
-//import com.biorbac.repository.FieldOfStudyRepository;
-//import com.biorbac.repository.InstitutionRepository;
-//import com.biorbac.service.FieldOfStudyService;
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//import org.mockito.ArgumentCaptor;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.MockitoAnnotations;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
-//
-//import java.util.Collections;
-//import java.util.List;
-//import java.util.Optional;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//import static org.mockito.ArgumentMatchers.any;
-//import static org.mockito.Mockito.*;
-//
-//class FieldOfStudyServiceTest {
-//
-//    @InjectMocks
-//    private FieldOfStudyService fieldOfStudyService;
-//
-//    @Mock
-//    private FieldOfStudyRepository fieldOfStudyRepository;
-//
-//    @Mock
-//    private FieldOfStudyMapper fieldOfStudyMapper;
-//
-//    @Mock
-//    private InstitutionRepository institutionRepository;
-//
-//    private FieldOfStudy fieldOfStudy;
-//    private FieldOfStudyDto fieldOfStudyDto;
-//    private Institution institution;
-//
-//    @BeforeEach
-//    void setUp() {
-//        MockitoAnnotations.openMocks(this);
-//
-//        institution = new Institution();
-//        institution.setInstitutionId(1L);
-//
-//        fieldOfStudy = new FieldOfStudy();
-//        fieldOfStudy.setFosId(1L);
-//        fieldOfStudy.setName("Computer Science");
-//        fieldOfStudy.setInstitution(institution);
-//
-//        fieldOfStudyDto = new FieldOfStudyDto();
-//        fieldOfStudyDto.setName("Computer Science");
-//        fieldOfStudyDto.setInstitutionId(1L);
-//    }
-//
+package com.orientation.biorbac;
+
+import com.biorbac.dto.FieldOfStudyDto;
+import com.biorbac.enums.BacType;
+import com.biorbac.mapper.FieldOfStudyMapper;
+import com.biorbac.model.FieldOfStudy;
+import com.biorbac.model.Institution;
+import com.biorbac.model.Student;
+import com.biorbac.repository.FieldOfStudyRepository;
+import com.biorbac.repository.InstitutionRepository;
+import com.biorbac.repository.StudentRepository;
+import com.biorbac.service.FieldOfStudyService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+public class FieldOfStudyServiceTest {
+
+    @InjectMocks
+    private FieldOfStudyService fieldOfStudyService;
+
+    @Mock
+    private FieldOfStudyRepository fieldOfStudyRepository;
+
+    @Mock
+    private FieldOfStudyMapper fieldOfStudyMapper;
+
+    @Mock
+    private InstitutionRepository institutionRepository;
+
+    @Mock
+    private StudentRepository studentRepository;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    public void testGetAllFieldOfStudy() {
+        FieldOfStudy fieldOfStudy = new FieldOfStudy();
+        fieldOfStudy.setFosId(1L);
+        fieldOfStudy.setName("Computer Science");
+        // Ajoutez d'autres propriétés nécessaires...
+
+        when(fieldOfStudyRepository.findAll()).thenReturn(Collections.singletonList(fieldOfStudy));
+
+        List<FieldOfStudyDto> result = fieldOfStudyService.getAllFieldOfStudy();
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals("Computer Science", result.get(0).getName());
+        verify(fieldOfStudyRepository, times(1)).findAll();
+    }
+
 //    @Test
-//    void testGetAllFieldOfStudy() {
-//        when(fieldOfStudyRepository.findAll()).thenReturn(Collections.singletonList(fieldOfStudy));
-//        when(fieldOfStudyMapper.toFieldOfStudyDto(fieldOfStudy)).thenReturn(fieldOfStudyDto);
+//    public void testGetFieldOfStudyById() {
+//        FieldOfStudy fieldOfStudy = new FieldOfStudy();
+//        fieldOfStudy.setFosId(1L);
+//        fieldOfStudy.setName("Mathematics");
 //
-//        List<FieldOfStudy> result = fieldOfStudyService.getAllFieldOfStudy();
+//        when(fieldOfStudyRepository.findById(1L)).thenReturn(Optional.of(fieldOfStudy));
+//
+//        List<FieldOfStudyDto> result = fieldOfStudyService.getFieldOfStudyById(1L);
 //
 //        assertNotNull(result);
 //        assertEquals(1, result.size());
-//        verify(fieldOfStudyRepository, times(1)).findAll();
-//    }
-//
-//    @Test
-//    void testGetFieldOfStudyById_Found() {
-//        when(fieldOfStudyRepository.findById(1L)).thenReturn(Optional.of(fieldOfStudy));
-//        when(fieldOfStudyMapper.toFieldOfStudyDto(fieldOfStudy)).thenReturn(fieldOfStudyDto);
-//
-//        ResponseEntity<FieldOfStudyDto> response = fieldOfStudyService.getFieldOfStudyById(1L);
-//
-//        assertEquals(HttpStatus.OK, response.getStatusCode());
-//        assertNotNull(response.getBody());
-//        assertEquals("Computer Science", response.getBody().getName());
-//    }
-//
-//    @Test
-//    void testGetFieldOfStudyById_NotFound() {
-//        when(fieldOfStudyRepository.findById(1L)).thenReturn(Optional.empty());
-//
-//        ResponseEntity<FieldOfStudyDto> response = fieldOfStudyService.getFieldOfStudyById(1L);
-//
-//        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-//    }
-//
-//    @Test
-//    void testAddFieldOfStudy() {
-//        when(institutionRepository.findById(1L)).thenReturn(Optional.of(institution));
-//        when(fieldOfStudyMapper.toFieldOfStudy(fieldOfStudyDto)).thenReturn(fieldOfStudy);
-//        when(fieldOfStudyRepository.save(fieldOfStudy)).thenReturn(fieldOfStudy);
-//        when(fieldOfStudyMapper.toFieldOfStudyDto(fieldOfStudy)).thenReturn(fieldOfStudyDto);
-//
-//        FieldOfStudyDto result = fieldOfStudyService.addFieldOfStudy(fieldOfStudyDto);
-//
-//        assertNotNull(result);
-//        assertEquals("Computer Science", result.getName());
-//        verify(institutionRepository, times(1)).findById(1L);
-//        verify(fieldOfStudyRepository, times(1)).save(any(FieldOfStudy.class));
-//    }
-//
-//    @Test
-//    void testUpdateFieldOfStudy() {
-//        when(fieldOfStudyRepository.findById(1L)).thenReturn(Optional.of(fieldOfStudy));
-//        when(fieldOfStudyMapper.toFieldOfStudyDto(fieldOfStudy)).thenReturn(fieldOfStudyDto);
-//
-//        fieldOfStudyDto.setName("Updated Name");
-//
-//        fieldOfStudyMapper.updateFieldOfStudyFromDto(fieldOfStudyDto, fieldOfStudy);
-//
-//        when(fieldOfStudyRepository.save(fieldOfStudy)).thenReturn(fieldOfStudy);
-//
-//        FieldOfStudyDto updatedResult = fieldOfStudyService.updateFieldOfStudy(1L, fieldOfStudyDto);
-//
-//        assertNotNull(updatedResult);
-//        assertEquals("Updated Name", updatedResult.getName());
+//        assertEquals("Mathematics", result.get(0).getName());
 //        verify(fieldOfStudyRepository, times(1)).findById(1L);
 //    }
-//
-//
+
+    @Test
+    public void testGetFieldOfStudyById_NotFound() {
+        when(fieldOfStudyRepository.findById(1L)).thenReturn(Optional.empty());
+
+        List<FieldOfStudyDto> result = fieldOfStudyService.getFieldOfStudyById(1L);
+
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+        verify(fieldOfStudyRepository, times(1)).findById(1L);
+    }
+
+    @Test
+    public void testAddFieldOfStudy() {
+        FieldOfStudyDto fieldOfStudyDto = new FieldOfStudyDto();
+        fieldOfStudyDto.setName("Physics");
+        fieldOfStudyDto.setInstitutionId(1L);
+        fieldOfStudyDto.setBacTypeRequired(BacType.SCIENTIFIC.name());
+
+        Institution institution = new Institution();
+        institution.setInstitutionId(1L);
+
+        when(institutionRepository.findById(1L)).thenReturn(Optional.of(institution));
+
+        Map<String, String> response = fieldOfStudyService.addFieldOfStudy(fieldOfStudyDto);
+
+        assertEquals("Field of study created", response.get("msg"));
+        verify(fieldOfStudyRepository, times(1)).save(any(FieldOfStudy.class));
+    }
+
+    @Test
+    public void testAddFieldOfStudy_InstitutionNotFound() {
+        FieldOfStudyDto fieldOfStudyDto = new FieldOfStudyDto();
+        fieldOfStudyDto.setInstitutionId(999L); // Un ID qui n'existe pas
+
+        when(institutionRepository.findById(999L)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () ->
+                fieldOfStudyService.addFieldOfStudy(fieldOfStudyDto));
+        assertEquals("Institution not found", exception.getMessage());
+    }
+
+
+
+    @Test
+    public void testUpdateFieldOfStudy_NotFound() {
+        FieldOfStudyDto fieldOfStudyDto = new FieldOfStudyDto();
+        when(fieldOfStudyRepository.findById(1L)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () ->
+                fieldOfStudyService.updateFieldOfStudy(1L, fieldOfStudyDto));
+        assertEquals("Field Of Study not found", exception.getMessage());
+    }
+
+    @Test
+    public void testDeleteFieldOfStudy() {
+        doNothing().when(fieldOfStudyRepository).deleteById(1L);
+        fieldOfStudyService.deleteFieldOfStudy(1L);
+        verify(fieldOfStudyRepository, times(1)).deleteById(1L);
+    }
+
+    @Test
+    public void testSearchByText() {
+        FieldOfStudy fieldOfStudy = new FieldOfStudy();
+        fieldOfStudy.setFosId(1L);
+        fieldOfStudy.setName("Biology");
+
+        when(fieldOfStudyRepository.searchByText("Bio")).thenReturn(Collections.singletonList(fieldOfStudy));
+        when(fieldOfStudyMapper.toFieldOfStudyDto(any(FieldOfStudy.class))).thenReturn(new FieldOfStudyDto());
+
+        List<FieldOfStudyDto> result = fieldOfStudyService.searchByText("Bio");
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        verify(fieldOfStudyRepository, times(1)).searchByText("Bio");
+    }
+
+    @Test
+    public void testFilterByBacType() {
+        FieldOfStudy fieldOfStudy = new FieldOfStudy();
+        fieldOfStudy.setFosId(1L);
+        fieldOfStudy.setName("Chemistry");
+
+        when(fieldOfStudyRepository.findByBacTypeRequired(BacType.SCIENTIFIC)).thenReturn(Collections.singletonList(fieldOfStudy));
+        when(fieldOfStudyMapper.toFieldOfStudyDto(any(FieldOfStudy.class))).thenReturn(new FieldOfStudyDto());
+
+        List<FieldOfStudyDto> result = fieldOfStudyService.filterByBacType(BacType.SCIENTIFIC.name());
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        verify(fieldOfStudyRepository, times(1)).findByBacTypeRequired(BacType.SCIENTIFIC);
+    }
+
+
 //    @Test
-//    void testDeleteFieldOfStudy() {
-//        fieldOfStudyService.deleteFieldOfStudy(1L);
-//        verify(fieldOfStudyRepository, times(1)).deleteById(1L);
-//    }
+//    public void testRecommendBasedOnStudent() {
 //
-//    @Test
-//    void testRecommendBasedOnStudent() {
+//        Authentication loggedInUser = mock(Authentication.class);
+//        SecurityContextHolder.getContext().setAuthentication(loggedInUser);
+//        when(loggedInUser.getName()).thenReturn("studentUser");
+//
 //        Student student = new Student();
-//        student.setBacScore(15.0);
+//        student.setBacScore(15);
 //        student.setBacType(BacType.SCIENTIFIC);
-//        when(fieldOfStudyRepository.findByMinimumBacNoteLessThanEqualAndBacTypeRequired(15.0, BacType.SCIENTIFIC))
+//
+//        when(studentRepository.findStudentByUserName("studentUser")).thenReturn(student);
+//
+//        FieldOfStudy fieldOfStudy = new FieldOfStudy();
+//        fieldOfStudy.setFosId(1L);
+//        fieldOfStudy.setName("Biology");
+//        // Ajoutez d'autres propriétés nécessaires...
+//
+//        when(fieldOfStudyRepository.findByMinimumBacNoteLessThanEqualAndBacTypeRequired(15, BacType.SCIENTIFIC))
 //                .thenReturn(Collections.singletonList(fieldOfStudy));
 //
-//        List<FieldOfStudy> recommendations = fieldOfStudyService.recommendBasedOnStudent(student);
+//        List<FieldOfStudyDto> result = fieldOfStudyService.recommendBasedOnStudent();
 //
-//        assertNotNull(recommendations);
-//        assertEquals(1, recommendations.size());
-//        assertEquals("Computer Science", recommendations.get(0).getName());
+//        assertNotNull(result);
+//        assertEquals(1, result.size());
+//        assertEquals("Biology", result.get(0).getName());
 //    }
-//}
+
+
+    //    @Test
+//    public void testUpdateFieldOfStudy() {
+//        FieldOfStudyDto fieldOfStudyDto = new FieldOfStudyDto();
+//        fieldOfStudyDto.setName("Chemistry");
+//
+//        FieldOfStudy existingFieldOfStudy = new FieldOfStudy();
+//        existingFieldOfStudy.setFosId(1L);
+//        existingFieldOfStudy.setName("Biology");
+//
+//        when(fieldOfStudyRepository.findById(1L)).thenReturn(Optional.of(existingFieldOfStudy));
+//
+//        Map<String, String> response = fieldOfStudyService.updateFieldOfStudy(1L, fieldOfStudyDto);
+//
+//        assertEquals("Field of study created", response.get("msg"));
+//        assertEquals("Chemistry", existingFieldOfStudy.getName());
+//        verify(fieldOfStudyRepository, times(1)).save(existingFieldOfStudy);
+//    }
+
+}

@@ -19,6 +19,10 @@ export class ReviewService {
     return this.http.get<ReviewDto[]>(`${this.baseUrl}/institution/${institutionId}`);
   }
 
+  getReviewsByStudent(studentName: String): Observable<ReviewDto[]> {
+    return this.http.get<ReviewDto[]>(`${this.baseUrl}/Student-name/${studentName}`);
+  }
+
   // Create a new review
   createReview(reviewDto: ReviewDto): Observable<ReviewDto> {
     return this.http.post<ReviewDto>(this.baseUrl, reviewDto);

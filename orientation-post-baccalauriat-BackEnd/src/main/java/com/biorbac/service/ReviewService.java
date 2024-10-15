@@ -57,7 +57,22 @@ public class ReviewService {
             reviewDto.setUserName(rev.getStudent().getUsername());
             reviewDto.setRating(rev.getRating());
             return reviewDto;
-        }).collect(Collectors.toList());    }
+        }).collect(Collectors.toList());
+    }
+
+    public List<ReviewDto> getReviewsByStudentName(String studentName) {
+        List<Review> reviews = reviewRepository.findByStudentUserName(studentName);
+        return reviews.stream().map(rev->{
+            ReviewDto reviewDto = new ReviewDto();
+            reviewDto.setReviewId(rev.getReviewId());
+            reviewDto.setComment(rev.getComment());
+            reviewDto.setInstitutionId(rev.getInstitution().getInstitutionId());
+            reviewDto.setReviewId(rev.getReviewId());
+            reviewDto.setUserName(rev.getStudent().getUsername());
+            reviewDto.setRating(rev.getRating());
+            return reviewDto;
+        }).collect(Collectors.toList());
+    }
 
     public Map<String , String> createReview(ReviewDto reviewDto) {
         Institution institution = institutionRepository.findById(reviewDto.getInstitutionId())

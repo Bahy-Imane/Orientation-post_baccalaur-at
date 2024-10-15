@@ -2,9 +2,9 @@
   width: 20%;
   position: fixed;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: #02347c;
   padding: 20px;
-  box-shadow: 2px 0 5px rgb(116, 118, 119);
+  box-shadow: 2px 0 5px rgb(0, 114, 234);
   transition: transform 0.3s ease; /* Smooth transition for toggle */
 }
 
@@ -23,7 +23,7 @@
 .sidebar h3 {
   margin: 10px 0 10px;
   font-size: 1.5rem; /* Responsive font size */
-  color: #1f67ff;
+  color: #ffffff;
 }
 
 .sidebar nav ul {
@@ -38,7 +38,7 @@
 
 .sidebar nav ul li a {
   text-decoration: none;
-  color: #000000;
+  color: #ffffff;
   font-size: 1.2rem; /* Responsive font size */
   display: flex;
   align-items: center;
